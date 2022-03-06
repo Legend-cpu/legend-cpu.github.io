@@ -1,0 +1,6 @@
+#page-header {
+    background-color: rgba(0, 0, 0, 0);
+}
+#page-header.post-bg:before {
+    background-color: rgba(0,0,0,0);
+}

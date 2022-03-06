@@ -1,6 +1,3 @@
-#page-header {
+#page-header, #page-header.post-bg:before, #page-header:not(.not-top-img):before {
     background-color: rgba(0, 0, 0, 0);
-}
-#page-header.post-bg:before {
-    background-color: rgba(0,0,0,0);
 }

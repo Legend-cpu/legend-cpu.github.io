@@ -63,8 +63,8 @@ function enterBlog(){
 }
 
 /* 将博客首页转变成单页个人主页 */
-let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top', 'https://legend-cpu.github.io',
-	'https://elzzach.gitee.io'
+let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/',
+	'https://elzzach.gitee.io/'
 ]
 if (homePageURLs.includes(location.href)) {
 	document.body.style.overflow = 'hidden';

@@ -4,8 +4,6 @@
 	/* IE9 */
 	src: url("../fontdest/AZhuPaoPaoTi.eot?#iefix") format("embedded-opentype"),
 		/* IE6-IE8 */
-		url("../fontdest/AZhuPaoPaoTi.woff2") format("woff2"),
-		/* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
 		url("../fontdest/AZhuPaoPaoTi.woff") format("woff"),
 		/* chrome, firefox */
 		url("../fontdest/AZhuPaoPaoTi.ttf") format("truetype"),
@@ -15,13 +13,11 @@
 }
 
 @font-face {
-	font-family: "jf-openhuninn-1.0";
+	font-family: "jf-fenyuan";
 	src: url("../fontdest/JustFontFenYuanZiTi-2.eot");
 	/* IE9 */
 	src: url("../fontdest/JustFontFenYuanZiTi-2.eot?#iefix") format("embedded-opentype"),
 		/* IE6-IE8 */
-		url("../fontdest/JustFontFenYuanZiTi-2.woff2") format("woff2"),
-		/* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
 		url("../fontdest/JustFontFenYuanZiTi-2.woff") format("woff"),
 		/* chrome, firefox */
 		url("../fontdest/JustFontFenYuanZiTi-2.ttf") format("truetype"),
@@ -32,8 +28,9 @@
 
 
 body {
-	font-family: jf-openhuninn-1.0;
-	font-size: 1.1em;
+	font-family: AZPPT;
+	font-size: 1.2em;
+	font-weight: 500;
 }
 
 h1,

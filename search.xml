@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/uncategorized/hello-world/"/>
+      <url>/uncategorized/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+    
+    
+    <entry>
+      <title></title>
+      <link href="/expandedCSS/expand.css"/>
+      <url>/expandedCSS/expand.css</url>
+      
+        <content type="html"><![CDATA[@font-face {font-family: "AZPPT";src: url("../fontdest/AZhuPaoPaoTi.eot");/* IE9 */src: url("../fontdest/AZhuPaoPaoTi.eot?#iefix") format("embedded-opentype"),/* IE6-IE8 */url("../fontdest/AZhuPaoPaoTi.woff") format("woff"),/* chrome, firefox */url("../fontdest/AZhuPaoPaoTi.ttf") format("truetype"),/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */url("../fontdest/AZhuPaoPaoTi.svg#AZPPT") format("svg");/* iOS 4.1- */}@font-face {font-family: "jf-fenyuan";src: url("../fontdest/JustFontFenYuanZiTi-2.eot");/* IE9 */src: url("../fontdest/JustFontFenYuanZiTi-2.eot?#iefix") format("embedded-opentype"),/* IE6-IE8 */url("../fontdest/JustFontFenYuanZiTi-2.woff") format("woff"),/* chrome, firefox */url("../fontdest/JustFontFenYuanZiTi-2.ttf") format("truetype"),/* chrome, firefox, opera, Safari, Android, iOS 4.2+ */url("../fontdest/JustFontFenYuanZiTi-2.svg#jf-openhuninn-1.0") format("svg");/* iOS 4.1- */}body {font-family: AZPPT;font-size: 1.2em;font-weight: 500;}h1,h2,h3,h4,h5,h6 {font-family: AZPPT;}#aside-content #card-toc .toc-content>* {margin: 0 0px !important;}#page-header #site-title {font-size: 4em;}@media screen and (min-width: 768px) {#page-header #site-subtitle {font-size: 1.3em;}}#nav {background-color: rgba(255, 255, 255, 0.8);}#nav a {color: #858585;}#recent-posts>.recent-post-item .post_cover {width: 40%;}#recent-posts>.recent-post-item>.recent-post-info {padding-left: 40px;padding-right: 0;}@media screen and (max-width: 768px) {#recent-posts>.recent-post-item .post_cover {width: 100%;height: 230px;}}#pagination .page-number.current {background: #c449f5;}#nav a:hover {color: #c449f5;}/* From cssbutton.io by @westitan */.enter {position: relative;padding: 10px 20px;display: block;text-decoration: none;text-transform: uppercase;overflow: hidden;border-radius: 40px;border: none;}.enter span {position: relative;color: #fff;font-family: Arial;letter-spacing: 2px;z-index: 1;}.enter .liquid {position: absolute;top: -80px;left: 0;width: 100%;height: 200px;background: #c449f5;box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);transition: .5s;}.enter .liquid::after,.enter .liquid::before {content: '';width: 200%;height: 200%;position: absolute;top: 0;left: 50%;transform: translate(-50%, -75%);background: #fff;}.enter .liquid::before {border-radius: 45%;background: rgba(20, 20, 20, 1);animation: animate 5s linear infinite;}.enter .liquid::after {border-radius: 40%;background: rgba(20, 20, 20, .5);animation: animate 10s linear infinite;}.enter:hover .liquid {top: -120px;}@keyframes animate {0% {transform: translate(-50%, -75%) rotate(0deg);}100% {transform: translate(-50%, -75%) rotate(360deg);}}/* 修改底部样式 */#footer::before {height: 0;}#footer-wrap,#footer-wrap a {color: #535353;}#footer-wrap {padding: 15px 20px;}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/expandedJS/expand.js"/>
+      <url>/expandedJS/expand.js</url>
+      
+        <content type="html"><![CDATA[//函数定义区//标签页进入后台时改变标题，再次进入前台时再次改变标题let originTitle = document.title;let titleTime;document.addEventListener('visibilitychange', function() {let isHidden = document.hidden;if (isHidden) {document.title = 'A, TNND, 为什么要走！(╯▔皿▔)╯';clearTimeout(titleTime);} else {document.title = '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ';titleTime = setTimeout(function() {document.title = originTitle;}, 3000);}})/* 将博客首页转变成单页个人主页 */function createAvatarBox() {avatarContainer = document.createElement('div');img = document.createElement('img');img.style.width = '100%';img.style.height = '100%';img.src = 'https://elzzach-src.oss-cn-hangzhou.aliyuncs.com/img/20220224/avatar.png';avatarContainer.style.width = '90px';avatarContainer.style.height = '90px';avatarContainer.style.margin = '0 auto';avatarContainer.style.overflow = 'hidden';avatarContainer.style.border = '1px solid transparent';avatarContainer.style.borderRadius = '50px';avatarContainer.appendChild(img);document.getElementById("site-info").insertBefore(avatarContainer, document.getElementById("site-title"));}function createButton(top, text) {btn = document.createElement('button');span = document.createElement('span');div = document.createElement('div');btn.appendChild(span);btn.appendChild(div);document.getElementById("page-header").insertBefore(btn, document.getElementById("scroll-down"));div.className = 'liquid';btn.className = 'enter';btn.style.position = 'absolute';btn.style.top = top;btn.style.left = '50%';btn.style.transform = 'translateX(-50%)';span.innerText = text;return btn;}function enterBlog() {let nav = document.getElementById("nav");document.body.style.overflow = 'auto';document.getElementById("content-inner").style.display = 'flex';document.getElementById("content-inner").style.padding = '100px 15px';document.getElementById("page-header").removeChild(nav);document.getElementById("rightside-config-show").style.display = 'block';document.getElementById("footer").style.display = 'block';document.getElementById("body-wrap").insertBefore(nav, document.getElementById("content-inner"));document.getElementById("nav").style.display = 'flex';document.getElementById("nav").className = 'show';document.querySelector('#search-button a span').style.display = 'inline';document.getElementById("page-header").style.transition = 'all 0.5s ease-out';document.getElementById("page-header").style.display = 'none';}function initHomePage() {document.body.style.overflow = 'hidden';document.getElementById("content-inner").style.display = 'none';document.getElementById("rightside-config-show").style.display = 'none';document.getElementById('site-info').style.top = '30%';document.getElementById("footer").style.display = 'none';document.getElementById("nav").style.display = 'none';document.getElementById("scroll-down").style.display = 'none';createAvatarBox();let btnEnterBlog = createButton('68vh', 'Enter my blog');let btnEnterLab = createButton('78vh', 'Enter my FE-lab');btnEnterBlog.addEventListener('click', enterBlog, false);}// 函数调用区let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/','https://elzzach.gitee.io/']if (homePageURLs.includes(location.href)) {initHomePage();} else {document.getElementById("aside-content").removeChild(document.querySelector('.card-announcement'));}if (document.getElementById("site_social_icons")) {document.getElementById("site-info").removeChild(document.getElementById("site_social_icons"));}]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[<p><strong>本页面尚在开发中，敬请期待！</strong></p>]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>碎碎念</title>
+      <link href="/shuoshuo/index.html"/>
+      <url>/shuoshuo/index.html</url>
+      
+        <content type="html"><![CDATA[<p><strong>本页面尚在开发中，敬请期待！</strong></p>]]></content>
+      
+    </entry>
+    
+    
+  
+</search>

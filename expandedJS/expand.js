@@ -1,3 +1,4 @@
+//函数定义区
 //标签页进入后台时改变标题，再次进入前台时再次改变标题
 let originTitle = document.title;
 let titleTime;
@@ -66,19 +67,28 @@ function enterBlog() {
 	document.getElementById("page-header").style.display = 'none';
 }
 
-let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/',
-	'https://elzzach.gitee.io/'
-]
-if (homePageURLs.includes(location.href)) {
+function initHomePage() {
 	document.body.style.overflow = 'hidden';
 	document.getElementById("content-inner").style.display = 'none';
 	document.getElementById("rightside-config-show").style.display = 'none';
-	document.getElementById('site-info').style.top = '35%';
+	document.getElementById('site-info').style.top = '30%';
 	document.getElementById("footer").style.display = 'none';
 	document.getElementById("nav").style.display = 'none';
 	document.getElementById("scroll-down").style.display = 'none';
 	createAvatarBox();
-	let btnEnterBlog = createButton('66vh', 'Enter my blog');
-	let btnEnterLab = createButton('74vh', 'Enter my FE-lab');
+	let btnEnterBlog = createButton('68vh', 'Enter my blog');
+	let btnEnterLab = createButton('78vh', 'Enter my FE-lab');
 	btnEnterBlog.addEventListener('click', enterBlog, false);
+}
+// 函数调用区
+let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/',
+	'https://elzzach.gitee.io/'
+]
+if (homePageURLs.includes(location.href)) {
+	initHomePage();
+} else {
+	document.getElementById("aside-content").removeChild(document.querySelector('.card-announcement'));
+}
+if (document.getElementById("site_social_icons")) {
+	document.getElementById("site-info").removeChild(document.getElementById("site_social_icons"));
 }

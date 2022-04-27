@@ -1,0 +1,188 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+}
+
+@keyframes flickr {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes shooting-star {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(8deg);
+        /*图片旋转角度*/
+    }
+
+    20%,
+    /*飞过用时*/
+    100% {
+        transform: translate3d(3000px, 400px, 0) rotate(8deg);
+        /*最终停止位置*/
+    }
+}
+
+.bg-starsky {
+    position: absolute;
+    z-index: -999;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #1d4253 0%, #6bb5c4 100%);
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 1px;
+    background: #fff;
+    animation-name: flickr;
+    animation-iteration-count: infinite;
+}
+
+.shooting-star {
+    position: absolute;
+    top: 0;
+    left: -120px;
+    width: 120px;
+    height: 2px;
+    background: url(./shooting-star.png) center center no-repeat;
+    background-size: 100% 100%;
+    animation-name: shooting-star;
+    animation-iteration-count: infinite;
+}
+
+.container {
+    height: 100vh;
+    margin: 0 auto;
+    padding: 70px 0;
+    overflow: scroll;
+}
+
+.card {
+    width: 900px;
+    padding: 16px 22px 20px;
+    margin: 0 auto 84px auto;
+    border-radius: 20px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    margin-bottom: 24px;
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.info-right {
+    position: relative;
+    flex: 1;
+    margin-left: 18px;
+}
+
+.author {
+    position: absolute;
+    top: 0;
+    font-size: 20px;
+}
+
+.date {
+    position: absolute;
+    bottom: 0;
+    font-size: 12px;
+}
+
+p {
+    margin: 0;
+    color: white;
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+@media screen and (max-width:1000px){
+    .card{
+        width: 70vw;
+    }
+    .author{
+        font-size: 16px;
+    }
+    .date{
+        font-size: 8px;
+    }
+    p{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width:700px){
+    .card{
+        padding: 16px 18px 20px;
+    }
+    .avatar{
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+    .card-info{
+        height: 40px;
+    }
+}
+@media screen and (max-width:500px){
+    .container{
+        padding: 40px 0;
+    }
+    .card{
+        width: 80vw;
+        padding: 16px 10px 20px;
+        margin-bottom: 40px;
+    }
+    p{
+        font-size: 12px;
+    }
+}
+.card-blue {
+    background: linear-gradient(135deg, #00638280, #95E6FF80);
+    border: 2px solid #6ADDFF;
+}
+
+.card-blue .avatar {
+    border: 1px solid #6ADDFF;
+}
+
+.card-blue .info-right {
+    color: #A5E9FF;
+}
+
+.card-purple {
+    background: linear-gradient(135deg, #68008280, #EA95FF80);
+    border: 2px solid #EEAAFF;
+}
+
+.card-purple .avatar {
+    border: 1px solid #EEAAFF;
+}
+
+.card-purple .info-right {
+    color: #D3B8FF;
+}

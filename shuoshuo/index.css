@@ -1,3 +1,29 @@
+/*适用于火狐的滚动条样式*/
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #6bb5c4 transparent;
+}
+
+/*适用于谷歌、edge的滚动条样式*/
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #6bb5c4;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/*文字选中样式*/
+::selection {
+    background-color: #6bb5c4;
+    color: white;
+}
+
 body {
     margin: 0;
     overflow: hidden;
@@ -121,46 +147,56 @@ p {
     line-height: 1.5em;
 }
 
-@media screen and (max-width:1000px){
-    .card{
+@media screen and (max-width:1000px) {
+    .card {
         width: 70vw;
     }
-    .author{
+
+    .author {
         font-size: 16px;
     }
-    .date{
+
+    .date {
         font-size: 8px;
     }
-    p{
+
+    p {
         font-size: 14px;
     }
 }
-@media screen and (max-width:700px){
-    .card{
+
+@media screen and (max-width:700px) {
+    .card {
         padding: 16px 18px 20px;
     }
-    .avatar{
+
+    .avatar {
         width: 40px;
         height: 40px;
         border-radius: 20px;
     }
-    .card-info{
+
+    .card-info {
         height: 40px;
     }
 }
-@media screen and (max-width:500px){
-    .container{
+
+@media screen and (max-width:500px) {
+    .container {
         padding: 40px 0;
     }
-    .card{
+
+    .card {
         width: 80vw;
         padding: 16px 10px 20px;
         margin-bottom: 40px;
     }
-    p{
+
+    p {
         font-size: 12px;
     }
 }
+
 .card-blue {
     background: linear-gradient(135deg, #00638280, #95E6FF80);
     border: 2px solid #6ADDFF;

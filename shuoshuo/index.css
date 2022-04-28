@@ -69,9 +69,9 @@ body {
 
 .star {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    border-radius: 1px;
+    width: 3px;
+    height: 3px;
+    border-radius: 1.5px;
     background: #fff;
     animation-name: flickr;
     animation-iteration-count: infinite;

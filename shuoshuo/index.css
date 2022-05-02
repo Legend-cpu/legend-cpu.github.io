@@ -24,10 +24,28 @@
     color: white;
 }
 
+@font-face {
+    font-family: "AZPPT";
+    src: url("../fontdest/AZhuPaoPaoTi.eot");
+    /* IE9 */
+    src: url("../fontdest/AZhuPaoPaoTi.eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */
+        url("../fontdest/AZhuPaoPaoTi.woff") format("woff"),
+        /* chrome, firefox */
+        url("../fontdest/AZhuPaoPaoTi.ttf") format("truetype"),
+        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+        url("../fontdest/AZhuPaoPaoTi.svg#AZPPT") format("svg");
+    /* iOS 4.1- */
+}
+
 body {
     margin: 0;
     overflow: hidden;
     height: 100vh;
+}
+
+a {
+    text-decoration: none;
 }
 
 @keyframes flickr {
@@ -101,6 +119,7 @@ body {
     padding: 16px 22px 20px;
     margin: 0 auto 84px auto;
     border-radius: 20px;
+    font-family: AZPPT;
 }
 
 .card-info {
@@ -131,19 +150,19 @@ body {
 .author {
     position: absolute;
     top: 0;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .date {
     position: absolute;
     bottom: 0;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 p {
     margin: 0;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.5em;
 }
 
@@ -153,15 +172,15 @@ p {
     }
 
     .author {
-        font-size: 16px;
+        font-size: 20px;
     }
 
     .date {
-        font-size: 8px;
+        font-size: 12px;
     }
 
     p {
-        font-size: 14px;
+        font-size: 18px;
     }
 }
 
@@ -193,13 +212,17 @@ p {
     }
 
     p {
-        font-size: 12px;
+        font-size: 16px;
     }
 }
 
 .card-blue {
     background: linear-gradient(135deg, #00638280, #95E6FF80);
     border: 2px solid #6ADDFF;
+}
+
+.card-blue a {
+    color: #A5E9FF;
 }
 
 .card-blue .avatar {
@@ -213,6 +236,10 @@ p {
 .card-purple {
     background: linear-gradient(135deg, #68008280, #EA95FF80);
     border: 2px solid #EEAAFF;
+}
+
+.card-purple a {
+    color: #EEAAFF;
 }
 
 .card-purple .avatar {

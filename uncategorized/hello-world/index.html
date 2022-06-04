@@ -171,7 +171,7 @@ window.addEventListener('load',preloader.endLoading())</script><div class="js-pj
   function insertCSS () {
     const link = document.createElement("link")
     link.rel = "stylesheet"
-    link.href = "/pluginsSrc/@waline/client/dist/waline.css"
+    link.href = "https://unpkg.com/@waline/client@v2/dist/waline.css"
     document.head.appendChild(link)
   }
 
@@ -183,13 +183,13 @@ window.addEventListener('load',preloader.endLoading())</script><div class="js-pj
       dark: 'html[data-theme="dark"]',
       path: window.location.pathname,
       comment: true,
-    }, {"emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba","https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo"],"placeholder":"文明用语，友善发言(半小时才能发一条评论哦，三思而后言:))","wordLimit":100,"avatar":"hide"}))
+    }, {"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq"],"placeholder":"文明用语，友善发言 (半小时才能发一条评论哦，三思而后言 :D )","wordLimit":150,"avatar":"hide"}))
   }
 
   if (typeof Waline === 'function') initWaline()
   else {
     insertCSS()
-    getScript('/pluginsSrc/@waline/client/dist/waline.js').then(initWaline)
+    getScript('https://unpkg.com/@waline/client@v2/dist/waline.js').then(initWaline)
   }
 }
 
@@ -200,7 +200,7 @@ if ('Waline' === 'Waline' || !false) {
   function loadOtherComment () {
     loadWaline()
   }
-}</script></div><script src="/ext-js/ext.js"></script><script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="/pluginsSrc/butterfly-extsrc/dist/fireworks.min.js"></script><script src="/pluginsSrc/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+}</script></div><script src="/ext-js/ext.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="/pluginsSrc/butterfly-extsrc/dist/fireworks.min.js"></script><script src="/pluginsSrc/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
 POWERMODE.shake = true;
 POWERMODE.mobile = false;
 document.body.addEventListener('input', POWERMODE);

@@ -108,7 +108,7 @@ function initHomePage() {
 changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
 
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/',
-    'https://elzzach.gitee.io/'
+    'http://blog.elzzach.top/'
 ]
 if (homePageURLs.includes(location.href)) {
     initHomePage();

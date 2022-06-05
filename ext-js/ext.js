@@ -1,4 +1,14 @@
 /**
+ * @param {String} selector
+ */
+function $(selector) {
+    let nodeList = document.querySelectorAll(selector)
+    let result = (selector.startsWith("#")) ? nodeList[0] : ((nodeList.length === 1) ? nodeList[
+        0] : nodeList)
+    return result
+}
+
+/**
  * @description 标签页进入后台时改变标题，再次进入前台时再次改变标题 
  * @param {String} leaveTitle
  * @param {String} backTitle
@@ -37,7 +47,7 @@ function createAvatarBox() {
     avatarContainer.style.height = '90px';
     avatarContainer.style.margin = '0 auto';
     avatarContainer.style.overflow = 'hidden';
-    avatarContainer.style.border = '1px solid transparent';
+    avatarContainer.style.border = '1px solid #c449f5';
     avatarContainer.style.borderRadius = '50px';
 }
 
@@ -110,16 +120,37 @@ changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，�
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/',
     'http://blog.elzzach.top/'
 ]
-if (homePageURLs.includes(location.href)) {
+if (homePageURLs.includes(location.href)) { //如果是首页
     initHomePage();
     if (document.getElementById("site_social_icons")) {
         document.getElementById("site-info").removeChild(document.getElementById("site_social_icons"));
     }
-} else {
+} else { //如果不是首页
     if (document.getElementById("driftDown")) {
         document.head.removeChild(document.getElementById("driftDown"));
     }
     if (document.querySelector('.card-announcement')) {
         document.getElementById("aside-content").removeChild(document.querySelector('.card-announcement'));
+    }
+    window.onload = function() {
+        // 修改评论区placeholder
+        // 评论区的一些元素由于网速原因加载较慢，因此通过定时器监视，一旦出现并修改成功后清除定时器
+        var id1 = setInterval(function () {
+            if ($('#wl-edit')) {
+                $('#wl-edit').placeholder =
+                    "1.文明用语，友善发言:D\n2.本评论系统目前支持匿名评论，但如果你愿意，欢迎登录评论\n3.评论审核开关已开启，评论经审核通过后才会可见; 另外提交评论后输入框内容可能不会清空，可以再提交一遍，如果有已经发送过的提示说明提交成功了\n4.半小时才能发一条评论哦，三思而后言:D"
+                    var flag = true;
+            }
+            if(flag){
+                clearInterval(id1);
+            }
+        }, 500)
+        // 评论数统计被同源策略阻止了，这是用JS DOM的方式获取评论数的方法
+        var id2 = setInterval(function() {
+            $('.post-meta-label')[4].innerHTML = '评论数：' + $('.wl-num').innerHTML;
+            if ($('.wl-num').innerHTML) {
+                clearInterval(id2);
+            }
+        }, 500);
     }
 }

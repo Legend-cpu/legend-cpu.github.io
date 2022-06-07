@@ -147,7 +147,7 @@ if (homePageURLs.includes(location.href)) { //如果是首页
         }, 500)
         // 评论数统计被同源策略阻止了，这是用JS DOM的方式获取评论数的方法
         var id2 = setInterval(function() {
-            $('.post-meta-label')[4].innerHTML = '评论数：' + $('.wl-num').innerHTML;
+            $('.post-meta-label')[4].innerHTML = '评论数：加载中...';
             if ($('.wl-num').innerHTML) {
                 clearInterval(id2);
             }

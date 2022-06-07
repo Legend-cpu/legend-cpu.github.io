@@ -149,6 +149,7 @@ if (homePageURLs.includes(location.href)) { //如果是首页
         var id2 = setInterval(function() {
             $('.post-meta-label')[4].innerHTML = '评论数：加载中...';
             if ($('.wl-num').innerHTML) {
+                $('.post-meta-label')[4].innerHTML = '评论数：'+ $('.wl-num').innerHTML;
                 clearInterval(id2);
             }
         }, 500);

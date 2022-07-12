@@ -14,13 +14,27 @@
     /* iOS 4.1- */
 }
 
+@font-face {
+    font-family: "JFFenYuan";
+    src: url("../fontdest/JustFontFenYuan.eot");
+    /* IE9 */
+    src: url("../fontdest/JustFontFenYuan.eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */
+        url("../fontdest/JustFontFenYuan.woff") format("woff"),
+        /* chrome, firefox */
+        url("../fontdest/JustFontFenYuan.ttf") format("truetype"),
+        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+        url("../fontdest/JustFontFenYuan.svg#JFFenYuan") format("svg");
+    /* iOS 4.1- */
+}
+
 :root {
     --waline-border: none !important;
     --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%) !important;
 }
 
 body {
-    font-family: AZPPT;
+    font-family: "JFFenYuan";
     font-size: 1.1em;
     font-weight: 500;
 }

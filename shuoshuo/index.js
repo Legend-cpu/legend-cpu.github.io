@@ -56,16 +56,14 @@ xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
             jsonArr = JSON.parse(xhr.responseText);
+            let innerHtml = '';
             for (let i = jsonArr.length - 1; i >= 1; i--) {
-                let innerHtml = '';
                 let color = ((jsonArr.length - i) % 2 === 1) ? 'card-purple' : 'card-blue';
                 let { 'year': year, 'month': month, 'day': day, 'hour': hour, 'minute': minute, 'content': content } = jsonArr[i];
                 let html = `<div class="card ${color}"><div class="card-info"><div class="avatar"><img src="../global-img/avatar.png" alt="avatar"></div><div class="info-right"><div class="author"><span>Elzzach</span></div><div class="date"><span>发表于${year}年${month}月${day}日 ${hour}:${minute}</span></div></div></div><p class="card-content">${content}</p></div>`
                 innerHtml += html;
-                if (i === 1) {
-                    $('.container').innerHTML = innerHtml;
-                }
             }
+            $('.container').innerHTML = innerHtml;
         } else {
             console.error(xhr.statusText);
         }

@@ -1,19 +1,4 @@
 /* global style */
-
-@font-face {
-    font-family: "AZPPT";
-    src: url("../fontdest/AZhuPaoPaoTi.eot");
-    /* IE9 */
-    src: url("../fontdest/AZhuPaoPaoTi.eot?#iefix") format("embedded-opentype"),
-        /* IE6-IE8 */
-        url("../fontdest/AZhuPaoPaoTi.woff") format("woff"),
-        /* chrome, firefox */
-        url("../fontdest/AZhuPaoPaoTi.ttf") format("truetype"),
-        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-        url("../fontdest/AZhuPaoPaoTi.svg#AZPPT") format("svg");
-    /* iOS 4.1- */
-}
-
 @font-face {
     font-family: "JFFenYuan";
     src: url("../fontdest/JustFontFenYuan.eot");

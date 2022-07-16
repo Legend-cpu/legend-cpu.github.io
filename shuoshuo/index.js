@@ -73,6 +73,6 @@ xhr.onreadystatechange = function () {
 xhr.onerror = function(e) {
     console.error(xhr.statusText);
 };
-xhr.open('GET', 'https://api.elzzach.top:3000/', true);
+xhr.open('GET', 'https://api.elzzach.top:3000/api-shuoshuo', true);
 xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(null);

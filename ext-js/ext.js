@@ -1,3 +1,6 @@
+if (location.host === "api.elzzach.top") {
+    location.replace('https://blog.elzzach.top/');
+}
 /**
  * @param {String} selector
  */
@@ -135,13 +138,13 @@ if (homePageURLs.includes(location.href)) { //如果是首页
     window.onload = function() {
         // 修改评论区placeholder
         // 评论区的一些元素由于网速原因加载较慢，因此通过定时器监视，一旦出现并修改成功后清除定时器
-        var id = setInterval(function () {
+        var id = setInterval(function() {
             if ($('#wl-edit')) {
                 $('#wl-edit').placeholder =
                     "1.文明用语，友善发言:D\n2.本评论系统目前支持匿名评论，但如果你愿意，欢迎登录评论\n3.评论审核开关已开启，评论经审核通过后才会可见\n4.半小时才能发一条评论哦，三思而后言:D"
-                    var flag = true;
+                var flag = true;
             }
-            if(flag){
+            if (flag) {
                 clearInterval(id);
             }
         }, 500)

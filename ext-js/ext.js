@@ -78,6 +78,7 @@ function createButton(top, text) {
  * @description 主页进入博客按钮绑定的点击事件
  */
 function enterBlog() {
+    document.body.removeChild(document.getElementById("canvas_sakura"));
     let nav = document.getElementById("nav");
     document.getElementById("page-header").removeChild(nav);
     document.getElementById("body-wrap").insertBefore(nav, document.getElementById("content-inner"));

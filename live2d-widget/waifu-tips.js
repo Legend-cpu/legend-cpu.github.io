@@ -251,7 +251,6 @@ function loadWidget(config) {
             showMessage("我的新衣服好看嘛？", 4000, 10);
         } else {
             // 可选 "rand"(随机), "switch"(顺序)
-            loadModel(modelId, Math.floor(Math.random() * 4), "我的新衣服好看嘛？")
             fetch(`${apiPath}rand_textures/?id=${modelId}-${modelTexturesId}`)
                 .then(response => response.json())
                 .then(result => {

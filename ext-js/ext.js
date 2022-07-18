@@ -79,7 +79,8 @@ function enterBlog() {
     let nav = $("#nav");
     $("#page-header").removeChild(nav);
     $("#body-wrap").insertBefore(nav, $("#content-inner"));
-    document.body.style.overflow = 'auto';
+    document.body.style.overflowY = 'auto';
+    document.body.style.overflowX = 'hidden';
     $("#content-inner").style.display = 'flex';
     $("#content-inner").style.padding = '100px 15px';
     $("#rightside-config-show").style.display = 'block';
@@ -95,6 +96,10 @@ function enterBlog() {
  * @description 初始化个人主页
  */
 function initHomePage() {
+    let script = document.createElement('script');
+    script.src = "./ext-js/driftDown.js";
+    script.id="driftDown";
+    document.head.append(script);
     document.body.style.overflow = 'hidden';
     $("#content-inner").style.display = 'none';
     $("#rightside-config-show").style.display = 'none';
@@ -114,14 +119,14 @@ changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，�
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页
     initHomePage();
-    if (performance.navigation.type!==0) {
+    if (performance.navigation.type !== 0) {
         $('.enter')[0].click();
     }
     if ($("#site_social_icons")) {
         $("#site-info").removeChild($("#site_social_icons"));
     }
 } else { //如果不是首页
-    if (document.querySelector('.card-announcement')) {
+    if ($('.card-announcement')) {
         $("#aside-content").removeChild($('.card-announcement'));
     }
     window.onload = function() {

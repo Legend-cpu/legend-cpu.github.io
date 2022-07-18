@@ -163,7 +163,7 @@ function loadWidget(config) {
 		if (modelId === null) {
 			// 首次访问加载 指定模型 的 指定材质
 			modelId = 0; // 模型 ID
-			modelTexturesId = 53; // 材质 ID
+			modelTexturesId = 53; // 材质 ID，当使用CDN时不需要关注该变量，只要关注modelId和modellist.json中model字段数组的对应关系就行了
 		}
 		loadModel(modelId, modelTexturesId);
 		fetch(waifuPath)

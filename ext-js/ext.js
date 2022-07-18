@@ -79,8 +79,6 @@ function enterBlog() {
     let nav = $("#nav");
     $("#page-header").removeChild(nav);
     $("#body-wrap").insertBefore(nav, $("#content-inner"));
-    document.body.style.overflowY = 'auto';
-    document.body.style.overflowX = 'hidden';
     $("#content-inner").style.display = 'flex';
     $("#content-inner").style.padding = '100px 15px';
     $("#rightside-config-show").style.display = 'block';
@@ -100,7 +98,6 @@ function initHomePage() {
     script.src = "./ext-js/driftDown.js";
     script.id="driftDown";
     document.head.append(script);
-    document.body.style.overflow = 'hidden';
     $("#content-inner").style.display = 'none';
     $("#rightside-config-show").style.display = 'none';
     $('#site-info').style.top = '30%';

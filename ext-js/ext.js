@@ -17,7 +17,6 @@ function changeTitle(leaveTitle, backTitle) {
     let originTitle = document.title;
     let titleTime;
     document.addEventListener('visibilitychange', function() {
-
         let isHidden = document.hidden;
         if (isHidden) {
             document.title = leaveTitle;
@@ -28,7 +27,6 @@ function changeTitle(leaveTitle, backTitle) {
                 document.title = originTitle;
             }, 3000);
         }
-
     })
 }
 
@@ -39,7 +37,7 @@ function createAvatarBox() {
     avatarContainer = document.createElement('div');
     img = document.createElement('img');
     avatarContainer.appendChild(img);
-    document.getElementById("site-info").insertBefore(avatarContainer, document.getElementById("site-title"));
+    $("#site-info").insertBefore(avatarContainer, $("#site-title"));
     img.src = '../global-img/avatar.png';
     img.style.width = '100%';
     img.style.height = '100%';
@@ -63,7 +61,7 @@ function createButton(top, text) {
     div = document.createElement('div');
     btn.appendChild(span);
     btn.appendChild(div);
-    document.getElementById("page-header").insertBefore(btn, document.getElementById("scroll-down"));
+    $("#page-header").insertBefore(btn, $("#scroll-down"));
     div.className = 'liquid';
     btn.className = 'enter';
     btn.style.position = 'absolute';
@@ -78,37 +76,32 @@ function createButton(top, text) {
  * @description 主页进入博客按钮绑定的点击事件
  */
 function enterBlog() {
-    document.body.removeChild(document.getElementById("canvas_sakura"));
-    let nav = document.getElementById("nav");
-    document.getElementById("page-header").removeChild(nav);
-    document.getElementById("body-wrap").insertBefore(nav, document.getElementById("content-inner"));
+    let nav = $("#nav");
+    $("#page-header").removeChild(nav);
+    $("#body-wrap").insertBefore(nav, $("#content-inner"));
     document.body.style.overflow = 'auto';
-    document.getElementById("content-inner").style.display = 'flex';
-    document.getElementById("content-inner").style.padding = '100px 15px';
-    document.getElementById("rightside-config-show").style.display = 'block';
-    document.getElementById("footer").style.display = 'block';
-    document.getElementById("nav").style.display = 'flex';
-    document.getElementById("nav").className = 'show';
+    $("#content-inner").style.display = 'flex';
+    $("#content-inner").style.padding = '100px 15px';
+    $("#rightside-config-show").style.display = 'block';
+    $("#footer").style.display = 'block';
+    $("#nav").style.display = 'flex';
+    $("#nav").className = 'show';
     document.querySelector('#search-button a span').style.display = 'inline';
-    document.getElementById("page-header").style.transition = 'all 0.5s ease-out';
-    document.getElementById("page-header").style.display = 'none';
+    $("#page-header").style.transition = 'all 0.5s ease-out';
+    $("#page-header").style.display = 'none';
 }
 
 /**
  * @description 初始化个人主页
  */
 function initHomePage() {
-    script = document.createElement('script');
-    document.head.appendChild(script);
-    script.src = './ext-js/driftDown.js';
-    script.id = 'driftDown';
     document.body.style.overflow = 'hidden';
-    document.getElementById("content-inner").style.display = 'none';
-    document.getElementById("rightside-config-show").style.display = 'none';
-    document.getElementById('site-info').style.top = '30%';
-    document.getElementById("footer").style.display = 'none';
-    document.getElementById("nav").style.display = 'none';
-    document.getElementById("scroll-down").style.display = 'none';
+    $("#content-inner").style.display = 'none';
+    $("#rightside-config-show").style.display = 'none';
+    $('#site-info').style.top = '30%';
+    $("#footer").style.display = 'none';
+    $("#nav").style.display = 'none';
+    $("#scroll-down").style.display = 'none';
     createAvatarBox();
     let btnEnterBlog = createButton('68vh', '参观博客');
     let btnEnterLab = createButton('78vh', '参观实验室');
@@ -118,20 +111,18 @@ function initHomePage() {
 // 函数调用区
 changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
 
-let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/',
-    'http://blog.elzzach.top/'
-]
+let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页
     initHomePage();
-    if (document.getElementById("site_social_icons")) {
-        document.getElementById("site-info").removeChild(document.getElementById("site_social_icons"));
+    if (performance.navigation.type!==0) {
+        $('.enter')[0].click();
+    }
+    if ($("#site_social_icons")) {
+        $("#site-info").removeChild($("#site_social_icons"));
     }
 } else { //如果不是首页
-    if (document.getElementById("driftDown")) {
-        document.head.removeChild(document.getElementById("driftDown"));
-    }
     if (document.querySelector('.card-announcement')) {
-        document.getElementById("aside-content").removeChild(document.querySelector('.card-announcement'));
+        $("#aside-content").removeChild($('.card-announcement'));
     }
     window.onload = function() {
         // 修改评论区placeholder

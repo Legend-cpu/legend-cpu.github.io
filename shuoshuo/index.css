@@ -106,6 +106,10 @@ a {
     margin: 0 auto 84px auto;
     border-radius: 20px;
     font-family: AZPPT;
+    transition: 0.3s all ease-in;
+}
+.card:hover{
+    transform: translateY(-5px);
 }
 
 .card-info {

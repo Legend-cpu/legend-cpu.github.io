@@ -28,7 +28,7 @@ function random(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 // 改变标题
-changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
+// changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
 // 建立背景
 let bgStarsky = $('.bg-starsky')
 for (let i = 0; i < 300; i++) {
@@ -48,11 +48,11 @@ for (let i = 0; i < 6; i++) {
     div.style.animationDelay = `${random(2, 10)}s` //第一次出现流星所需要的时间
     bgStarsky.appendChild(div)
 }
+
 // ajax请求说说数据
 let xhr = new XMLHttpRequest();
 
 xhr.onreadystatechange = function () {
-    // 通信成功时，状态值为4
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
             jsonArr = JSON.parse(xhr.responseText);

@@ -94,10 +94,14 @@ function enterBlog() {
  * @description 初始化个人主页
  */
 function initHomePage() {
-    let script = document.createElement('script');
-    script.src = "./ext-js/driftDown.js";
-    script.id="driftDown";
-    document.head.append(script);
+    if (navigator.platform.indexOf('Win') === 0 || navigator.platform.indexOf('Linux') === 0 || navigator.platform
+        .indexOf('Mac') === 0) {
+        let script = document.createElement('script');
+        script.src = "./ext-js/driftDown.js";
+        script.id = "driftDown";
+        document.head.append(script);
+        let btnEnterLab = createButton('78vh', '参观实验室');
+    }
     $("#content-inner").style.display = 'none';
     $("#rightside-config-show").style.display = 'none';
     $('#site-info').style.top = '30%';
@@ -106,7 +110,6 @@ function initHomePage() {
     $("#scroll-down").style.display = 'none';
     createAvatarBox();
     let btnEnterBlog = createButton('68vh', '参观博客');
-    let btnEnterLab = createButton('78vh', '参观实验室');
     btnEnterBlog.addEventListener('click', enterBlog, false);
 }
 

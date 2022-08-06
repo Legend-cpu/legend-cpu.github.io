@@ -94,8 +94,7 @@ function enterBlog() {
  * @description 初始化个人主页
  */
 function initHomePage() {
-    if (navigator.platform.indexOf('Win') === 0 || navigator.platform.indexOf('Linux') === 0 || navigator.platform
-        .indexOf('Mac') === 0) {
+    if (​!​(​navigator​.​userAgent​.​match​(​"/​(​phone​|​pad​|​pod​|​iPhone​|​iPod​|​ios​|​iPad​|​Android​|​Mobile​|​BlackBerry​|​IEMobile​|​MQQBrowser​|​JUC​|​Fennec​|​wOSBrowser​|​BrowserNG​|​WebOS​|​Symbian​|​Windows Phone​)​/"​​)​)​)​ {
         let script = document.createElement('script');
         script.src = "./ext-js/driftDown.js";
         script.id = "driftDown";

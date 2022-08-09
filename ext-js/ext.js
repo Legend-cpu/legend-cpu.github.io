@@ -114,7 +114,6 @@ function initHomePage() {
 
 // 函数调用区
 changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
-for(let e of $('.wl-meta')){e.firstChild.remove()};
 
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页
@@ -132,14 +131,25 @@ if (homePageURLs.includes(location.href)) { //如果是首页
     window.onload = function() {
         // 修改评论区placeholder
         // 评论区的一些元素由于网速原因加载较慢，因此通过定时器监视，一旦出现并修改成功后清除定时器
-        var id = setInterval(function() {
+        var id1 = setInterval(function() {
             if ($('#wl-edit')) {
                 $('#wl-edit').placeholder =
                     "1.文明用语，友善发言:D\n2.本评论系统目前支持匿名评论，但如果你愿意，欢迎登录评论\n3.评论审核开关已开启，评论经审核通过后才会可见\n4.半小时才能发一条评论哦，三思而后言:D"
-                var flag = true;
+                var flag1 = true;
             }
-            if (flag) {
-                clearInterval(id);
+            if (flag1) {
+                clearInterval(id1);
+            }
+        }, 500)
+        var id2 = setInterval(function() {
+            if ($('.wl-meta')) {
+                for (let e of $('.wl-meta')) {
+                    e.firstChild.remove()
+                };
+                var flag2 = true;
+            }
+            if (flag2) {
+                clearInterval(id2);
             }
         }, 500)
     }

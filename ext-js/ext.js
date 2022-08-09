@@ -114,6 +114,7 @@ function initHomePage() {
 
 // 函数调用区
 changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
+for(let e of $('.wl-meta')){e.firstChild.remove()};
 
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页

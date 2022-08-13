@@ -101,6 +101,7 @@ function initHomePage() {
         script.id = "driftDown";
         document.head.append(script);
         let btnEnterLab = createButton('78vh', '参观实验室');
+        changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
     }
 
     $("#content-inner").style.display = 'none';
@@ -115,7 +116,7 @@ function initHomePage() {
 }
 
 // 函数调用区
-changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
+
 
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页

@@ -1,0 +1,13 @@
+@font-face {
+    font-family: "未来圆SC";
+    src: url("weilaiyuan-medium.eot"); /* IE9 */
+    src: url("weilaiyuan-medium.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("weilaiyuan-medium.woff2") format("woff2"), /* chrome 36+, firefox 39+,iOS 10+, Android 67+ */
+    url("weilaiyuan-medium.woff") format("woff"), /* chrome, firefox */
+    url("weilaiyuan-medium.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url("weilaiyuan-medium.svg#未来圆SC") format("svg"); /* iOS 4.1- */
+    font-style: normal;
+    font-weight: normal;
+}
+
+

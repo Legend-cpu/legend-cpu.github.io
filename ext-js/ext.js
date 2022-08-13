@@ -86,7 +86,7 @@ function enterBlog() {
     $("#nav").style.display = 'flex';
     $("#nav").className = 'show';
     document.querySelector('#search-button a span').style.display = 'inline';
-    $("#page-header").style.transition = 'all 0.5s ease-out';
+    $("#page-header").style.transition = 'all 1s ease-out';
     $("#page-header").style.display = 'none';
 }
 
@@ -94,13 +94,15 @@ function enterBlog() {
  * @description 初始化个人主页
  */
 function initHomePage() {
-    // if (​!​(​navigator​.​userAgent​.​match​(​"/​(​phone​|​pad​|​pod​|​iPhone​|​iPod​|​ios​|​iPad​|​Android​|​Mobile​|​BlackBerry​|​IEMobile​|​MQQBrowser​|​JUC​|​Fennec​|​wOSBrowser​|​BrowserNG​|​WebOS​|​Symbian​|​Windows Phone​)​/"​​)​)​)​ {
-    //     let script = document.createElement('script');
-    //     script.src = "./ext-js/driftDown.js";
-    //     script.id = "driftDown";
-    //     document.head.append(script);
-    //     let btnEnterLab = createButton('78vh', '参观实验室');
-    // }
+    var pattern = /Android|iOS/;
+    if (!pattern.test(navigator.platform)) {
+        let script = document.createElement('script');
+        script.src = "./ext-js/driftDown.js";
+        script.id = "driftDown";
+        document.head.append(script);
+        let btnEnterLab = createButton('78vh', '参观实验室');
+    }
+
     $("#content-inner").style.display = 'none';
     $("#rightside-config-show").style.display = 'none';
     $('#site-info').style.top = '30%';

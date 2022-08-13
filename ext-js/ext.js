@@ -94,8 +94,8 @@ function enterBlog() {
  * @description 初始化个人主页
  */
 function initHomePage() {
-    var pattern = /Android|iOS/;
-    if (!pattern.test(navigator.platform)) {
+    var pattern = /Android|iOS|Mobile/;
+    if (!pattern.test(navigator.userAgent)) {
         let script = document.createElement('script');
         script.src = "./ext-js/driftDown.js";
         script.id = "driftDown";

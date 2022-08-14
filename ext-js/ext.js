@@ -120,7 +120,6 @@ function initHomePage() {
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页
     initHomePage();
-    console.log(performance.navigation.type);
     if (performance.navigation.type !== 0) {
         $('.enter')[1].click();
     }
@@ -142,17 +141,6 @@ if (homePageURLs.includes(location.href)) { //如果是首页
             }
             if (flag1) {
                 clearInterval(id1);
-            }
-        }, 500)
-        var id2 = setInterval(function() {
-            if ($('.wl-meta')) {
-                for (let e of $('.wl-meta')) {
-                    e.firstChild.remove()
-                };
-                var flag2 = true;
-            }
-            if (flag2) {
-                clearInterval(id2);
             }
         }, 500)
     }

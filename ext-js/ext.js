@@ -103,7 +103,6 @@ function initHomePage() {
         let btnEnterLab = createButton('78vh', '参观实验室');
         changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
     }
-
     $("#content-inner").style.display = 'none';
     $("#rightside-config-show").style.display = 'none';
     $('#site-info').style.top = '30%';
@@ -121,8 +120,9 @@ function initHomePage() {
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页
     initHomePage();
+    console.log(performance.navigation.type);
     if (performance.navigation.type !== 0) {
-        $('.enter')[0].click();
+        $('.enter')[1].click();
     }
     if ($("#site_social_icons")) {
         $("#site-info").removeChild($("#site_social_icons"));

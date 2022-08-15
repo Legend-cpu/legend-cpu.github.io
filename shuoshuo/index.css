@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "weilaiyuanSC";
+    src: url("../fontdest/weilaiyuan-medium.woff") format("woff"),
+        /* chrome, firefox */
+        url("../fontdest/weilaiyuan-medium.ttf") format("truetype"),
+        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+        url("../fontdest/weilaiyuan-medium.svg#未来圆SC") format("svg");
+    /* iOS 4.1- */
+}
+
 /*适用于火狐的滚动条样式*/
 * {
     scrollbar-width: thin;
@@ -25,6 +35,7 @@
 }
 
 body {
+    font-family: 'weilaiyuanSC';
     margin: 0;
     overflow: hidden;
     height: 100vh;

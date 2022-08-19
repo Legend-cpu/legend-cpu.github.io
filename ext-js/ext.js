@@ -116,9 +116,7 @@ function initHomePage() {
 
 // 函数调用区
 
-(function () {
-    let r=new XMLHttpRequest().open('GET', 'https://api.elzzach.top/', true).send(null);
-})()
+(function () {let r=new XMLHttpRequest();r.open('GET', 'https://api.elzzach.top/', true);r.send(null);})()
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页
     initHomePage();

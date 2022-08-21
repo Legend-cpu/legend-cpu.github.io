@@ -1,22 +1,3 @@
-function changeTitle(leaveTitle, backTitle) {
-    let originTitle = document.title;
-    let titleTime;
-    document.addEventListener('visibilitychange', function() {
-
-        let isHidden = document.hidden;
-        if (isHidden) {
-            document.title = leaveTitle;
-            clearTimeout(titleTime);
-        } else {
-            document.title = backTitle;
-            titleTime = setTimeout(function() {
-                document.title = originTitle;
-            }, 3000);
-        }
-
-    })
-}
-
 function $(selector) {
     let nodeList = document.querySelectorAll(selector)
     let result = (selector.startsWith("#")) ? nodeList[0] : ((nodeList.length === 1) ? nodeList[
@@ -27,8 +8,7 @@ function $(selector) {
 function random(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
-// 改变标题
-// changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
+
 // 建立背景
 let bgStarsky = $('.bg-starsky')
 for (let i = 0; i < 300; i++) {
@@ -51,7 +31,6 @@ for (let i = 0; i < 6; i++) {
 
 // ajax请求说说数据
 let xhr = new XMLHttpRequest();
-
 xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -69,7 +48,6 @@ xhr.onreadystatechange = function () {
         }
     }
 };
-
 xhr.onerror = function(e) {
     console.error(xhr.statusText);
 };

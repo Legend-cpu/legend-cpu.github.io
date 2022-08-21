@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Nginx配置之日志记录、禁用IP访问和设置IP白名单 | 暮紫天地</title><meta name="keywords" content="Linux,Nginx,GoAccess,IP"><meta name="author" content="Elzzach"><meta name="copyright" content="Elzzach"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在服务器上建成了一个网站之后，我们总想知道到底有没有人来访问我们的网站啊？虽然有一些现成的网站统计服务但是由于不知道细节，我们也不知道到底准不准确。所以，如果你的网站使用的是nginx服务器的话就可以通过Nginx的日志来解决这个问题了，Nginx会将每个它所监听的端口收到的请求的来源IP记录在日志当中。 开启并配置Nginx日志记录Nginx的日志貌似并不是默认开启的，所以你需要先查看一下你的n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx配置之日志记录、禁用IP访问和设置IP白名单">
+<meta property="og:url" content="https://blog.elzzach.top/article/565280162912.html">
+<meta property="og:site_name" content="暮紫天地">
+<meta property="og:description" content="在服务器上建成了一个网站之后，我们总想知道到底有没有人来访问我们的网站啊？虽然有一些现成的网站统计服务但是由于不知道细节，我们也不知道到底准不准确。所以，如果你的网站使用的是nginx服务器的话就可以通过Nginx的日志来解决这个问题了，Nginx会将每个它所监听的端口收到的请求的来源IP记录在日志当中。 开启并配置Nginx日志记录Nginx的日志貌似并不是默认开启的，所以你需要先查看一下你的n">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.dmoe.cc/random.php?p=6">
+<meta property="article:published_time" content="2022-08-21T01:02:25.000Z">
+<meta property="article:modified_time" content="2022-08-21T10:06:47.357Z">
+<meta property="article:author" content="Elzzach">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Nginx">
+<meta property="article:tag" content="GoAccess">
+<meta property="article:tag" content="IP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.dmoe.cc/random.php?p=6"><link rel="shortcut icon" href="/global-img/favicon.png"><link rel="canonical" href="https://blog.elzzach.top/article/565280162912"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"距离本文上次更新已经过去了","messageNext":"天，文章中的内容有可能已经过时。如果过时，请联系作者尝试更新为最新版。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#c449f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Nginx配置之日志记录、禁用IP访问和设置IP白名单',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-21 18:06:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const now = new Date()
+          const hour = now.getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Cache" content="no-cache"><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" /><link rel="stylesheet" href="/ext-css/ext.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/global-img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">暮紫天地</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Nginx配置之日志记录、禁用IP访问和设置IP白名单</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-21T01:02:25.000Z" title="发表于 2022-08-21 09:02:25">2022-08-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-21T10:06:47.357Z" title="更新于 2022-08-21 18:06:47">2022-08-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Nginx/">Nginx</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>12分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/article/565280162912.html#post-comment"><span class="waline-comment-count" data-path="/article/565280162912.html"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div><article class="post-content" id="article-container"><p>在服务器上建成了一个网站之后，我们总想知道到底有没有人来访问我们的网站啊？虽然有一些现成的网站统计服务但是由于不知道细节，我们也不知道到底准不准确。所以，如果你的网站使用的是nginx服务器的话就可以通过Nginx的日志来解决这个问题了，Nginx会将每个它所监听的端口收到的请求的来源IP记录在日志当中。</p>
+<h2 id="开启并配置Nginx日志记录"><a href="#开启并配置Nginx日志记录" class="headerlink" title="开启并配置Nginx日志记录"></a>开启并配置Nginx日志记录</h2><p>Nginx的日志貌似并不是默认开启的，所以你需要先查看一下你的nginx配置文件nginx.conf，在之前建站过程中已经用到它了，所以它的位置你应该记得，在nginx安装目录下的&#x2F;conf&#x2F;nginx.conf处，比如&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
+
+<p>在文件开头位置应该能找到一个被注释掉的错误日志配置<code>error_log</code>，把#号删掉；然后在http字段里、server字段之前应该还能找到一个被注释掉的<code>log_format</code>配置和<code>access_log</code>配置，把#号删掉，这样就开启了nginx的日志记录功能。</p>
+<p>大概长这样：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">log_format</span>  main  <span class="string">&#x27;<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] &quot;<span class="variable">$request</span>&quot; &#x27;</span></span><br><span class="line">                  <span class="string">&#x27;<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> &quot;<span class="variable">$http_referer</span>&quot; &#x27;</span></span><br><span class="line">                  <span class="string">&#x27;&quot;<span class="variable">$http_user_agent</span>&quot; &quot;<span class="variable">$http_x_forwarded_for</span>&quot; &quot;<span class="variable">$request_body</span>&quot;&#x27;</span>;</span><br><span class="line"><span class="attribute">access_log</span>  /var/log/nginx/access.log   main; <span class="comment"># 这一行被我修改过了，路径不同不要在意</span></span><br></pre></td></tr></table></figure>
+
+<p>解释一下这些日志配置里的一些参数：</p>
+<p><code>log_format</code>后面跟着的一个<code>main</code>是这个日志格式方案的名字，类似于一个变量名，你看<code>access_log</code>所在行的最后一个是不是就是main，表示应用了这个叫main的日志格式方案。当然这个名字你可以随便改。</p>
+<p><code>$remote_addr</code>就是请求的来源IP。</p>
+<p><code>$remote_user</code>我不太理解到底是什么，但是对于服务器外来的请求来说一般是获取不到这个值的，所以也不用太在意它。</p>
+<p><code>$time_local</code>是本地方式表示的时间，默认是像<code>20/Aug/2022:16:11:43 +0800</code>这样的。</p>
+<p><code>$request</code>是请求方法+请求的url+请求协议，比如像<code>GET / HTTP/1.1</code>，这就说明用HTTP1.1版本中的GET方法请求了你网站的首页。</p>
+<p><code>$status</code>是请求的状态码。</p>
+<p><code>$body_bytes_sent</code> 是返回的响应的响应体的字节数。</p>
+<p><code>$http_referer</code>对应着请求头中的referer字段。</p>
+<p><code>$http_user_agent</code>对应着请求头中的user-agent字段。</p>
+<p><code>$http_x_forwarded_for</code>对应着请求头中的x-forwarded-for字段，用来表示HTTP请求端真实IP，同时会记录请求经过的中间代理的IP。</p>
+<p><code>$retuest_body</code>就是请求体。</p>
+<p>此外还有一个比较有用的<code>$http_host</code>，对应着请求头中的host字段。</p>
+<p>虽然<code>log_format</code>后面的三个字符串分布在三行，但是实际记录的时候它们是在一行里面的，并且中间没有空格。</p>
+<p><code>access_log</code>后面的路径是日志文件的路径，如果你指定的路径暂时还不存在的话最好先去创建一下文件夹。</p>
+<blockquote>
+<p>千万别忘记了nginx配置文件语句的末尾要有分号。</p>
+</blockquote>
+<p>知道了这些参数都是什么意思之后我们就可以自定义自己看起来比较舒服的日志格式，当然也可以保持默认的。</p>
+<p>我的日志格式写成这样了：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">log_format</span> main <span class="string">&#x27;<span class="variable">$remote_addr</span> [<span class="variable">$time_local</span>]: &quot;<span class="variable">$http_host</span>&quot; &quot;<span class="variable">$request</span>&quot; <span class="variable">$status</span> &quot;<span class="variable">$http_referer</span>&quot; &quot;<span class="variable">$http_user_agent</span>&quot; <span class="variable">$http_x_forwarded_for</span>&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>尽量保持简洁，不要有过多的除引号、方括号、连字符外的其他符号，否则后面使用Goaccess分析的时候匹配日志格式可能会莫名其妙地失败。</p>
+<p>实际的日志像这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">17.6.8.20 [20/Aug/2022:16:11:43 +0800]: &quot;blog.elzzach.top&quot; &quot;GET / HTTP/1.1&quot; 200 &quot;-&quot; &quot;Mozilla/5.0 (Android 10; Mobile; rv:103.0) Gecko/103.0 Firefox/103.0&quot; -</span><br></pre></td></tr></table></figure>
+
+<p>这条日志中没有获取到$http_referer和$http_x_forwarded_for，所以用 - 表示。</p>
+<p>日志格式配置完毕之后保存并退出nginx.conf文件，然后重启nginx（仅重载配置可能不会生效）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/nginx/sbin</span><br><span class="line">ps -ef|grep nginx //查看nginx进程的pid</span><br><span class="line"><span class="built_in">kill</span> -QUIT pid</span><br><span class="line">./nginx -c /usr/local/nginx/conf/nginx.conf //以指定配置文件打开nginx服务</span><br><span class="line">./nginx -s reload //重载配置</span><br><span class="line">./nginx -s reopen //重新打开日志文件</span><br></pre></td></tr></table></figure>
+
+<p>然后访问一下你的网站，再前往你指定的日志文件所在处看有没有日志文件生成，如果没有就再重启一遍（ 。。。）。</p>
+<p>像我使用密钥登录服务器的话还可以本地写一个bat文件执行之后自动远程下载服务器上的日志文件到本地供我查看，省得每次都要登录服务器看。</p>
+<h2 id="Goaccess日志分析工具"><a href="#Goaccess日志分析工具" class="headerlink" title="Goaccess日志分析工具"></a>Goaccess日志分析工具</h2><p>日志看着看着可能就会萌生了将日志中的各种信息统计一下汇总出一些表格之类的想法，当然可以自己写脚本了，不过比较麻烦，这里推荐一个叫Goaccess的日志分析工具，它可以根据你的服务器日志生成相应的可视化图表，尤其是它能生成非常炫酷的html数据可视化页面：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://elzzach-src.oss-cn-hangzhou.aliyuncs.com/img/20220821/image-20220821095109826.png" alt="image-20220821095109826"></p>
+<p>Goaccess是安装在服务器上的，在安装它之前首先要安装它的依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ncurses-devel geoip-devel libmaxminddb-devel tokyocabinet-devel openssl-devel</span><br></pre></td></tr></table></figure>
+
+<p>然后我仍然是习惯于将一些软件包安装在&#x2F;opt&#x2F;tools里：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /opt/tools</span><br><span class="line">wget https://tar.goaccess.io/goaccess-1.3.tar.gz</span><br><span class="line">tar -xzvf goaccess-1.3.tar.gz</span><br><span class="line"><span class="built_in">cd</span> goaccess-1.3</span><br><span class="line">./configure --enable-utf8 --enable-geoip=legacy //第一个参数是开启utf8编码支持，第二个参数是使用 GeoIP 数据库</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>编译安装成功之后可以输入<code>goaccess -V</code>看一下版本信息，有就是真的成功了。</p>
+<p>然后我们需要配置一下日志格式，没错，又要配置日志格式了，我们需要让goaccess的日志匹配模式和我们的nginx日志格式配置一样它才能成功解析出结果。</p>
+<p>首先找一找goaccess的默认配置文件路径，可使用<code>goaccess --dcf</code>命令查看，如果显示没有就只能自己指定了，可以去<code>/usr/local/etc/</code>目录看看底下有没有<code>/goaccess/goaccess.conf</code>文件，如果有，以后执行命令的时候使用<code>-p</code>参数指定该路径即可。</p>
+<p>现在只需要打开这个文件，然后在里面找到这么几行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Apache/NGINX&#x27;s log formats below.</span><br><span class="line">#</span><br><span class="line">time-format %H:%M:%S</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"># Apache/NGINX&#x27;s log formats below.</span><br><span class="line">#</span><br><span class="line">date-format %d/%b/%Y</span><br></pre></td></tr></table></figure>
+
+<p><code>time-format</code>和<code>date-format</code>默认是被注释的，把注释去掉就行了。另外只要你的nginx日志中的<code>$time_local</code>的格式是我刚说的那样，这两个值就不用改。</p>
+<p>然后在里面再找到下面这些：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">######################################</span><br><span class="line"># Log Format Options (required)</span><br><span class="line">######################################</span><br><span class="line">#</span><br><span class="line"># The log-format variable followed by a space or \t for</span><br><span class="line"># tab-delimited, specifies the log format string.</span><br><span class="line">#</span><br><span class="line"># NOTE: If the time/date is a timestamp in seconds or microseconds</span><br><span class="line"># %x must be used instead of %d &amp; %t to represent the date &amp; time.</span><br><span class="line"></span><br><span class="line"># NCSA Combined Log Format</span><br><span class="line">#log-format %h %^[%d:%t %^] &quot;%r&quot; %s %b &quot;%R&quot; &quot;%u&quot;</span><br><span class="line"></span><br><span class="line"># NCSA Combined Log Format with Virtual Host</span><br><span class="line">#log-format %v:%^ %h %^[%d:%t %^] &quot;%r&quot; %s %b &quot;%R&quot; &quot;%u&quot;</span><br><span class="line"></span><br><span class="line"># Common Log Format (CLF)</span><br><span class="line">#log-format %h %^[%d:%t %^] &quot;%r&quot; %s %b</span><br><span class="line"></span><br><span class="line"># Common Log Format (CLF) with Virtual Host</span><br><span class="line">#log-format %v:%^ %h %^[%d:%t %^] &quot;%r&quot; %s %b</span><br><span class="line"></span><br><span class="line"># W3C</span><br><span class="line">#log-format %d %t %h %^ %^ %^ %^ %r %^ %s %b %^ %^ %u %R</span><br><span class="line"></span><br><span class="line"># Squid native log format</span><br><span class="line">#log-format %^ %^ %^ %v %^: %x.%^ %~%L %h %^/%s %b %m %U</span><br><span class="line"></span><br><span class="line"># AWS | Amazon CloudFront (Download Distribution)</span><br><span class="line">#log-format %d\t%t\t%^\t%b\t%h\t%m\t%^\t%r\t%s\t%R\t%u\t%^</span><br><span class="line"></span><br><span class="line"># Google Cloud Storage</span><br><span class="line">#log-format &quot;%x&quot;,&quot;%h&quot;,%^,%^,&quot;%m&quot;,&quot;%U&quot;,&quot;%s&quot;,%^,&quot;%b&quot;,&quot;%D&quot;,%^,&quot;%R&quot;,&quot;%u&quot;</span><br><span class="line"></span><br><span class="line"># AWS | Elastic Load Balancing</span><br><span class="line">#log-format %dT%t.%^ %^ %h:%^ %^ %T %^ %^ %^ %s %^ %b &quot;%r&quot; &quot;%u&quot;</span><br><span class="line"></span><br><span class="line"># AWSS3 | Amazon Simple Storage Service (S3)</span><br><span class="line">#log-format %^[%d:%t %^] %h %^&quot;%r&quot; %s %^ %b %^ %L %^ &quot;%R&quot; &quot;%u&quot;</span><br><span class="line"></span><br><span class="line"># Virtualmin Log Format with Virtual Host</span><br><span class="line">#log-format %h %^ %v %^[%d:%t %^] &quot;%r&quot; %s %b &quot;%R&quot; &quot;%u&quot;</span><br><span class="line"></span><br><span class="line">#Custom Log Format</span><br><span class="line">log-format %h [%d:%t %^]: &quot;%v&quot; &quot;%r&quot; %s &quot;%R&quot; &quot;%u&quot; %^</span><br></pre></td></tr></table></figure>
+
+<p>其中最后一个Custom Log Format是我自己加上的，为的是对应我自己设置的nginx日志格式。</p>
+<p><code>log-format</code>字段中各个参数的意义在<a target="_blank" rel="noopener" href="https://www.goaccess.cc/">这里</a>的“自定义 日志&#x2F;日期 格式”一节中有讲，读者请自行研究。</p>
+<p>如果nginx日志格式是保持了默认的话，那么<code>log-format</code>应该这么写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log-format %h %^[%d:%t %^] &quot;%r&quot; %s %b &quot;%R&quot; &quot;%u&quot;</span><br></pre></td></tr></table></figure>
+
+<p>而对于我自定义的nginx日志格式<code>log_format main &#39;$remote_addr [$time_local]: &quot;$http_host&quot; &quot;$request&quot; $status &quot;$http_referer&quot; &quot;$http_user_agent&quot; $http_x_forwarded_for&#39;;</code>，<code>log-format</code>应该这么写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log-format %h [%d:%t %^]: &quot;%v&quot; &quot;%r&quot; %s &quot;%R&quot; &quot;%u&quot; %^</span><br></pre></td></tr></table></figure>
+
+<p>一定要严格匹配，不然就会出错。另外nginx日志格式配置的最好普通一点，减少匹配错误的发生率。还有就是有一些该用<code>%^</code>忽略的就忽略，强行匹配也很可能会导致失败。</p>
+<p>配置完毕之后我们就可以试试能不能生效了，在任意位置执行<code>goaccess -f /var/log/nginx/access.log -p /usr/local/etc/goaccess/goaccess.conf -o /var/log/nginx/accesslog.html -o /var/log/nginx/accesslog.json</code>命令（路径按自己的来），<code>-f</code>参数表示以后面的文件名为指定nginx日志文件，<code>-p</code>参数是指定配置文件的位置，<code>-o</code>是指将结果输出为后面的文件格式，可以输出为csv、html或者json文件，如果同时需要输出为两种格式需要两个<code>-o</code>参数，我这里是输出为html和json格式。</p>
+<p>我们可以把输出的html文件远程下载到本地，然后浏览器打开查看，就会看到这一节开头的图片上的效果。</p>
+<p>如果我们想进行实时html分析结果输出，按官方说法我们可以在执行命令的时候加入<code>--real-time-html</code>参数和<code>--daemonize</code>参数，但是我自己实践了之后发现html并没有实时更新，不知道是怎么回事，即使使用了nohup命令也没有用，所以我只好借助crontab定时任务来解决了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0-59 * * * * goaccess -f /var/log/nginx/access.log -p /usr/local/etc/goaccess/goaccess.conf -o /var/log/nginx/accesslog.html -o /var/log/nginx/accesslog.json</span><br></pre></td></tr></table></figure>
+
+<p>即每分钟执行一次日志分析并输出html和json结果。</p>
+<p>和上一节一样，如果用密钥登录服务器的话可以写一个bat文件执行时将输出的html文件和json文件远程下载到本地，然后可以用浏览器打开查看。</p>
+<p>官方手册里还有更多玩法，读者可以自己去研究研究。</p>
+<h2 id="Nginx设置禁用IP访问"><a href="#Nginx设置禁用IP访问" class="headerlink" title="Nginx设置禁用IP访问"></a>Nginx设置禁用IP访问</h2><p>在goaccess工具生成的html页面中我们可以清楚地看到有哪些ip访问了我们的网站，可以去nginx日志文件中查看更加详细的信息。然后我发现，有很多来自国外的ip地址对我的服务器发起了一些奇奇怪怪的请求，有些甚至直接对着我的服务器ip而不是域名来请求的，所以我觉得或许应该设置一下不允许直接ip访问。</p>
+<p>打开nginx.conf文件新添两个server节点，一个80的，一个443的（只有开了https的网站才需要443的）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen 80 default_server;</span><br><span class="line">        server_name _;</span><br><span class="line">        return 403 &quot;Access Denied&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>443的只要把你原来的443的server节点复制一下然后改一下<code>listen 443 ssl default_server;</code>和<code>server_name _;</code>以及最后加一个<code>return 403 &quot;Access Denied&quot;</code>就行了。</p>
+<p>然后重载配置，再试着用ip去访问网站，应该就访问不了了。</p>
+<h2 id="Nginx设置IP白名单"><a href="#Nginx设置IP白名单" class="headerlink" title="Nginx设置IP白名单"></a>Nginx设置IP白名单</h2><p>除了禁用IP直接访问外，我们还可以设置一个IP白名单，只允许大陆IP访问，其他IP统统返回403。</p>
+<p>不设置黑名单是因为第一“宁可错封不可错放”（🥰），第二白名单的量比较少一些。</p>
+<p>在nginx.conf文件的同级目录下新建一个ip-whitelist.conf文件（想叫什么都可以），然后往里面写入你的IP白名单，最后一行写一个<code>deny all;</code>：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">allow</span> xx.xx.xx.xx/<span class="number">10</span></span><br><span class="line">allow xx.xx.xx.xx/<span class="number">11</span></span><br><span class="line">......</span><br><span class="line">deny all;</span><br></pre></td></tr></table></figure>
+
+<p>也就是除了allow里写的IP网段外其余的全部拒绝掉。</p>
+<p>当然仿照这个你如果想写黑名单的话也可以。</p>
+<p>至于大陆IP库我推荐一个<a target="_blank" rel="noopener" href="https://github.com/wendellouyang/geolite2_china_ip_list">Github仓库</a>，找里面的chnip.txt即可，然后你可以在VSCode里面编辑这份文件，在每一行IP网段的开头加一个allow和空格，行末加一个分号，以及最后一行加一个<code>deny all;</code>，如果会使用VSCode里的正则表达式搜索替换的话这些都是很快完成的事。</p>
+<p>白名单文件完成了之后打开nginx.conf，在http字段中添加一行include即可：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">	<span class="attribute">include</span> ip-whitelist.conf;</span><br><span class="line">	......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后可能需要按照上面的方法重启一下nginx，然后重载配置才会生效。</p>
+<p>禁用IP访问和IP白名单设置完之后再看看日志，一堆奇奇怪怪的请求通通抱着403回家啦🥰</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top">Elzzach</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top/article/565280162912.html">https://blog.elzzach.top/article/565280162912.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.elzzach.top" target="_blank">暮紫天地</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Nginx/">Nginx</a><a class="post-meta__tags" href="/tags/GoAccess/">GoAccess</a><a class="post-meta__tags" href="/tags/IP/">IP</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/article/7b506e1c3911.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.dmoe.cc/random.php?p=5" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">前端布局常用知识参考（自用）</div></div></a></div><div class="next-post pull-right"><a href="/article/dbfc3245bcec.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.dmoe.cc/random.php?p=7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">如何延长服务器SSH远程连接保持时间</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/article/27d32ade3fef.html" title="使用Node.js发送电子邮件并部署到CentOS7服务器上"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.dmoe.cc/random.php?p=4" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2022-08-21</div><div class="title">使用Node.js发送电子邮件并部署到CentOS7服务器上</div></div></a></div><div><a href="/article/dbfc3245bcec.html" title="如何延长服务器SSH远程连接保持时间"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://www.dmoe.cc/random.php?p=7" alt="cover"><div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> 2022-08-21</div><div class="title">如何延长服务器SSH远程连接保持时间</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/global-img/avatar.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Elzzach</div><div class="author-info__description">一个爱好视觉效果的(想花里胡哨却花不起来的)入门小前端</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legend-cpu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:859308978@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到暮紫天地！🎉<br/>博主去知识的海洋里遨游了，更新随缘哦~<br/><strong>主站点</strong>：<a href="https://blog.elzzach.top/" target="_blank">blog.elzzach.top</a><br/><strong>镜像站</strong>：<a href="https://legend-cpu.github.io/" target="_blank">Github镜像站</a><br/>作者才疏学浅，读者若发现文章有错误之处，请不吝指出！<br/><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="global-img/202202241714592.gif"/></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E5%B9%B6%E9%85%8D%E7%BD%AENginx%E6%97%A5%E5%BF%97%E8%AE%B0%E5%BD%95"><span class="toc-text">开启并配置Nginx日志记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Goaccess%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="toc-text">Goaccess日志分析工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx%E8%AE%BE%E7%BD%AE%E7%A6%81%E7%94%A8IP%E8%AE%BF%E9%97%AE"><span class="toc-text">Nginx设置禁用IP访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nginx%E8%AE%BE%E7%BD%AEIP%E7%99%BD%E5%90%8D%E5%8D%95"><span class="toc-text">Nginx设置IP白名单</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background: rgba(0, 0, 0, 0)"><div id="footer-wrap"><div class="copyright">&copy;2022 By Elzzach</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a href="https://beian.miit.gov.cn" target="_blank">互联网备案号：皖ICP备2022000051号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/medium-zoom/dist/medium-zoom.min.js"></script><script src="/pluginsSrc/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/pluginsSrc/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/pluginsSrc/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>function loadWaline () {
+  function insertCSS () {
+    const link = document.createElement("link")
+    link.rel = "stylesheet"
+    link.href = "/pluginsSrc/@waline/client/dist/waline.css"
+    document.head.appendChild(link)
+  }
+
+  function initWaline () {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'https://my-blog-comment-api.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: true,
+    }, {"emoji":["https://unpkg.com/@waline/emojis@1.0.1/bilibili"],"wordLimit":150}))
+  }
+
+  if (typeof Waline === 'function') initWaline()
+  else {
+    insertCSS()
+    getScript('/pluginsSrc/@waline/client/dist/waline.js').then(initWaline)
+  }
+}
+
+if ('Waline' === 'Waline' || !false) {
+  if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+  else setTimeout(loadWaline, 0)
+} else {
+  function loadOtherComment () {
+    loadWaline()
+  }
+}</script></div><script src="/live2d-widget/autoload.js"></script><script src="/ext-js/ext.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="/pluginsSrc/butterfly-extsrc/dist/fireworks.min.js"></script><script src="/pluginsSrc/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script></div></body></html>

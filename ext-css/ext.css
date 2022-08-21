@@ -12,6 +12,7 @@
 :root {
     --waline-border: none !important;
     --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%) !important;
+    --card-bg: rgba(255, 255, 255, 0.75)
 }
 
 body {

@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>如何使Linux的crontab定时任务以小于1分钟/次的频率执行</title>
+      <link href="/article/67ca843744d2.html"/>
+      <url>/article/67ca843744d2.html</url>
+      
+        <content type="html"><![CDATA[<p>根据cron表达式的格式我们可以知道，仅通过一个cron表达式我们能够实现的最快的执行频率是“每分钟都执行一次”，也就是 <code>* * * * *</code>这个表达式。那如果我想让一个定时任务每30秒执行一次呢？</p><p>这时候我们就要走点歪路线了，实际上我们可以设置两个执行内容相同的定时任务，但是其中一个定时任务要比另一个延迟30秒进行，比如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* * * * * command</span><br><span class="line">* * * * * sleep 30;command</span><br></pre></td></tr></table></figure><p>这样的话两个都是每分钟执行一次，但是第二个会比第一个晚30秒执行，由于两个任务内容一样，总体上来看这个任务就是每30秒执行了一次。</p><p>那么依次类推，20秒执行一次我们就这样写：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* * * * * command</span><br><span class="line">* * * * * sleep 20;command</span><br><span class="line">* * * * * sleep 40;command</span><br></pre></td></tr></table></figure><p>15秒执行一次我们就这样写：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">* * * * * command</span><br><span class="line">* * * * * sleep 15;command</span><br><span class="line">* * * * * sleep 30;command</span><br><span class="line">* * * * * sleep 45;command</span><br></pre></td></tr></table></figure><p>同理，12秒一次、10秒一次、6秒一次等等，我们都可以根据上面的规律写出来。</p><p>那如果我想让一个任务每40秒执行一次呢？</p><p>也可以实现，只不过前面的cron表达式得改一下，比如可以这样写：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*/2 * * * * command</span><br><span class="line">*/2 * * * * sleep 40;command</span><br><span class="line">*/2 * * * * sleep 80;command</span><br></pre></td></tr></table></figure><p>三个每两分钟执行一次的任务，但是第一个延迟40秒执行，第二个延迟80秒执行。</p><p>综上，我们可以总结出规律：</p><p>如果我们想要一个任务每n秒执行一次（n&lt;60），首先我们要找到这个n和60的最小公倍数，把这个最小公倍数的单位换算为分钟，设为a分钟；那么我们的定时任务可以这么设置：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*/a * * * * command</span><br><span class="line">*/a * * * * sleep n;command</span><br><span class="line">*/a * * * * sleep 2*n;command</span><br><span class="line">*/a * * * * sleep 3*n;command</span><br><span class="line">...</span><br><span class="line">*/a * * * * sleep [(a/n)-1]*n;command</span><br></pre></td></tr></table></figure><p>但是还有一个限制条件，就是这个只对满足与60的最小公倍数小于1800的n有效，因为超过1800的话a就会超过30，而cron表达式中比如<code>*/31 * * * *</code>指的是每小时的第0和第31分钟执行一次，不是每31分钟执行一次。不过一般来说这个解决办法可以满足多数需要执行频率小于1分钟的需求了。</p><blockquote><p>突然想到这样一行一行敲太麻烦了，可以写个脚本来根据参数生成需要对应的内容供我们直接复制粘贴 _ (:з)∠)_</p><p>想用node写一个，写好了更新上来。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> crontab </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何延长服务器SSH远程连接保持时间</title>
       <link href="/article/dbfc3245bcec.html"/>
       <url>/article/dbfc3245bcec.html</url>
@@ -186,9 +213,9 @@
       
         <tags>
             
-            <tag> 爬虫 </tag>
-            
             <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
       

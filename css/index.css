@@ -4932,7 +4932,7 @@ h1.page-title + .tag-cloud-list {
   transform: rotate(360deg);
 }
 #waline-wrap textarea {
-  background: url("../global-img/shy1.png") 100% 100% no-repeat;
+  background: url("../global-img/shy.png") 100% 100% no-repeat;
 }
 #waline-wrap textarea:focus {
   background-image: none;

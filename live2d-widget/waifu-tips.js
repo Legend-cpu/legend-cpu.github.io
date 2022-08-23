@@ -24,18 +24,20 @@ function loadWidget(config) {
     sessionStorage.removeItem("waifu-text");
     document.body.insertAdjacentHTML("beforeend", `<div id="waifu">
 			<div id="waifu-tips"></div>
-			<canvas id="live2d" width="800" height="800"></canvas>
+			<canvas id="live2d" width="600" height="600"></canvas>
 			<div id="waifu-tool">
-				<span class="fa fa-lg fa-comment"></span>
-				<span class="fa fa-lg fa-paper-plane"></span>
-				<span class="fa fa-lg fa-user-circle"></span>
-				<span class="fa fa-lg fa-street-view"></span>
 				<span class="fa fa-lg fa-camera-retro"></span>
-				<span class="fa fa-lg fa-info-circle"></span>
 				<span class="fa fa-lg fa-times"></span>
 			</div>
 		</div>`);
-    // https://stackoverflow.com/questions/24148403/trigger-css-transition-on-appended-element
+//         <span class="fa fa-lg fa-comment"></span>
+// 		   <span class="fa fa-lg fa-paper-plane"></span>
+// 		   <span class="fa fa-lg fa-user-circle"></span>
+// 		   <span class="fa fa-lg fa-street-view"></span>
+//         <span class="fa fa-lg fa-info-circle"></span>
+
+
+// https://stackoverflow.com/questions/24148403/trigger-css-transition-on-appended-element
     setTimeout(() => {
         document.getElementById("waifu").style.bottom = 0;
     }, 0);
@@ -47,7 +49,7 @@ function loadWidget(config) {
     let userAction = false,
         userActionTimer,
         messageTimer,
-        messageArray = ["好久不见，日子过得好快呢……", "大坏蛋！你都多久没理人家了呀，嘤～", "嗨～快来逗我玩吧！", "小拳拳锤你胸口！"];
+        messageArray = ["好久不见，日子过得好快呢……", "大坏蛋！你都多久没理人家了呀，嘤～", "嗨～快来逗我玩吧！"];
     window.addEventListener("mousemove", () => userAction = true);
     window.addEventListener("keydown", () => userAction = true);
     setInterval(() => {
@@ -95,9 +97,12 @@ function loadWidget(config) {
         });
         const devtools = () => {};
         console.log("%c", devtools);
-        devtools.toString = () => {
+        devtools = () => {
             showMessage("哈哈，你打开了控制台，是想要看看我的小秘密吗？", 6000, 9);
         };
+        // devtools.toString = () => {
+        //     showMessage("哈哈，你打开了控制台，是想要看看我的小秘密吗？", 6000, 9);
+        // };
         window.addEventListener("copy", () => {
             showMessage("你都复制了些什么呀，转载要记得加上出处哦！", 6000, 9);
         });

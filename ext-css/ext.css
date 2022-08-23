@@ -12,7 +12,7 @@
 :root {
     --waline-border: none !important;
     --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%) !important;
-    --card-bg: rgba(255, 255, 255, 0.75)
+    --card-bg: rgba(255, 255, 255, 0.8)
 }
 
 body {
@@ -97,7 +97,7 @@ body {
 
 /* enter button in homepage */
 /* From cssbutton.io by @westitan */
-.enter {
+/* .enter {
     position: relative;
     padding: 10px 20px;
     display: block;
@@ -106,7 +106,6 @@ body {
     overflow: hidden;
     border-radius: 40px;
     border: none;
-    cursor: url(../global-img/cursor_hand.png);
 }
 
 .enter span {
@@ -163,10 +162,10 @@ body {
     100% {
         transform: translate(-50%, -75%) rotate(360deg);
     }
-}
+} */
 
 /* rightside button */
-#rightside>div>button,
+/* #rightside>div>button,
 #rightside>div>a {
     border-radius: calc(35px/2);
-}
+} */

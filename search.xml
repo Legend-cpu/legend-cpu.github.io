@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>前端的一点点Linux基础（持续更新）</title>
+      <link href="/article/d41abcf2471e.html"/>
+      <url>/article/d41abcf2471e.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文为我在学习过程中学到的比较基本的Linux命令笔记，由于没有系统学过，所以比较分散而且可能比较肤浅。但是这些都是比较常用的命令。</p></blockquote><h2 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h2><p>ls -l，列出当前目录下的除隐藏文件外的所有文件。</p><p>ls -a，列出当前目录下所有文件&#x2F;目录，包括<code>ls -l</code>看不到的隐藏文件&#x2F;目录比如.ssh目录。</p><blockquote><p>-a 和 -l参数可结合为<code>-al</code>使用使文件信息以列表形式列出</p></blockquote><p>ls -lh，-h参数单独使用或与-a参数结合使用均无效，只能与-l参数结合使用，将单独使用-l参数时以字节为单位的文件大小改为以KB、GB等为单位的文件大小。但是如果是目录的话，文件大小显示的并不是该目录里所有文件大小之和。</p><p>ls -r &lt;目录名&gt;，列出指定目录下的所有子目录&#x2F;文件，-r参数可以与-l参数或-a参数结合使用，甚至可以三个参数结合在一起使用。</p><p><strong>小技巧——查看当前文件夹下文件的数量：</strong></p><p><code>ls -l |grep ^- |wc -l</code>命令可以查看当前文件夹下有多少个文件（不包括隐藏文件和目录的数量）。</p><p><code>ls -al |grep ^- |wc -l</code>命令可以查看当前文件夹下有多少个文件（包括隐藏文件，不包括目录）</p><h2 id="lsattr命令"><a href="#lsattr命令" class="headerlink" title="lsattr命令"></a>lsattr命令</h2><p>有时候我们想删除某个文件的时候发现即使我们已经拥有了root用户的权限，但是删除时仍然提示“Operation not Permitted”，这时候很有可能就是这个文件被加了一个隐藏的i属性。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何使Linux的crontab定时任务以小于1分钟/次的频率执行</title>
       <link href="/article/67ca843744d2.html"/>
       <url>/article/67ca843744d2.html</url>
@@ -76,9 +101,9 @@
       
         <tags>
             
-            <tag> Nginx </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> Nginx </tag>
             
             <tag> GoAccess </tag>
             

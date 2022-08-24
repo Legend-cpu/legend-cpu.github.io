@@ -35,45 +35,59 @@ body {
     color: #c449f5;
 }
 
-#menus {
-    position: relative;
-    left: -50%;
-    transform: translateX(50%);
+@media screen and (min-width: 768px) {
+    #menus {
+        position: relative;
+        left: -50%;
+        transform: translateX(50%);
+    }
 }
-#aside-content #card-toc .toc-content .toc-link.active{
+
+#aside-content #card-toc .toc-content .toc-link.active {
     background: #c449f5;
 }
-#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap a:hover {
+
+#recent-posts > .recent-post-item > .recent-post-info > .article-meta-wrap a:hover {
     text-decoration: none;
 }
-#page-header.post-bg::before{
+
+#page-header.post-bg::before {
     background-color: transparent;
 }
 
-.imgHover, .error404 #error-wrap .error-content .error-img img, .article-sort-item-img img, #recent-posts > .recent-post-item .post_cover img.post_bg, #aside-content .aside-list > .aside-list-item .thumbnail > img{
+.imgHover,
+.error404 #error-wrap .error-content .error-img img,
+.article-sort-item-img img,
+#recent-posts > .recent-post-item .post_cover img.post_bg,
+#aside-content .aside-list > .aside-list-item .thumbnail > img {
     transition: filter 375ms ease-in 0.2s, transform 0.4s;
 }
 
-#post .post-copyright{
+#post .post-copyright {
     border-radius: 6px;
     -webkit-box-shadow: 4px 4px 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
     box-shadow: 2px 2px 8px 0 rgba(177, 181, 192, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
 }
+
 #post .post-copyright:hover {
     -webkit-box-shadow: 4px 4px 8px 0 rgba(232, 237, 250, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
     box-shadow: 2px 2px 8px 0 rgba(177, 181, 192, 0.6), 0 2px 4px 0 rgba(232, 237, 250, 0.5);
 }
-#post .post-copyright .post-copyright-info a{
+
+#post .post-copyright .post-copyright-info a {
     text-decoration: none;
 }
-#post .tag_share .post-meta__tags{
+
+#post .tag_share .post-meta__tags {
     border-radius: 0;
 }
-#post .tag_share .post-meta__tags:hover{
+
+#post .tag_share .post-meta__tags:hover {
     border-color: #333333;
     background-color: #333333;
     color: #c449f5;
 }
+
 #footer::before {
     height: 0;
 }

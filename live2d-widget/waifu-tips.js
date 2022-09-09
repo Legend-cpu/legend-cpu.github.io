@@ -39,7 +39,7 @@ function loadWidget(config) {
 
 // https://stackoverflow.com/questions/24148403/trigger-css-transition-on-appended-element
     setTimeout(() => {
-        document.getElementById("waifu").style.bottom = 0;
+        document.getElementById("waifu").style.bottom = "0";
     }, 0);
 
     function randomSelection(obj) {
@@ -87,7 +87,7 @@ function loadWidget(config) {
         //     open("https://github.com/stevenjoezhang/live2d-widget");
         // });
         document.querySelector("#waifu-tool .fa-times").addEventListener("click", () => {
-            localStorage.setItem("waifu-display", Date.now());
+            localStorage.setItem("waifu-display", Date.now().toString());
             showMessage("愿你有一天能与重要的人重逢。", 2000, 11);
             document.getElementById("waifu").style.bottom = "-500px";
             setTimeout(() => {
@@ -100,9 +100,6 @@ function loadWidget(config) {
         devtools.toString = () => {
             showMessage("哈哈，你打开了控制台，是想要看看我的小秘密吗？", 6000, 9);
         };
-        // devtools.toString = () => {
-        //     showMessage("哈哈，你打开了控制台，是想要看看我的小秘密吗？", 6000, 9);
-        // };
         window.addEventListener("copy", () => {
             showMessage("你都复制了些什么呀，转载要记得加上出处哦！", 6000, 9);
         });

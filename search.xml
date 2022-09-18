@@ -4,6 +4,89 @@
   
     
     <entry>
+      <title>将Windows cmd添加到右键快捷菜单中</title>
+      <link href="/article/4eaa91843bcd.html"/>
+      <url>/article/4eaa91843bcd.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>本文参考教程：<a href="https://zhuanlan.zhihu.com/p/380474966">将windows10的CMD添加到右键菜单中</a></p></blockquote><p>先上效果图：</p><p><img src="E:/MyProjects/blog/source/_posts/2022091803.assets/image-20220918201541032.png" alt="image-20220918201541032"></p><p>就像上面的Git Bash Here一样，可以在当前目录快速打开cmd命令行。</p><p>步骤：</p><ol><li>创建一个存放新cmd的文件夹</li></ol><p>打开cmd输入：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> <span class="string">&quot;%USERPROFILE%\AppData\Local\terminal&quot;</span></span><br></pre></td></tr></table></figure><p><code>%USERPROFILE%</code>就是 <code>C:\Users\你的用户名</code>这个目录。</p><ol start="2"><li><p>将 cmd.exe 复制到刚刚创建的文件夹中，cmd.exe原始文件在<code>C:\Windows\System32\cmd.exe</code>这里。</p></li><li><p>在刚创建的文件夹中放入一个ico文件用作新cmd的应用图标，我没有找到cmd的默认图标在哪里，就在<a href="https://icon-icons.com/zh/%E6%9F%A5%E6%89%BE/%E5%9B%BE%E6%A0%87/?filtro=windows+cmd&fcolor=all">网上</a>找了一个。</p></li><li><p>重命名文件为mcd.exe和mcd.ico</p></li></ol><p><img src="E:/MyProjects/blog/source/_posts/2022091803.assets/image-20220918202418206.png" alt="image-20220918202418206"></p><ol start="5"><li>新建一个txt文本文档并更名为1.reg，文档内写入如下内容保存，双击此文件修改注册表即可。</li></ol><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]</span><br><span class="line">@=&quot;Windows terminal here&quot;</span><br><span class="line">&quot;Icon&quot;=&quot;C:\\Users\\你的用户名\\AppData\\Local\\terminal\\mcd.ico&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]</span><br><span class="line">@=&quot;C:\\Users\\DELL\\你的用户名\\Local\\terminal\\mcd.exe s k pushd %V&quot;</span><br></pre></td></tr></table></figure><ol start="6"><li>右键测试一下，是不是成功了？</li></ol><p>有一点小问题就是打开我们的mcd.exe之后顶部会出现一条消息”系统无法在消息文件中为 Application 找到消息号为 0x2350 的消息文本。”，鉴于它本来的文本是”Microsoft Windows [版本号]”，我觉得就没有必要纠结这个问题了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Windows </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Windows </tag>
+            
+            <tag> cmd </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>WinSCP如何设置用密钥登录服务器而不是密码登录</title>
+      <link href="/article/9ee0e5cdfe67.html"/>
+      <url>/article/9ee0e5cdfe67.html</url>
+      
+        <content type="html"><![CDATA[<p>用过WinSCP的都知道它默认设置是要你用密码登录的，但如果你为了安全要禁用服务器密码登录的话是不是WinSCP就用不了了呢？当然不是，WinSCP也可以使用密钥登录，但是可能要稍微折腾一下。</p><p>通常来说我们生成的服务器密钥都是用OpenSSL生成的，而WinSCP不支持这种格式的密钥，它支持的是pkk格式的密钥。所以我们要将OpenSSL格式的密钥转换为ppk格式的密钥。</p><p>首先我们需要先下载PuTTYgen工具，官网下载地址在<a href="https://www.puttygen.com/download-putty">这里</a>。</p><p>下载安装好了之后打开WinSCP，在跳出来的对话框里点开 工具 - 运行PuTTYgen：</p><p><img src="E:/MyProjects/blog/source/_posts/2022091802.assets/image-20220918195005468.png" alt="image-20220918195005468"></p><p>打开之后点击Load：</p><p><img src="E:/MyProjects/blog/source/_posts/2022091802.assets/image-20220918195058549.png" alt="image-20220918195058549"></p><p>然后选择你所要转换的私钥文件，不带pub的那个。打开的文件资源管理器里默认选择的范围是ppk文件，改成All Files不用多说了吧。</p><p>Load完了之后直接点击Save private key即可 ，不要点Generate，也不要去输密码，除非你不介意以后每次连接都需要输入一次密钥密码的话。</p><p>输入你想保存的文件名，然后保存为ppk格式的文件，这样我们就转换完成了。</p><p>然后在登录对话框界面点击“高级”，在如下界面选择你刚刚保存的ppk文件，确定退出即可。</p><p><img src="E:/MyProjects/blog/source/_posts/2022091802.assets/image-20220918195826644.png" alt="image-20220918195826644"></p><p>现在再试一试登录，你就发现WinSCP是直接使用密钥文件登录而不是密码登录了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> WinSCP </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 密钥 </tag>
+            
+            <tag> WinSCP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>用密钥登录服务器以及服务器禁用密码登录</title>
+      <link href="/article/f28c8157b35f.html"/>
+      <url>/article/f28c8157b35f.html</url>
+      
+        <content type="html"><![CDATA[<p>用密码登录服务器的时候每次都要在命令行输入服务器密码，次数多了之后难免就觉得有些麻烦，后来听说可以用密钥文件来直接免密登录，并且可以禁用服务器密码登录，安全并且便捷。所以就去尝试了一下，尝试成功之后写了一个bat文件，直接双击就可以连接服务器了，比之前命令行输命令方便了太多。</p><h2 id="创建密钥对"><a href="#创建密钥对" class="headerlink" title="创建密钥对"></a>创建密钥对</h2><p>前提：你的用户目录（有<code>AppData</code>的那个文件夹，或者说<code>Users</code>文件夹底下的某个文件夹，或者说中文版Windows可能是<code>用户</code>文件夹底下的某个文件夹）底下有<code>.ssh</code>文件夹，没有就自己创建一个；你的电脑上有OpenSSL，没有就自己搜索解决办法啦。</p><p>进入路径<code>C:\Users\你的用户名\.ssh</code>，进入命令行在当前目录下执行命令<code>ssh-keygen -t rsa -b 4096</code>：</p><p><img src="E:/MyProjects/blog/source/_posts/2022091801.assets/image-20220918175922962.png" alt="image-20220918175922962"></p><p>请不要在意我执行命令的路径，我是随便挑的路径，但是真正在做的时候需要在<code>.ssh</code>目录下执行。</p><p>执行完毕后在当前目录下会生成两个文件，带pub后缀的是公钥文件，不带pub后缀的是私钥文件。接下来我们需要将公钥复制一份到服务器上。</p><p>首先确认服务器上的<code>/root/.ssh/</code>目录下是否有一个<code>authorized_keys</code>文件，没有就自己新建一个。然后打开这个文件，将刚刚生成的pub公钥文件里面的内容复制粘贴到<code>authorized_keys</code>文件里，保存并退出即可。</p><p>这样就完成了，现在应该能够使用私钥免密登录服务器了，试着执行以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /d C:\Users\你的用户名\.ssh</span><br><span class="line">ssh -i 你的私钥文件名 root@服务器ip</span><br></pre></td></tr></table></figure><p>如果仍然需要输入密码才能登录，请确认服务器上的文件权限是否正确：.ssh文件夹的权限为700，authorized_keys文件的权限为600。如果不是请自己改一下。</p><p>当然如果你觉得虽然不用输密码了，但是每次都要输入比之前更长的命令还是很麻烦，不妨尝试写一个bat文件，双击执行直接连接服务器：</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">echo</span> off</span><br><span class="line"><span class="built_in">cd</span> /d C:\Users\你的用户名\.ssh</span><br><span class="line">ssh -i 你的私钥文件名 root@服务器ip</span><br></pre></td></tr></table></figure><blockquote><p>请一定要妥善保护好你的私钥文件，尤其是在禁用密码登录之后。</p></blockquote><h2 id="禁用服务器密码登录"><a href="#禁用服务器密码登录" class="headerlink" title="禁用服务器密码登录"></a>禁用服务器密码登录</h2><div class="note danger flat"><p>务必在确认你的其他登录服务器方法可以正常使用之后再进行这一步</p></div><p>修改服务器上的<code>/etc/ssh/ssh_config</code>文件，在<code>Host *</code>下面添加一行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Host *</span><br><span class="line">    PasswordAuthentication no</span><br></pre></td></tr></table></figure><p>保存并退出即可。</p><p>其实促使我禁用服务器密码登录的契机是大概一周之前我的服务器莫名其妙被一个重庆IP给登录了（我的密码绝对是一个高强度的密码），就很离谱，然后我就改了一个密码，后来想想还是直接禁用密码登录得了。</p><p>附带一个之前看到的检查SSH端口是否被攻击的文章，原文<a href="https://www.bilibili.com/read/cv18320321">在此</a>。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># </span><span class="language-bash">btmp文件会记录SSH端口登录失败的信息，包括尝试的用户名、IP地址和时间等信息。</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">btmp为二进制文件，文件路径为/var/log/btmp。</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">1. 查看文件btmp</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">使用命令lastb可以查看文件btmp的信息，参数-n可以指定显示数量。</span></span><br><span class="line"></span><br><span class="line">lastb -n 10 | tac</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">2. 查看攻击者IP及攻击次数</span></span><br><span class="line"></span><br><span class="line">lastb | awk &#x27;&#123; print $3&#125;&#x27; | sort | uniq -c | sort -n</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">3. 查看攻击者尝试的用户名</span></span><br><span class="line"></span><br><span class="line">lastb | awk &#x27;&#123; print $1&#125;&#x27; | sort | uniq -c | sort -n</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">4. 分析攻击者</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">对攻击次数第一的IP进行分析。</span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">查看攻击开始时间</span></span><br><span class="line"></span><br><span class="line">lastb | grep 137.184.155.125</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">查看攻击终止时间</span></span><br><span class="line"></span><br><span class="line">lastb | grep 137.184.155.125 | tac</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta"># </span><span class="language-bash">查看IP地理位置</span></span><br><span class="line"></span><br><span class="line">curl ipinfo.io/137.184.155.125</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> 密钥 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>shadow DOM和自定义元素的基本使用</title>
       <link href="/article/ac7a614ad74c.html"/>
       <url>/article/ac7a614ad74c.html</url>
@@ -242,9 +325,9 @@
       
         <tags>
             
-            <tag> 爬虫 </tag>
-            
             <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
       

@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /about/
+Disallow: /shuoshuo/
+Disallow: /categories/
+Disallow: /tags/
+Disallow: /archives/

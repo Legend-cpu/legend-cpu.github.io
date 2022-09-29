@@ -44,9 +44,19 @@ body {
 #aside-content #card-toc .toc-content .toc-link.active {
     background: #c449f5;
 }
-#aside-content{
+
+#aside-content {
     margin-right: 40px;
 }
+
+#recent-posts > .recent-post-item {
+    height: 14em;
+}
+
+#recent-posts > .recent-post-item:not(:first-child) {
+    margin-top: 30px;
+}
+
 #recent-posts > .recent-post-item > .recent-post-info > .article-meta-wrap a:hover {
     text-decoration: none;
 }
@@ -89,7 +99,7 @@ body {
 }
 
 footer {
-    margin-top: 100px;
+    margin-top: 40px;
 }
 
 #footer::before {

@@ -2,10 +2,8 @@
 @font-face {
     font-family: "weilaiyuanSC";
     src: url("../fontdest/weilaiyuan-medium.woff") format("woff"),
-        /* chrome, firefox */
-        url("../fontdest/weilaiyuan-medium.ttf") format("truetype"),
-        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-        url("../fontdest/weilaiyuan-medium.svg#未来圆SC") format("svg");
+        /* chrome, firefox */ url("../fontdest/weilaiyuan-medium.ttf") format("truetype"),
+        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url("../fontdest/weilaiyuan-medium.svg#未来圆SC") format("svg");
     /* iOS 4.1- */
 }
 
@@ -46,7 +44,9 @@ body {
 #aside-content #card-toc .toc-content .toc-link.active {
     background: #c449f5;
 }
-
+#aside-content{
+    margin-right: 40px;
+}
 #recent-posts > .recent-post-item > .recent-post-info > .article-meta-wrap a:hover {
     text-decoration: none;
 }
@@ -86,6 +86,10 @@ body {
     border-color: #333333;
     background-color: #333333;
     color: #c449f5;
+}
+
+footer {
+    margin-top: 100px;
 }
 
 #footer::before {

@@ -46,13 +46,18 @@ function initHomePage() {
 // 背景图根据一天中的不同时间切换
 const hour = new Date().getHours()
 const webBg = $('#web_bg')
-if (hour < 17) {
-    getComputedStyle(webBg).background = 'url(https://blog.elzzach.top/global-img/index-bg/27.jpg)'
-} else if (hour < 19) {
-    getComputedStyle(webBg).background = 'url(https://blog.elzzach.top/global-img/index-bg/533.jpg)'
-} else {
-    getComputedStyle(webBg).background = 'url(https://blog.elzzach.top/global-img/index-bg/534.jpg)'
+if(!location.href.includes('/article/')){
+    if (hour < 17) {
+        webBg.style.background = 'url(https://blog.elzzach.top/global-img/index-bg/27.jpg)'
+    } else if (hour < 19) {
+        webBg.style.background = 'url(https://blog.elzzach.top/global-img/index-bg/533.jpg)'
+    } else {
+        webBg.style.background = 'url(https://blog.elzzach.top/global-img/index-bg/534.jpg)'
+    }
+}else{
+        webBg.style.background = 'url(https://blog.elzzach.top/global-img/post-bg.jpg)'
 }
+
 
 // 函数调用区
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']

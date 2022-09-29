@@ -1,0 +1,139 @@
+:root {
+    --color-white: #fbfbfb;
+    --color-black: #333333;
+}
+
+::selection {
+    background: #c449f5;
+    color: #f7f7f7;
+}
+
+body {
+    margin: 0;
+    cursor: default;
+    color: var(--color-black);
+}
+
+/*header*/
+header {
+    position: relative;
+    overflow: hidden;
+    height: 100px;
+    box-shadow: 6px 3px 5px rgba(0, 0, 0, 16%);
+    background-color: var(--color-white);
+    z-index: 3;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    margin: 20px 24px;
+    width: calc(100% - 48px);
+    height: calc(100% - 40px);
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 202px;
+}
+
+.above-container {
+    display: flex;
+}
+
+.page-logo img {
+    vertical-align: middle;
+}
+
+.page-title {
+    margin-left: 8px;
+    line-height: 1;
+    font-size: 30px;
+}
+
+.below-container {
+    margin-top: 8px;
+}
+
+.page-subtitle {
+    margin-left: 22px;
+    font-size: 14px;
+    word-spacing: 8px;
+}
+
+.dark-toggle {
+    display: flex;
+    align-items: center;
+    width: 30px;
+    cursor: pointer;
+}
+
+.dark-toggle img {
+    display: inline-block;
+}
+
+/*main*/
+main {
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 100px);
+}
+
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--color-white);
+    flex: 1;
+}
+
+/*aside-nav*/
+#nav {
+    position: relative;
+    z-index: 2;
+    width: 170px;
+    background-color: var(--color-white);
+    box-shadow: -6px 0 5px rgba(0, 0, 0, 16%);
+}
+
+.nav-list {
+    margin-top: 50px;
+}
+
+.nav-title, .nav-item {
+    text-align: center;
+    cursor: pointer;
+}
+
+.nav-title {
+    font-size: 24px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    margin: 20px auto 0;
+    font-size: 16px;
+    width: 5em;
+    height: 2.5em;
+}
+
+.nav-item span {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.selected {
+    background-color: #c449f5aa;
+    border-radius: 50%;
+}
+
+.sleepgif {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}

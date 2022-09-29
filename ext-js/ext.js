@@ -8,21 +8,21 @@ function $(selector) {
 }
 
 /**
- * @description 标签页进入后台时改变标题，再次进入前台时再次改变标题 
+ * @description 标签页进入后台时改变标题，再次进入前台时再次改变标题
  * @param {String} leaveTitle
  * @param {String} backTitle
  */
 function changeTitle(leaveTitle, backTitle) {
     let originTitle = document.title;
     let titleTime;
-    document.addEventListener('visibilitychange', function() {
+    document.addEventListener('visibilitychange', function () {
         let isHidden = document.hidden;
         if (isHidden) {
             document.title = leaveTitle;
             clearTimeout(titleTime);
         } else {
             document.title = backTitle;
-            titleTime = setTimeout(function() {
+            titleTime = setTimeout(function () {
                 document.title = originTitle;
             }, 3000);
         }
@@ -43,15 +43,26 @@ function initHomePage() {
     }
 }
 
+// 背景图根据一天中的不同时间切换
+const hour = new Date().getHours()
+const webBg = $('#web_bg')
+if (hour < 17) {
+    getComputedStyle(webBg).background = 'url(https://blog.elzzach.top/global-img/index-bg/27.jpg)'
+} else if (hour < 19) {
+    getComputedStyle(webBg).background = 'url(https://blog.elzzach.top/global-img/index-bg/533.jpg)'
+} else {
+    getComputedStyle(webBg).background = 'url(https://blog.elzzach.top/global-img/index-bg/534.jpg)'
+}
+
 // 函数调用区
 let homePageURLs = ['http://localhost:4000/', 'https://blog.elzzach.top/', 'https://legend-cpu.github.io/']
 if (homePageURLs.includes(location.href)) { //如果是首页
     initHomePage();
 } else { //如果不是首页
-    window.onload = function() {
+    window.onload = function () {
         // 修改评论区placeholder
         // 评论区的一些元素由于网速原因加载较慢，因此通过定时器监视，一旦出现并修改成功后清除定时器
-        var id1 = setInterval(function() {
+        var id1 = setInterval(function () {
             let e = $('#wl-edit');
             if (e) {
                 e.placeholder =
@@ -64,3 +75,4 @@ if (homePageURLs.includes(location.href)) { //如果是首页
         }, 500)
     }
 }
+

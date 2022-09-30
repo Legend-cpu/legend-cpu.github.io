@@ -43,11 +43,12 @@ function initHomePage() {
     }
 }
 
-// 所有链接在新标签页打开
+// 除了分页按钮，所有链接在新标签页打开
 for (const link of $('a')) {
-    link.target = '_blank'
+    if (link.parentElement !== $('.pagination')){
+        link.target = '_blank'
+    }
 }
-
 
 // 背景图根据一天中的不同时间切换
 // 添加非文章页背景图遮罩

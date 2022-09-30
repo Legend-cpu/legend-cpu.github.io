@@ -25,6 +25,18 @@ a, #article-container a, #footer-wrap a {
     color: #006bff;
 }
 
+#web_bg_mask {
+    position: fixed;
+    z-index: -998;
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background: #fff7 no-repeat local center;
+    background-size: cover;
+    animation: to_show, 0.4s;
+}
+
 #nav {
     background-color: rgba(255, 255, 255, 0.8);
 }

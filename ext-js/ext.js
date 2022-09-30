@@ -50,9 +50,13 @@ for (const link of $('a')) {
 
 
 // 背景图根据一天中的不同时间切换
+// 添加非文章页背景图遮罩
 const hour = new Date().getHours()
 const webBg = $('#web_bg')
-if(!location.href.includes('/article/')){
+const webBgMask = document.createElement('div')
+webBgMask.id = 'web_bg_mask'
+if (!location.href.includes('/article/')) {
+    document.body.prepend(webBgMask)
     if (hour < 17) {
         webBg.style.background = 'url(https://blog.elzzach.top/global-img/index-bg/27.jpg)'
     } else if (hour < 19) {
@@ -60,8 +64,8 @@ if(!location.href.includes('/article/')){
     } else {
         webBg.style.background = 'url(https://blog.elzzach.top/global-img/index-bg/534.jpg)'
     }
-}else{
-        webBg.style.background = 'url(https://blog.elzzach.top/global-img/post-bg.jpg)'
+} else {
+    webBg.style.background = 'url(https://blog.elzzach.top/global-img/post-bg.jpg)'
 }
 
 

@@ -96,18 +96,16 @@
       
       <categories>
           
-          <category> Javascript </category>
+          <category> JavaScript </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Javascript </tag>
+            <tag> JavaScript </tag>
             
             <tag> DOM </tag>
-            
-            <tag> shadow DOM </tag>
             
         </tags>
       
@@ -161,9 +159,9 @@
             
             <tag> Linux </tag>
             
-            <tag> SSH </tag>
-            
             <tag> 服务器 </tag>
+            
+            <tag> SSH </tag>
             
         </tags>
       
@@ -325,9 +323,9 @@
       
         <tags>
             
-            <tag> 爬虫 </tag>
-            
             <tag> Python </tag>
+            
+            <tag> 爬虫 </tag>
             
         </tags>
       

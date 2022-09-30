@@ -141,9 +141,6 @@ footer {
 
 #footer-wrap{
     color: #535353;
-}
-
-#footer-wrap {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -152,85 +149,6 @@ footer {
     max-width: 1400px;
 }
 
-
-/* local style */
-
-/* site subtitle */
 #site-info #site-title {
     font-size: 4em;
 }
-
-/* enter button in homepage */
-/* From cssbutton.io by @westitan */
-/* .enter {
-    position: relative;
-    padding: 10px 20px;
-    display: block;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    border-radius: 40px;
-    border: none;
-}
-
-.enter span {
-    position: relative;
-    color: #fff;
-    letter-spacing: 2px;
-    z-index: 1;
-}
-
-.enter .liquid {
-    position: absolute;
-    top: -50px;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    background: #c449f5;
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, .5);
-    transition: .5s;
-}
-
-.enter .liquid::after,
-.enter .liquid::before {
-    content: '';
-    width: 200%;
-    height: 200%;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -75%);
-    background: #fff;
-}
-
-.enter .liquid::before {
-    border-radius: 45%;
-    background: rgba(20, 20, 20, 1);
-    animation: animate 5s linear infinite;
-}
-
-.enter .liquid::after {
-    border-radius: 40%;
-    background: rgba(20, 20, 20, .5);
-    animation: animate 10s linear infinite;
-}
-
-.enter:hover .liquid {
-    top: -120px;
-}
-
-@keyframes animate {
-    0% {
-        transform: translate(-50%, -75%) rotate(0deg);
-    }
-
-    100% {
-        transform: translate(-50%, -75%) rotate(360deg);
-    }
-} */
-
-/* rightside button */
-/* #rightside>div>button,
-#rightside>div>a {
-    border-radius: calc(35px/2);
-} */

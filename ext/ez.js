@@ -49,7 +49,6 @@ for (const link of $('a')) {
         link.target = '_blank'
     }
 }
-
 // 背景图根据一天中的不同时间切换
 // 添加非文章页背景图遮罩
 const hour = new Date().getHours()

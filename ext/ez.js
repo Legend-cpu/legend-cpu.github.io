@@ -36,7 +36,7 @@ function initHomePage() {
     const pattern = /Android|iOS|Mobile/;
     if (!pattern.test(navigator.userAgent)) {
         let script = document.createElement('script');
-        script.src = "./ext-js/driftDown.js";
+        script.src = "./ext/driftDown.js";
         script.id = "driftDown";
         document.head.append(script);
         changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');

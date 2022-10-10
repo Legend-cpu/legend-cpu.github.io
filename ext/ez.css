@@ -89,6 +89,10 @@ a, #article-container a, #footer-wrap a {
     text-decoration: none;
 }
 
+.layout {
+    max-width: 1400px;
+}
+
 .layout > div:first-child:not(.recent-posts) {
     padding: 24px 40px 50px;
 }

@@ -2,8 +2,10 @@
 @font-face {
     font-family: "weilaiyuanSC";
     src: url("../fontdest/weilaiyuan-medium.woff") format("woff"),
-        /* chrome, firefox */ url("../fontdest/weilaiyuan-medium.ttf") format("truetype"),
-        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url("../fontdest/weilaiyuan-medium.svg#未来圆SC") format("svg");
+        /* chrome, firefox */
+        url("../fontdest/weilaiyuan-medium.ttf") format("truetype"),
+        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+        url("../fontdest/weilaiyuan-medium.svg#未来圆SC") format("svg");
     /* iOS 4.1- */
 }
 
@@ -21,7 +23,9 @@ body {
     cursor: url(../global-img/cursor_default.png), auto;
 }
 
-a, #article-container a, #footer-wrap a {
+a,
+#article-container a,
+#footer-wrap a {
     color: #006bff;
 }
 
@@ -93,6 +97,11 @@ a, #article-container a, #footer-wrap a {
     max-width: 1400px;
 }
 
+main:has(#page) {
+    flex-direction: column;
+    justify-content: center;
+}
+
 .layout > div:first-child:not(.recent-posts) {
     padding: 24px 40px 50px;
 }
@@ -109,7 +118,12 @@ a, #article-container a, #footer-wrap a {
     transition: filter 375ms ease-in 0.2s, transform 0.4s;
 }
 
-.cardHover, .error404 #error-wrap .error-content, .layout > div:first-child:not(.recent-posts), #recent-posts > .recent-post-item, #aside-content .card-widget, .layout > .recent-posts .pagination > :not(.space) {
+.cardHover,
+.error404 #error-wrap .error-content,
+.layout > div:first-child:not(.recent-posts),
+#recent-posts > .recent-post-item,
+#aside-content .card-widget,
+.layout > .recent-posts .pagination > :not(.space) {
     border-radius: 1.25em;
 }
 
@@ -138,7 +152,8 @@ a, #article-container a, #footer-wrap a {
     color: #c449f5;
 }
 
-#rightside > div > button, #rightside > div > a {
+#rightside > div > button,
+#rightside > div > a {
     width: 48px;
     height: 48px;
     border-radius: 24px;
@@ -155,7 +170,7 @@ footer {
     height: 0;
 }
 
-#footer-wrap{
+#footer-wrap {
     color: #535353;
     display: flex;
     flex-direction: row;

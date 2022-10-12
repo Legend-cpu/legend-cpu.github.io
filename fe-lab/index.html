@@ -1,11 +1,13 @@
-<!--特效代码css以style标签形式与html写在一起-->
-<!--todo 探索特效代码中js如何嵌入-->
-<!--todo 制作放大后的组件样式，左边为约500x500的效果，右边为代码框，且分tab页；小工具不展示代码框-->
-<!--todo 探索效果代码应如何储存，已确认主页面采用ajax通信获取效果代码-->
+<!--todo 调整样式 -->
+<!--todo 加一个上下方向键切换导航，左右方向键切换分页，
+    且每次按键至少需间隔一秒，该通知可按enter键确认 -->
+<!--todo 特效代码模板和如何分别获取并展示特效代码的html、css和js -->
+
 <!--todo 深色模式与浅色模式切换-->
-<!--todo 分页按钮-->
+<!--todo 搜索功能 -->
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>暮紫天地 - 前端实验室</title>
@@ -13,53 +15,55 @@
     <link rel="shortcut icon" href="../global-img/favicon.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
+
 <body>
-<header>
-    <div class="container">
-        <div class="title">
-            <div class="above-container">
-                <div class="page-logo">
-                    <img src="./img/favicon.png" alt="logo">
+    <div class="modal hide">
+        <div class="modal-window">
+            啊哦，页面被挤压得太扁啦，已经没有啦！_(:з)∠)_
+        </div>
+    </div>
+    <header>
+        <div class="container">
+            <div class="title">
+                <div class="above-container">
+                    <div class="page-logo">
+                        <img src="./img/favicon.png" alt="logo">
+                    </div>
+                    <div class="page-title"><span>暮紫天地</span></div>
                 </div>
-                <div class="page-title"><span>暮紫天地</span></div>
+                <div class="below-container">
+                    <div class="page-subtitle"><span>前 端 实 验 室</span></div>
+                </div>
             </div>
-            <div class="below-container">
-                <div class="page-subtitle"><span>前 端 实 验 室</span></div>
+            <div class="dark-toggle">
+                <img src="./img/darkmode.png" alt="darkmode">
             </div>
         </div>
-        <div class="dark-toggle">
-            <img src="./img/darkmode.png" alt="darkmode">
-        </div>
-    </div>
-</header>
-<main>
-    <div id="main">
-        <effect-widget></effect-widget>
-        <effect-widget></effect-widget>
-        <effect-widget></effect-widget>
-        <effect-widget></effect-widget>
-        <effect-widget></effect-widget>
-        <effect-widget></effect-widget>
-        <effect-widget></effect-widget>
-        <effect-widget></effect-widget>
-    </div>
-    <div id="nav">
-        <div class="nav-list">
-            <div class="nav-title">
-                <span>特效展览</span>
-                <img src="./img/arrow-up.png" alt="arrow-up">
+    </header>
+    <main>
+        <div id="main">
+            <div class="widget-container"></div>
+            <div class="pagination">
+                <div id="backward" class="pagination-btn"><img src="./img/arrow-up.png" alt="arrow-up"></div>
+                <div id="forward" class="pagination-btn"><img src="./img/arrow-up.png" alt="arrow-up"></div>
             </div>
-            <div class="nav-item selected"><span>CSS特效</span></div>
-            <div class="nav-item"><span>JS特效</span></div>
         </div>
-        <div class="nav-list">
-            <div class="nav-title"><span>小工具</span></div>
+        <div id="nav">
+            <div class="nav-list">
+                <div class="nav-title">
+                    <span>特效展览</span>
+                    <!-- <img src="./img/arrow-up.png" alt="arrow-up"> -->
+                </div>
+                <div id="css" class="nav-item selected"><span>CSS特效</span></div>
+                <div id="js" class="nav-item"><span>JS特效</span></div>
+                <div id="tool" class="nav-item"><span>小工具</span></div>
+            </div>
+            <div class="sleepgif">
+                <img src="./img/sleep.gif" alt="sleep.gif" width="120" height="120">
+            </div>
         </div>
-        <div class="sleepgif">
-            <img src="./img/sleep.gif" alt="sleep.gif" width="120" height="120">
-        </div>
-    </div>
-</main>
-<script src="./js/fe-lab.js"></script>
+    </main>
+    <script src="./js/fe-lab.js"></script>
 </body>
+
 </html>

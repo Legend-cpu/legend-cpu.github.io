@@ -1,13 +1,10 @@
 /* global style */
 @font-face {
     font-family: "weilaiyuanSC";
-    src: url("https://npm.elemecdn.com/ezsttcfs@latest/font/weilaiyuan-medium.woff") format("woff"),
+    src: url("https://npm.elemecdn.com/ezsttcfs@latest/font/weilaiyuan-medium.ttf") format("truetype"),
         url("../fontdest/weilaiyuan-medium.woff") format("woff"),
         /* chrome, firefox */
-        url("../fontdest/weilaiyuan-medium.ttf") format("truetype"),
-        /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-        url("../fontdest/weilaiyuan-medium.svg#未来圆SC") format("svg");
-    /* iOS 4.1- */
+        url("../fontdest/weilaiyuan-medium.ttf") format("truetype")
 }
 
 :root {

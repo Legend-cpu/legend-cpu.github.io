@@ -1,9 +1,9 @@
 // 只允许屏宽>=1200px的Windows平台的Chrome、Edge和Firefox访问
 if ((navigator.platform === 'Win32') && (navigator.userAgent.match(/Chrome|Firefox/) !== null) && (screen.width >= 1200)) {
     // 四个基本数量
-    const ca = 5
-    const ja = 9
-    const ta = 20
+    const ca = 1
+    const ja = 0
+    const ta = 0
     const amp = 6
 
     // 初始页面始终为第1页和css页
@@ -27,6 +27,7 @@ if ((navigator.platform === 'Win32') && (navigator.userAgent.match(/Chrome|Firef
 
             const style = document.createElement('style')
             style.innerHTML = `
+
 iframe{
     width: 100%;
     height: 100%;
@@ -51,7 +52,7 @@ iframe{
     align-items: center;
     height: 100%;
 }
-
+            
 .iframe-box{
     width: calc(100% - 40px);
     height: calc(100% - 80px);
@@ -69,7 +70,7 @@ iframe{
 
 .effect-title{
     font-weight: bold;
-    color: #333;
+    color: #111;
     margin-top: 28px;
 }
 
@@ -85,7 +86,15 @@ iframe{
     width: 100%;
     height: 100%;
 }
-        `
+.dark-theme {
+    background-color: #454545;
+}
+
+.dark-theme .effect-title {
+    color: #eee;
+}
+
+`
             const wrapper = document.createElement('div')
             const container = document.createElement('div')
             const iframeBox = document.createElement('div')
@@ -249,6 +258,26 @@ iframe{
     }
 
     // 浅色模式与深色模式互相切换
+    document.querySelector('.dark-toggle').addEventListener('click', () => {
+        const toggleImg = document.querySelector('.dark-toggle img');
+        document.getElementsByTagName('html')[0].classList.toggle('dark-theme');
+        if (toggleImg.src.match('darkmode.png') !== null) {
+            toggleImg.src = toggleImg.src.replace('darkmode.png', 'lightmode.png');
+        }
+        else {
+            toggleImg.src = toggleImg.src.replace('lightmode.png', 'darkmode.png');
+        }
+        for (const widget of document.querySelectorAll('effect-widget')) {
+            let img = widget.shadowRoot.firstChild.firstChild.lastChild.firstChild.firstChild;
+            widget.shadowRoot.firstChild.classList.toggle('dark-theme');
+            if (img.src.match('bright') !== null) {
+                img.src = img.src.replace(/bright/, 'dark');
+            }
+            else {
+                img.src = img.src.replace(/dark/, 'bright');
+            }
+        }
+    })
 
 
 
@@ -256,6 +285,7 @@ iframe{
     adaptWidgetsWidth();
     generatePagination();
 
+    // 窗口大小调到1200px以下时不显示内容
     window.addEventListener('resize', () => {
         const modal = document.querySelector('.modal');
         const main = document.querySelector('main');
@@ -276,15 +306,16 @@ iframe{
         }
     })
 
+    // 键盘浏览
     window.addEventListener('keyup', (e) => {
         console.log(e.keyCode);
         if (e.keyCode === 37) {
             backward.click();
         }
-        if (e.keyCode === 39) {
+        else if (e.keyCode === 39) {
             forward.click();
         }
-        if (e.keyCode === 38) {
+        else if (e.keyCode === 38) {
             if (document.querySelector('.selected').previousElementSibling !== null) {
                 document.querySelector('.selected').previousElementSibling.click();
             }
@@ -292,13 +323,30 @@ iframe{
                 document.querySelector('.nav-list').lastElementChild.click();
             }
         }
-        if (e.keyCode === 40) {
+        else if (e.keyCode === 40) {
             if (document.querySelector('.selected').nextElementSibling !== null) {
                 document.querySelector('.selected').nextElementSibling.click();
             }
             else {
                 document.querySelector('.nav-list').firstElementChild.click();
             }
+        }
+        else if (e.keyCode === 36) {
+            document.querySelector('div[data-index="1"]').click();
+        }
+        else if (e.keyCode === 35) {
+            document.querySelector(`div[data-index="${pa}"]`).click();
+
+        }
+        else if (e.keyCode === 49 || e.keyCode === 50 || e.keyCode === 51 || e.keyCode === 52 || e.keyCode === 53 || e.keyCode === 54) {
+            const i = e.keyCode - 49;
+            const w = document.querySelectorAll('effect-widget')[i];
+            if (w) {
+                w.shadowRoot.firstChild.firstChild.lastChild.firstChild.click();
+            }
+        }
+        else if (e.keyCode === 76) {
+            document.querySelector('.dark-toggle').click();;
         }
     })
 

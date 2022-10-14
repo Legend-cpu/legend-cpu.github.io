@@ -1,12 +1,30 @@
 :root {
 	--color-bg-white: #fbfbfb;
-	--color-bg-black: #030303;
+	--color-bg-black: #282828;
 	--color-white: #eee;
 	--color-black: #111;
 }
 
 ::selection {
 	background: transparent;
+}
+
+.dark-theme body {
+	color: var(--color-white);
+}
+
+.dark-theme header,
+.dark-theme #main,
+.dark-theme #nav {
+	background-color: var(--color-bg-black);
+}
+
+.dark-theme header {
+	box-shadow: 0px 3px 5px rgba(255, 255, 255, 16%);
+}
+
+.dark-theme #nav {
+	box-shadow: -3px 0 5px rgba(255, 255, 255, 16%);
 }
 
 body {
@@ -69,18 +87,21 @@ body {
 	border-radius: 32px;
 	width: 30vw;
 	background-color: #00000099;
-	text-align: center;
+	line-height: 1.5em;
 	font-size: 24px;
 	transform: translate(-50%, -50%);
 }
 
 .keyboard-nav-guide-window h2 {
-    font-weight: bold;
+	margin-bottom: 40px;
+	font-weight: bold;
 	color: var(--color-white);
-    margin-bottom: 70px;
 }
 
 .keyboard-nav-guide-window p {
+	margin: 0;
+	line-height: 2;
+	font-size: 20px;
 	color: #c449f5;
 }
 
@@ -90,8 +111,8 @@ header {
 	position: relative;
 	z-index: 3;
 	height: 100px;
-	background-color: var(--color-white);
-	box-shadow: 6px 3px 5px rgba(0, 0, 0, 16%);
+	background-color: var(--color-bg-white);
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 16%);
 }
 
 .container {
@@ -159,7 +180,7 @@ main {
 	justify-content: space-between;
 	align-items: center;
 	flex: 1;
-	background-color: var(--color-white);
+	background-color: var(--color-bg-white);
 }
 
 .widget-container {
@@ -222,8 +243,8 @@ main {
 	position: relative;
 	z-index: 2;
 	width: 170px;
-	background-color: var(--color-white);
-	box-shadow: -6px 0 5px rgba(0, 0, 0, 16%);
+	background-color: var(--color-bg-white);
+	box-shadow: -3px 0 5px rgba(0, 0, 0, 16%);
 }
 
 .nav-list {

@@ -34,6 +34,7 @@ for (const copyBtn of document.querySelectorAll('.title span')) {
             window.getSelection().empty();
         }
         else{
+            copiedDiv.backgroundColor = '#ffee00';
             copiedDiv.innerText = '无内容，无法复制！'
             copiedDiv.style.top = '20px';
             setTimeout(() => {

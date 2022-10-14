@@ -1,3 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>初始特效</title>
 <link rel='shortcut icon' href='../../../global-img/favicon.png' type='image/x-icon'>
 <link rel='stylesheet' href='../../css/dark.min.css'>
@@ -12,7 +13,7 @@
         xhr.onreadystatechange = function () {
             if (xhr.readyState === 4) {
                 if (xhr.status === 200) {
-                    document.querySelector('.loading-box').innerHTML = xhr.responseText;
+                    document.querySelector('.loading-box').innerHTML = xhr.response;
                     document.body.style.backgroundImage = 'linear-gradient(-225deg, rgb(105, 234, 203) 0%, rgb(234, 204, 248) 48%, rgb(102, 84, 241) 100%)';
                 } else {
                     console.error(xhr.statusText);

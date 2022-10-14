@@ -1,9 +1,9 @@
 // 只允许屏宽>=1200px的Windows平台的Chrome、Edge和Firefox访问
 if ((navigator.platform === 'Win32') && (navigator.userAgent.match(/Chrome|Firefox/) !== null) && (screen.width >= 1200)) {
     // 四个基本数量
-    const ca = 10
-    const ja = 6
-    const ta = 13
+    const ca = 5
+    const ja = 9
+    const ta = 20
     const amp = 6
 
     // 初始页面始终为第1页和css页
@@ -38,10 +38,10 @@ iframe{
     position: relative;
     width: 300px;
     height: 240px;
-    background-color: #1e1f26;
+    background-color: #e4e4e4;
     margin: 60px 40px 0;
-    border-radius: 8px;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 40%);
+    border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 50px -12px;
 }
 
 .effect-container{
@@ -53,8 +53,8 @@ iframe{
 }
 
 .iframe-box{
-    width: calc(100% - 30px);
-    height: calc(100% - 60px);
+    width: calc(100% - 40px);
+    height: calc(100% - 80px);
     border-radius: 8px;
     background-color: #fff;
 }
@@ -69,8 +69,8 @@ iframe{
 
 .effect-title{
     font-weight: bold;
-    color: white;
-    margin-top: 10px;
+    color: #333;
+    margin-top: 28px;
 }
 
 .fullscreen{
@@ -98,14 +98,12 @@ iframe{
             container.setAttribute('class', 'effect-container')
             iframeBox.setAttribute('class', 'iframe-box')
             title.setAttribute('class', 'effect-title')
-            title.innerText = '特效标题'
             fullscreen.setAttribute('class', 'fullscreen')
             fullscreen.setAttribute('title', '前往页面查看')
             a.setAttribute('target', '_blank')
-            img.setAttribute('src', './img/fullscreen-dark.png')
+            img.setAttribute('src', './img/fullscreen-bright.png')
             img.setAttribute('width', '28px')
             img.setAttribute('height', '28px')
-            iframe.setAttribute('src', './effects/css-effects/1.html')
             iframe.setAttribute('scrolling', 'no')
             iframeBox.appendChild(iframe)
             fullscreen.appendChild(a)
@@ -135,7 +133,7 @@ iframe{
         }
     }
 
-    // 根据数量自动生成当前页面组件
+    // 根据数量生成当前页面组件
     function generateWidgets() {
         let loopTimes = pi < pa ? amp : (a === amp) ? a : (a % amp);
         const container = document.querySelector('.widget-container');
@@ -145,9 +143,35 @@ iframe{
             const url = `./effects/${pc}/${i + 1 + (amp * (pi - 1))}.html`
             widget.shadowRoot.firstChild.firstChild.firstChild.firstChild.src = url;
             widget.shadowRoot.firstChild.firstChild.lastChild.firstChild.href = url;
+            widget.shadowRoot.firstChild.firstChild.firstChild.firstChild.id = `frame${i + 1}`;
+            widget.shadowRoot.firstChild.firstChild.firstChild.firstChild.addEventListener('load', (e) => {
+                e.target.parentNode.nextElementSibling.innerText = e.target.contentDocument.getElementsByTagName('title')[0].innerText;
+            });
             container.appendChild(widget);
         }
         adaptWidgetsWidth();
+
+        if (pi === 1) {
+            backward.classList.add('not-visible');
+            if (forward.classList.contains('not-visible')) {
+                forward.classList.remove('not-visible');
+            }
+        }
+        else if (pi === pa) {
+            forward.classList.add('not-visible');
+            if (backward.classList.contains('not-visible')) {
+                backward.classList.remove('not-visible');
+            }
+        }
+        else {
+            if (backward.classList.contains('not-visible')) {
+                backward.classList.remove('not-visible');
+            }
+            if (forward.classList.contains('not-visible')) {
+                forward.classList.remove('not-visible');
+            }
+
+        }
     }
 
 
@@ -156,13 +180,17 @@ iframe{
     const backward = document.querySelector('#backward');
     backward.addEventListener('click', () => {
         if (pi > 1) {
+            document.querySelector(`div[data-index="${pi}"]`).classList.remove('current');
             pi -= 1;
+            document.querySelector(`div[data-index="${pi}"]`).classList.add('current');
             generateWidgets();
         }
     })
     forward.addEventListener('click', () => {
         if (pi < pa) {
+            document.querySelector(`div[data-index="${pi}"]`).classList.remove('current');
             pi += 1;
+            document.querySelector(`div[data-index="${pi}"]`).classList.add('current');
             generateWidgets();
         }
     })
@@ -176,16 +204,26 @@ iframe{
         for (let i = 0; i < pa; i++) {
             const paginationBtn = document.createElement('div');
             paginationBtn.className = 'pagination-btn';
+            if (i === 0) { paginationBtn.classList.add('current'); }
             paginationBtn.dataset.index = i + 1;
             paginationBtn.innerHTML = `<span data-index="${i + 1}">${i + 1}</span>`;
             forward.before(paginationBtn);
             paginationBtn.addEventListener('click', (e) => {
+                if (!e.currentTarget.classList.contains('current')) {
+                    document.querySelector('.current').classList.remove('current');
+                    e.currentTarget.classList.add('current');
+                }
                 const tgt = parseInt(e.target.dataset.index)
                 if (tgt !== pi) {
                     pi = tgt;
                     generateWidgets();
                 }
             })
+        }
+        if (pa === 1) {
+            for (const btn of document.querySelectorAll('.pagination-btn')) {
+                btn.classList.add('not-visible');
+            }
         }
     }
 
@@ -201,6 +239,11 @@ iframe{
                 a = pc === 'css' ? ca : pc === 'js' ? ja : pc === 'tool' ? ta : undefined
                 generateWidgets();
                 generatePagination();
+                if (pa === 1) {
+                    for (const btn of document.querySelectorAll('.pagination-btn')) {
+                        btn.classList.add('not-visible');
+                    }
+                }
             }
         })
     }
@@ -229,6 +272,46 @@ iframe{
                 modal.classList.remove('hide');
                 modal.classList.add('show');
                 main.classList.add('hide');
+            }
+        }
+    })
+
+    window.addEventListener('keyup', (e) => {
+        console.log(e.keyCode);
+        if (e.keyCode === 37) {
+            backward.click();
+        }
+        if (e.keyCode === 39) {
+            forward.click();
+        }
+        if (e.keyCode === 38) {
+            if (document.querySelector('.selected').previousElementSibling !== null) {
+                document.querySelector('.selected').previousElementSibling.click();
+            }
+            else {
+                document.querySelector('.nav-list').lastElementChild.click();
+            }
+        }
+        if (e.keyCode === 40) {
+            if (document.querySelector('.selected').nextElementSibling !== null) {
+                document.querySelector('.selected').nextElementSibling.click();
+            }
+            else {
+                document.querySelector('.nav-list').firstElementChild.click();
+            }
+        }
+    })
+
+    window.addEventListener('keydown', (e) => {
+        console.log(e.keyCode);
+        if (e.keyCode === 13 && !e.ctrlKey) {
+            if (!document.querySelector('.keyboard-nav-guide').classList.contains('hide')) {
+                document.querySelector('.keyboard-nav-guide').classList.add('hide');
+            }
+        }
+        if (e.keyCode === 13 && e.ctrlKey) {
+            if (document.querySelector('.keyboard-nav-guide').classList.contains('hide')) {
+                document.querySelector('.keyboard-nav-guide').classList.remove('hide');
             }
         }
     })

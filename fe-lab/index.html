@@ -1,7 +1,6 @@
-<!--todo 调整样式 -->
-<!--todo 加一个上下方向键切换导航，左右方向键切换分页，
-    且每次按键至少需间隔一秒，该通知可按enter键确认 -->
-<!--todo 特效代码模板和如何分别获取并展示特效代码的html、css和js -->
+<!--todo 键盘浏览：直达首页、尾页，直接跳转某一页, 直接跳转到具体页面，
+    用按键调用深浅色模式切换等功能 -->
+<!--todo 特效代码模板-->
 
 <!--todo 深色模式与浅色模式切换-->
 <!--todo 搜索功能 -->
@@ -20,6 +19,15 @@
     <div class="modal hide">
         <div class="modal-window">
             啊哦，页面被挤压得太扁啦，已经没有啦！_(:з)∠)_
+        </div>
+    </div>
+    <div class="keyboard-nav-guide">
+        <div class="keyboard-nav-guide-window">
+            <h2>⌨ 键盘浏览指南</h2>
+            <p>按上、下方向键可切换侧边导航项目</p>
+            <p>按左、右方向键可切换分页</p>
+            <p>按Enter键可关闭本指南</p>
+            <p>按Ctrl + Enter键可重新显示本指南</p>
         </div>
     </div>
     <header>
@@ -50,10 +58,6 @@
         </div>
         <div id="nav">
             <div class="nav-list">
-                <div class="nav-title">
-                    <span>特效展览</span>
-                    <!-- <img src="./img/arrow-up.png" alt="arrow-up"> -->
-                </div>
                 <div id="css" class="nav-item selected"><span>CSS特效</span></div>
                 <div id="js" class="nav-item"><span>JS特效</span></div>
                 <div id="tool" class="nav-item"><span>小工具</span></div>

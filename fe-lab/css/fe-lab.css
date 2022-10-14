@@ -1,209 +1,262 @@
 :root {
-    --color-white: #fbfbfb;
-    --color-black: #333;
+	--color-bg-white: #fbfbfb;
+	--color-bg-black: #030303;
+	--color-white: #eee;
+	--color-black: #111;
 }
 
 ::selection {
-    background: #c449f5;
-    color: #f7f7f7;
+	background: transparent;
 }
 
 body {
-    margin: 0;
-    cursor: default;
-    color: var(--color-black);
+	margin: 0;
+	cursor: default;
+	color: var(--color-black);
 }
 
 .selected {
-    border-radius: 50%;
-    background-color: #c449f5aa;
+	border-radius: 50%;
+	background-color: #c449f5aa;
 }
 
 .show {
-    display: initial;
+	display: initial;
 }
 
 .hide {
-    display: none;
+	display: none;
+}
+
+.not-visible {
+	visibility: hidden;
 }
 
 .modal {
-    width: 100vw;
-    height: 100vh;
-    background-color: #eee;
-    position: absolute;
-    z-index: 999;
+	position: absolute;
+	z-index: 999;
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--color-white);
 }
 
 .modal-window {
-    width: 50vw;
-    height: 30vh;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-size: 24px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 50vw;
+	height: 30vh;
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
+	color: #c449f5;
+	transform: translate(-50%, -50%);
+}
+
+.keyboard-nav-guide {
+	position: absolute;
+	z-index: 998;
+	width: 100vw;
+	height: 100vh;
+	background-color: #00000099;
+}
+
+.keyboard-nav-guide-window {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	padding: 30px 30px;
+	border-radius: 32px;
+	width: 30vw;
+	background-color: #00000099;
+	text-align: center;
+	font-size: 24px;
+	transform: translate(-50%, -50%);
+}
+
+.keyboard-nav-guide-window h2 {
     font-weight: bold;
-    color: #c449f5;
+	color: var(--color-white);
+    margin-bottom: 70px;
+}
+
+.keyboard-nav-guide-window p {
+	color: #c449f5;
 }
 
 /*header*/
 header {
-    overflow: hidden;
-    position: relative;
-    z-index: 3;
-    height: 100px;
-    background-color: var(--color-white);
-    box-shadow: 6px 3px 5px rgba(0, 0, 0, 16%);
+	overflow: hidden;
+	position: relative;
+	z-index: 3;
+	height: 100px;
+	background-color: var(--color-white);
+	box-shadow: 6px 3px 5px rgba(0, 0, 0, 16%);
 }
 
 .container {
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 20px 24px;
-    width: calc(100% - 48px);
-    height: calc(100% - 40px);
+	display: flex;
+	position: relative;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 20px 24px;
+	width: calc(100% - 48px);
+	height: calc(100% - 40px);
 }
 
 .title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 202px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 202px;
 }
 
 .above-container {
-    display: flex;
+	display: flex;
 }
 
 .page-logo img {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 .page-title {
-    margin-left: 8px;
-    line-height: 1;
-    font-size: 30px;
+	margin-left: 8px;
+	line-height: 1;
+	font-size: 30px;
 }
 
 .below-container {
-    margin-top: 8px;
+	margin-top: 8px;
 }
 
 .page-subtitle {
-    margin-left: 22px;
-    font-size: 14px;
-    word-spacing: 8px;
+	margin-left: 22px;
+	font-size: 14px;
+	word-spacing: 8px;
 }
 
 .dark-toggle {
-    display: flex;
-    align-items: center;
-    width: 30px;
-    cursor: pointer;
+	display: flex;
+	align-items: center;
+	width: 30px;
+	cursor: pointer;
 }
 
 .dark-toggle img {
-    display: inline-block;
+	display: inline-block;
 }
 
 /*main*/
 main {
-    display: flex;
-    flex-direction: row;
-    height: calc(100vh - 100px);
+	display: flex;
+	flex-direction: row;
+	height: calc(100vh - 100px);
 }
 
 #main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-    background-color: var(--color-white);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	flex: 1;
+	background-color: var(--color-white);
 }
 
 .widget-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 1500px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	max-width: 1500px;
 }
 
 .pagination {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 60px 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin: 60px 0;
 }
 
 .pagination-btn {
-    margin-left: 20px;
-    border-radius: 20px;
-    width: 40px;
-    height: 40px;
-    background-color: #c449f5;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.);
-    text-align: center;
-    color: blue;
+	margin-left: 20px;
+	border-radius: 20px;
+	width: 40px;
+	height: 40px;
+	background: #fff;
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, 20%);
+	cursor: pointer;
+	text-align: center;
+	color: blue;
+}
+
+.current {
+	background-color: #c449f5;
+	color: white;
 }
 
 .pagination-btn span {
-    line-height: 40px;
+	line-height: 40px;
+}
+
+.pagination-btn:first-child,
+.pagination-btn:last-child {
+	display: flex;
+}
+
+.pagination-btn:first-child img,
+.pagination-btn:last-child img {
+	display: block;
+	margin: auto;
 }
 
 .pagination-btn:first-child img {
-    transform: rotate(-90deg);
+	transform: rotate(-90deg);
 }
 
 .pagination-btn:last-child img {
-    transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 /*aside-nav*/
 #nav {
-    position: relative;
-    z-index: 2;
-    width: 170px;
-    background-color: var(--color-white);
-    box-shadow: -6px 0 5px rgba(0, 0, 0, 16%);
+	position: relative;
+	z-index: 2;
+	width: 170px;
+	background-color: var(--color-white);
+	box-shadow: -6px 0 5px rgba(0, 0, 0, 16%);
 }
 
 .nav-list {
-    margin-top: 50px;
+	margin-top: 50px;
 }
 
 .nav-title,
 .nav-item {
-    text-align: center;
+	text-align: center;
 }
 
 .nav-title {
-    font-size: 24px;
+	font-size: 24px;
 }
 
 .nav-item {
-    display: flex;
-    align-items: center;
-    margin: 20px auto 0;
-    width: 5em;
-    height: 2.5em;
-    font-size: 16px;
-    cursor: pointer;
+	display: flex;
+	align-items: center;
+	margin: 20px auto 0;
+	width: 5em;
+	height: 2.5em;
+	cursor: pointer;
+	font-size: 16px;
 }
 
 .nav-item span {
-    display: inline-block;
-    margin: 0 auto;
+	display: inline-block;
+	margin: 0 auto;
 }
 
 .sleepgif {
-    position: absolute;
-    left: 50%;
-    bottom: 30px;
-    transform: translateX(-50%);
+	position: absolute;
+	left: 50%;
+	bottom: 30px;
+	transform: translateX(-50%);
 }

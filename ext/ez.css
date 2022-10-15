@@ -1,7 +1,7 @@
 /* global style */
 @font-face {
     font-family: "roundhand";
-    src: url("https://npm.elemecdn.com/ezsttcfs@latest/font/jzcy.ttf") format("truetype"),
+    src: url(https://npm.elemecdn.com/ezsttcfs@latest/font/jzcy.ttf) format("truetype"),
 }
 
 :root {

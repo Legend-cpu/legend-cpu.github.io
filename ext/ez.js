@@ -7,11 +7,6 @@ function $(selector) {
         0] : nodeList)
 }
 
-/**
- * @description 标签页进入后台时改变标题，再次进入前台时再次改变标题
- * @param {String} leaveTitle
- * @param {String} backTitle
- */
 function changeTitle(leaveTitle, backTitle) {
     let originTitle = document.title;
     let titleTime;
@@ -29,9 +24,6 @@ function changeTitle(leaveTitle, backTitle) {
     })
 }
 
-/**
- * @description 初始化个人主页
- */
 function initHomePage() {
     const pattern = /Android|iOS|Mobile/;
     if (!pattern.test(navigator.userAgent)) {

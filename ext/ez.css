@@ -1,7 +1,7 @@
 /* global style */
 @font-face {
     font-family: "roundhand";
-    src: url(https://npm.elemecdn.com/ezsttcfs@latest/font/jzcy.ttf) format("opentype");
+    src: url(https://npm.elemecdn.com/ezsttcfs@latest/font/wlybold.woff) format("woff");
 }
 
 :root {
@@ -83,6 +83,14 @@ a,
 
 #recent-posts > .recent-post-item > .recent-post-info > .article-meta-wrap a:hover {
     text-decoration: none;
+}
+
+#recent-posts > .recent-post-item {
+    justify-content: space-between;
+}
+
+#recent-posts > .recent-post-item .post_cover {
+    width: 39%;
 }
 
 .layout {

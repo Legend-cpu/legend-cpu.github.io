@@ -36,10 +36,10 @@ function initHomePage() {
     const pattern = /Android|iOS|Mobile/;
     if (!pattern.test(navigator.userAgent)) {
         let script = document.createElement('script');
-        script.src = "./ext/driftDown.js";
+        script.src = "https://npm.elemecdn.com/ezsttcfs@latest/js/driftDown.js";
         script.id = "driftDown";
         document.head.append(script);
-        changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈，你回来喽o(*￣▽￣*)ブ');
+        changeTitle('A, TNND, 为什么要走！(╯▔皿▔)╯', '啊哈哈哈哈, 你回来喽o(*￣▽￣*)ブ');
     }
 }
 
@@ -49,6 +49,7 @@ for (const link of $('a')) {
         link.target = '_blank'
     }
 }
+
 // 背景图根据一天中的不同时间切换
 // 添加非文章页背景图遮罩
 const hour = new Date().getHours()

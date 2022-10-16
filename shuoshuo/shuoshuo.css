@@ -88,7 +88,7 @@ a {
     left: -120px;
     width: 120px;
     height: 2px;
-    background: url(./shooting-star.png) center center no-repeat;
+    background: url(./shooting-star.webp) center center no-repeat;
     background-size: 100% 100%;
     animation-name: shooting-star;
     animation-iteration-count: infinite;

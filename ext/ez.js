@@ -51,11 +51,11 @@ webBgMask.id = 'web_bg_mask'
 if (!location.href.includes('/article/')) {
     document.body.prepend(webBgMask)
     if (hour < 17) {
-        webBg.style.background = 'url(https://blog.elzzach.top/global-img/index-bg/27.jpg)'
+        webBg.style.background = 'url(https://npm.elemecdn.com/ezsttcfs@latest/img/index-bg/27.jpg)'
     } else if (hour < 19) {
-        webBg.style.background = 'url(https://blog.elzzach.top/global-img/index-bg/533.jpg)'
+        webBg.style.background = 'url(https://npm.elemecdn.com/ezsttcfs@latest/img/index-bg/533.jpg)'
     } else {
-        webBg.style.background = 'url(https://blog.elzzach.top/global-img/index-bg/534.jpg)'
+        webBg.style.background = 'url(https://npm.elemecdn.com/ezsttcfs@latest/img/index-bg/534.jpg)'
     }
 } else {
     webBg.style.background = 'url(https://blog.elzzach.top/global-img/post-bg.jpg)'

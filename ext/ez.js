@@ -35,6 +35,18 @@ function initHomePage() {
     }
 }
 
+// 默认隐藏看板娘
+var id2 = setInterval(function () {
+    let e = $('#waifu-tool .fa-times');
+    if (e) {
+        e.click();
+        var flag2 = true;
+    }
+    if (flag2) {
+        clearInterval(id2);
+    }
+}, 500)
+
 // 除了分页按钮，所有链接在新标签页打开
 for (const link of $('a')) {
     if (link.parentElement !== $('.pagination')){

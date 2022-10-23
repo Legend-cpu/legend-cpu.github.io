@@ -37,7 +37,7 @@ a,
     animation: to_show, 0.4s;
 }
 
-#nav {
+#page-header.nav-fixed #nav {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
@@ -59,6 +59,10 @@ a,
         left: -50%;
         transform: translateX(50%);
     }
+}
+
+#pagination .page-number.current {
+    border-radius: 50%;
 }
 
 #aside-content #card-toc .toc-content .toc-link.active {

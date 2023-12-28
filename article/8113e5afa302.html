@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>jQuery学习笔记 | 暮紫天地</title><meta name="robots" content="noindex"><meta name="keywords" content="前端, 设计"><meta name="author" content="Elzzach"><meta name="copyright" content="Elzzach"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="jQuery版本选择和下载一般在1.x和3.x版本之间选择，前者支持IE6-8，后者不支持，并且目前大多数jQuery插件不支持3.x版本，目前开发一般选择1.x版本。 jQuery下载地址在：jQuery CDN，有uncompressed和minified两种选择，要本地下载右击链接选择将链接另存为，要查看cdn链接则单击链接即可查看。 jQuery代码基本框架： 123$(function(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery学习笔记">
+<meta property="og:url" content="https://blog.elzzach.top/article/8113e5afa302.html">
+<meta property="og:site_name" content="暮紫天地">
+<meta property="og:description" content="jQuery版本选择和下载一般在1.x和3.x版本之间选择，前者支持IE6-8，后者不支持，并且目前大多数jQuery插件不支持3.x版本，目前开发一般选择1.x版本。 jQuery下载地址在：jQuery CDN，有uncompressed和minified两种选择，要本地下载右击链接选择将链接另存为，要查看cdn链接则单击链接即可查看。 jQuery代码基本框架： 123$(function(">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.elzzach.top/rgba(0,%200,%200,%200)">
+<meta property="article:published_time" content="2023-12-28T09:17:32.000Z">
+<meta property="article:modified_time" content="2023-12-28T09:47:36.103Z">
+<meta property="article:author" content="Elzzach">
+<meta property="article:tag" content="前端, 设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.elzzach.top/rgba(0,%200,%200,%200)"><link rel="shortcut icon" href="https://blog.elzzach.top/global-img/favicon.webp"><link rel="canonical" href="https://blog.elzzach.top/article/8113e5afa302.html"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"https://npm.elemecdn.com/ezsttcfs@latest/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离本文上次更新已经过去了","messageNext":"天，文章中的内容有可能已经过时。如果过时，请联系作者尝试更新为最新版。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":null},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#c449f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js',
+      css: 'https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'jQuery学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-28 17:47:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Cache" content="no-cache"><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" /><link rel="stylesheet" href="/ext/ez.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/avatar.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img nav-fixed nav-visible" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">暮紫天地</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">jQuery学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-28T09:17:32.000Z" title="发表于 2023-12-28 17:17:32">2023-12-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-28T09:47:36.103Z" title="更新于 2023-12-28 17:47:36">2023-12-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span></div></div></div><article class="post-content" id="article-container"><h1 id="jQuery版本选择和下载"><a href="#jQuery版本选择和下载" class="headerlink" title="jQuery版本选择和下载"></a>jQuery版本选择和下载</h1><p>一般在1.x和3.x版本之间选择，前者支持IE6-8，后者不支持，并且目前大多数jQuery插件不支持3.x版本，目前开发一般选择1.x版本。</p>
+<p>jQuery下载地址在：<a target="_blank" rel="noopener" href="https://releases.jquery.com/">jQuery CDN</a>，有uncompressed和minified两种选择，要本地下载右击链接选择将链接另存为，要查看cdn链接则单击链接即可查看。</p>
+<p>jQuery代码基本框架：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="comment">// jQuery code</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>表示在页面加载完成后执行代码，类似window.onload。</p>
+<h1 id="DOM操作方法"><a href="#DOM操作方法" class="headerlink" title="DOM操作方法"></a>DOM操作方法</h1><p>jQuery选择元素：<code>$(&#39;selector&#39;)</code>，将css选择器字符串传入即可。不过注意该方法返回的并不是纯节点对象，而是一个复杂的对象，该方法的返回值不能当元素来传入其他以元素为参数的方法中。</p>
+<p>jQuery创建元素：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> $li = <span class="string">&#x27;&lt;li&gt;hello&lt;/li&gt;&#x27;</span></span><br><span class="line">$(<span class="string">&#x27;selector&#x27;</span>).<span class="title function_">append</span>($li)</span><br><span class="line"></span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">$(<span class="string">&#x27;selector&#x27;</span>).<span class="title function_">append</span>(<span class="string">&#x27;&lt;li&gt;hello&lt;/li&gt;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="节点操作"><a href="#节点操作" class="headerlink" title="节点操作"></a>节点操作</h2><p>prepend（）、prependTo（）：在元素内部的开头插入</p>
+<blockquote>
+<p>$(A).prepend(B)：将B插入A中</p>
+<p>$(A).prependTo(B)：将A插入B中</p>
+</blockquote>
+<p>append、appendTo：在元素内部的结尾插入</p>
+<p>before、insertBefore：在元素的前面插入</p>
+<p>after、insertAfter：在元素的后面插入</p>
+<p>remove：删除元素及内部内容，包括绑定事件，并将被删除的元素返回，可以二次利用</p>
+<p>detach：同remove，但不包括绑定事件</p>
+<p>empty：清空元素内部内容，但不包括元素本身</p>
+<p>clone（bool）：复制元素，bool为true则复制绑定事件，为false则不复制绑定事件</p>
+<p>replaceWith、replaceAll：前者是用后面的替换前面的，后者是用前面的替换后面的</p>
+<blockquote>
+<p>$方法也可以接收html字符串为参数搭配replaceAll使用。</p>
+</blockquote>
+<p>wrap：用后面的把前面的元素包裹起来，即成为父元素。如果前面的元素有多个，则每个元素单独包裹</p>
+<p>wrapAll：还是后包前，但是当前面有多个元素时一起包裹起来。</p>
+<p>wrapInner：将前面的元素的内部所有的内容包裹起来，如果前面有多个元素，则每个元素单独操作，但是每个元素的内部是一起包裹的。</p>
+<p>each：遍历元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$().<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params">index, element</span>)&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>index为下标，element表示当前元素，也可以不写element，在代码中用<code>$(this)</code>代替。</p>
+<h2 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h2><p>attr(attr): 获取HTML属性的值</p>
+<p>attr(attr, value): 设置HTML属性的值，如添加类名，可以传入对象来修改多个属性</p>
+<p>prop(prop): 获取属性的值，一般用于checked、selected、disabled</p>
+<p>prop(prop, value): 设置属性的值，同上</p>
+<p>removeAttr(attr): 删除属性，如删除类名</p>
+<h2 id="样式操作"><a href="#样式操作" class="headerlink" title="样式操作"></a>样式操作</h2><p>css(prop): 获取css属性值</p>
+<p>css(prop, value): 设置css属性值，可传入对象设置多个属性值</p>
+<p>addClass(classname): 添加类名</p>
+<p>removeClass(classname): 删除类名</p>
+<p>toggleClass(classname): 有类名则删除，无类名则加上</p>
+<p>width(): 获取元素宽度（width属性值）</p>
+<p>width(n): 设置元素width属性为n像素</p>
+<p>height(): 获取元素高度（height属性值）</p>
+<p>height(n): 设置元素height属性值为n像素</p>
+<p>offset().top: 获取元素相对于当前文档顶部的距离</p>
+<p>offset().left: 类上</p>
+<p>position().top: 获取元素相对于最近被定位的祖先元素的顶部的距离</p>
+<p>position().left: 类上</p>
+<p>scrollTop(): 获取元素相对于滚动条顶边的距离</p>
+<p>scrollTop(n): 类上</p>
+<h2 id="元素内容操作"><a href="#元素内容操作" class="headerlink" title="元素内容操作"></a>元素内容操作</h2><p>html(): 获取元素内部的HTML文本</p>
+<p>html(html): 设置元素内部的HTML文本</p>
+<p>text(): 获取元素内部的文本</p>
+<p>text(text): 设置元素内部的文本</p>
+<p>val(): 获取表单元素value属性的值</p>
+<p>val(value): 设置表单元素value属性的值</p>
+<h2 id="查找方法"><a href="#查找方法" class="headerlink" title="查找方法"></a>查找方法</h2><p>parent(selector): 当前元素的父元素，selector为可选参数，传入时表示父元素需要满足条件</p>
+<p>parents(selector): 当前元素的所有祖先元素，返回值可用$.each()方法遍历</p>
+<p>children(selector): 当前元素的子元素，不包括其他后代元素</p>
+<p>find(): 当前元素的所有后代元素，不包含文本内容</p>
+<p>prev(): 当前元素前面相邻的兄弟元素</p>
+<p>prevAll(selector): 当前元素前面所有的兄弟元素</p>
+<p>next():当前元素后面相邻的兄弟元素 </p>
+<p>nextAll(selector): 当前元素后面所有的兄弟元素</p>
+<p>siblings(selector): 当前元素前后的所有兄弟元素</p>
+<h2 id="过滤方法"><a href="#过滤方法" class="headerlink" title="过滤方法"></a>过滤方法</h2><p>hasClass(classname): 判断元素是否具有指定类名</p>
+<p>eq(n): 获取元素列表中第n个对象，如果n为负数则为负索引</p>
+<p>is(selector): 判断在当前选择的元素集合中是否存在符合选择器条件的元素，用法很多</p>
+<p>not(selector&#x2F;function): 用选择器或函数反向过滤掉不符合条件的元素，收集剩下的那部分元素</p>
+<p>filter(selector&#x2F;function): 用选择器或函数选择出符合条件的元素</p>
+<p>has(selector): 同filter，但只能用选择器过滤</p>
+<h2 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h2><p>$.trim(str): 返回除去空格后的字符串</p>
+<p>$.param(obj&#x2F;arr)：将数组或对象序列化为URL参数格式的字符串序列供url操作使用</p>
+<p>$.inArray(value, array): 判断value是否在array中</p>
+<p>$.merge(arr1, arr2): 将两个数组合并为一个数组</p>
+<p>$.makeArray(obj): 将类数组对象转化为数组</p>
+<p>$.grep(): </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">grep</span>(array, <span class="keyword">function</span>(<span class="params">value, index</span>)&#123;&#125;, bool)</span><br></pre></td></tr></table></figure>
+
+<p>根据第二个匿名函数参数来过滤参数数组，返回满足条件的数组元素组成的数组。其中当第三个参数为true时收集函数返回true时的数组元素，为false时收集函数返回false的数组元素。</p>
+<p>$.each(): </p>
+<p>可以遍历数组：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">each</span>(array, <span class="keyword">function</span>(<span class="params">index, value</span>)&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>也可以遍历对象：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="title function_">each</span>(obj, <span class="keyword">function</span>(<span class="params">key, value</span>)&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>$.isFunction(obj): 判断是否为函数</p>
+<p>$.isArray(obj): 判断是否为数组</p>
+<p>$.isEmptyObject(obj): 判断是否为空对象</p>
+<p>$.isPlainObject(obj): 判断是否为原始对象，即通过对象字面量或者<code>new Object()</code>创建的对象</p>
+<p>$.contains(node1, node2): 判断node1中是否包含node2，node1和node2都是Node类型的值</p>
+<p>自定义工具函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span>(<span class="params">$</span>)&#123;</span><br><span class="line">	$.<span class="title function_">extend</span>(&#123;</span><br><span class="line">		<span class="string">&quot;functionName&quot;</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">			<span class="comment">// code</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>套上立即执行函数是为了防止 $ 变量受到其他js库中 $ 变量的影响。</p>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><h2 id="基本事件"><a href="#基本事件" class="headerlink" title="基本事件"></a>基本事件</h2><p>ready: <code>$(document).ready(function()&#123;&#125;)</code>, 表示文档加载完成后再执行的一个事件。只需要DOM元素加载完成即可，不需要等到外部文件的加载完成。该事件的简写方法为<code>$(function()&#123;&#125;)</code>。ready事件可以多次执行。</p>
+<blockquote>
+<p>以下事件的调用语法都是<code>$().type(function()&#123;&#125;)</code>，代码中可用$(this)指代触发当前事件的元素。</p>
+</blockquote>
+<p>click: 还可以用<code>$().click(function()&#123;&#125;).click()</code>主动触发事件。</p>
+<p>mouseover: 鼠标移入</p>
+<p>mouseout: 鼠标移出</p>
+<p>mousedown: 鼠标按下</p>
+<p>mouseup: 鼠标松开</p>
+<p>mousemove: 鼠标移动</p>
+<p>keydown: 键盘按下</p>
+<p>keyup: 键盘松开</p>
+<p>focus: 获取焦点</p>
+<p>blur: 失去焦点</p>
+<p>select: 选中单行文本框或者多行文本框里的文字</p>
+<p>change: 单选框、复选框、下拉菜单选中某一项时</p>
+<p>contextmenu: 右键菜单事件</p>
+<p>scroll: 页面滚动事件</p>
+<h2 id="事件方法"><a href="#事件方法" class="headerlink" title="事件方法"></a>事件方法</h2><p>on(type, fn): 为元素绑定事件</p>
+<p>off(type): 为元素解绑事件</p>
+<p>hover(fn1, fn2): fn1是鼠标移入事件的函数，fn2是鼠标移出事件的函数</p>
+<p>one(type, fn): 为元素添加一个只能触发一次的事件</p>
+<p>trigger(type):on方法可以自定义事件，然后用<code>$().on(type, fn).trigger(type)</code>来触发，trigger也可以触发其他的jQuery事件。</p>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><p>event对象。</p>
+<p>type：事件类型</p>
+<p>target：事件元素</p>
+<p>keyCode：键码值（不直接对应按键上的值）</p>
+<p>shiftKey：是否按下shift键</p>
+<p>ctrlKey：是否按下ctrl键</p>
+<p>altKey：是否按下alt键</p>
+<p>pageX&#x2F;pageY：指针事件的指针的相对于窗口的坐标</p>
+<p>which：鼠标左中右键（分别对应1、2、3）</p>
+<p>每次调用一个事件函数时会隐式地将函数的第一个参数传入event对象，常常将这个参数写作e。</p>
+<h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><p>show(): </p>
+<p>hide(): </p>
+<p>toggle(): </p>
+<p>fadeIn(): </p>
+<p>fadeOut(): </p>
+<p>fadeToggle(): </p>
+<p>fadeTo(): </p>
+<p>slideUp(): </p>
+<p>slideDown(): </p>
+<p>slideToggle(): </p>
+<p>animate(): </p>
+<p>animate().animate(). …… .animate(): </p>
+<p>stop(): </p>
+<p>delay(): </p>
+<p>is(‘:animated’): </p>
+<h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><p>Ajax请求遵循同源策略。</p>
+<p>$().load(url, [data, fn(response, status, xhr){}]): 通过ajax请求从服务器中获取数据然后插入到指定元素中。url是请求地址，data是发送到服务器的数据，是一个对象，data省略时为get请求，不省略时为post请求，fn是请求完成后(无论是否成功)的回调函数。load方法可以获取txt、html文件中的内容和脚本文件中的计算结果。</p>
+<p>$.get(url, data, fn, type): type是返回的内容格式，有text、html、xml、json、script、default，default。</p>
+<p>$.post(url, data, fn, type): </p>
+<p>$.getJSON(url, data, function(data){}): 第三个是请求成功后的回调函数。</p>
+<p>$.getScript(url, fn): url为请求的js文件路径，fn为请求成功后的回调函数。</p>
+<p>$.ajax(options): 构造一个ajax请求，options可选属性如下：</p>
+<p>url: 请求地址</p>
+<p>type: 请求类型，get或post</p>
+<p>data：发送到服务器的数据</p>
+<p>dataType：返回数据的类型，text、html、script、xml、json等</p>
+<p>beforeSend：发送请求前可以修改xhr对象的函数</p>
+<p>complete：请求完成后的回调</p>
+<p>success：请求成功后的回调</p>
+<p>error：请求失败后的回调</p>
+<p>timeout：超时时间，单位为毫秒</p>
+<p>global：是否响应全局事件，默认为true响应</p>
+<p>async：是否为异步请求，默认为true异步</p>
+<p>cache：是否进行页面缓存，true为缓存。</p>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top">Elzzach</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top/article/8113e5afa302.html">https://blog.elzzach.top/article/8113e5afa302.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.elzzach.top" target="_blank">暮紫天地</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/avatar.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Elzzach</div><div class="author-info__description">一个爱好视觉效果的(想花里胡哨却花不起来的)入门小前端</div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legend-cpu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:el-zzach@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到暮紫天地！🎉<br/>博主去知识的海洋里遨游了，更新随缘哦~<br/><strong>主站点</strong>：<a href="https://blog.elzzach.top/" target="_blank">blog.elzzach.top</a><br/><strong>镜像站</strong>：<a href="https://legend-cpu.github.io/" target="_blank">Github镜像站</a><br/>作者才疏学浅，读者若发现文章有错误之处，请不吝指出！<br/><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/202202241714592.gif" alt="可爱"/></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jQuery%E7%89%88%E6%9C%AC%E9%80%89%E6%8B%A9%E5%92%8C%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.</span> <span class="toc-text">jQuery版本选择和下载</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">DOM操作方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">节点操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C"><span class="toc-number">2.2.</span> <span class="toc-text">属性操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E6%93%8D%E4%BD%9C"><span class="toc-number">2.3.</span> <span class="toc-text">样式操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E5%86%85%E5%AE%B9%E6%93%8D%E4%BD%9C"><span class="toc-number">2.4.</span> <span class="toc-text">元素内容操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%96%B9%E6%B3%95"><span class="toc-number">2.5.</span> <span class="toc-text">查找方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E6%96%B9%E6%B3%95"><span class="toc-number">2.6.</span> <span class="toc-text">过滤方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0"><span class="toc-number">2.7.</span> <span class="toc-text">工具函数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.</span> <span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">基本事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%96%B9%E6%B3%95"><span class="toc-number">3.2.</span> <span class="toc-text">事件方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.3.</span> <span class="toc-text">事件对象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-number">4.</span> <span class="toc-text">动画</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ajax"><span class="toc-number">5.</span> <span class="toc-text">Ajax</span></a></li></ol></div></div></div></div></main><footer id="footer" style="background: rgba(255, 255, 255, 0.8)"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Elzzach</div><div class="footer_custom_text"><div class="footer_custom_text"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span class="footer-separator">|</span><span>备案 </span><a href="https://beian.miit.gov.cn" target="_blank">皖ICP备2022000051号</a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/medium-zoom@latest/dist/medium-zoom.min.js"></script><script src="https://npm.elemecdn.com/vanilla-lazyload@latest/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu@latest/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script src="https://npm.elemecdn.com/ezsttcfs@latest/live2d-widget/autoload.js"></script><script src="/ext/ez.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/fireworks.min.js"></script><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script></div></body></html>

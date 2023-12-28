@@ -1,0 +1,1067 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>JavaScript学习笔记2 | 暮紫天地</title><meta name="robots" content="noindex"><meta name="keywords" content="前端, 设计"><meta name="author" content="Elzzach"><meta name="copyright" content="Elzzach"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DOMDOM节点类型（这里只看四种）Node类型Node接口在 JavaScript中被实现为 Node 类型，在除 IE之外的所有浏览器中都可以直接访问这个类型。 在 JavaScript 中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。  每个节点都有 nodeType 属性，表示该节点的类型。节点类型由定义在 Node 类型上的 12 个数值常量表示：  No">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习笔记2">
+<meta property="og:url" content="https://blog.elzzach.top/article/603077a48ac3.html">
+<meta property="og:site_name" content="暮紫天地">
+<meta property="og:description" content="DOMDOM节点类型（这里只看四种）Node类型Node接口在 JavaScript中被实现为 Node 类型，在除 IE之外的所有浏览器中都可以直接访问这个类型。 在 JavaScript 中，所有节点类型都继承 Node 类型，因此所有类型都共享相同的基本属性和方法。  每个节点都有 nodeType 属性，表示该节点的类型。节点类型由定义在 Node 类型上的 12 个数值常量表示：  No">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.elzzach.top/rgba(0,%200,%200,%200)">
+<meta property="article:published_time" content="2023-12-28T09:17:32.000Z">
+<meta property="article:modified_time" content="2023-12-28T09:46:37.438Z">
+<meta property="article:author" content="Elzzach">
+<meta property="article:tag" content="前端, 设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.elzzach.top/rgba(0,%200,%200,%200)"><link rel="shortcut icon" href="https://blog.elzzach.top/global-img/favicon.webp"><link rel="canonical" href="https://blog.elzzach.top/article/603077a48ac3.html"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"https://npm.elemecdn.com/ezsttcfs@latest/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离本文上次更新已经过去了","messageNext":"天，文章中的内容有可能已经过时。如果过时，请联系作者尝试更新为最新版。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":null},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#c449f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js',
+      css: 'https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'JavaScript学习笔记2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-28 17:46:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Cache" content="no-cache"><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" /><link rel="stylesheet" href="/ext/ez.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/avatar.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img nav-fixed nav-visible" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">暮紫天地</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">JavaScript学习笔记2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-28T09:17:32.000Z" title="发表于 2023-12-28 17:17:32">2023-12-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-28T09:46:37.438Z" title="更新于 2023-12-28 17:46:37">2023-12-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">23.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>77分钟</span></span></div></div></div><article class="post-content" id="article-container"><h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><h3 id="DOM节点类型（这里只看四种）"><a href="#DOM节点类型（这里只看四种）" class="headerlink" title="DOM节点类型（这里只看四种）"></a>DOM节点类型（这里只看四种）</h3><h4 id="Node类型"><a href="#Node类型" class="headerlink" title="Node类型"></a>Node类型</h4><p>Node接口在 JavaScript中被实现为 <code>Node</code> 类型，在除 IE之外的所有浏览器中都可以直接访问这个类型。</p>
+<p>在 JavaScript 中，<strong>所有节点类型都继承 <code>Node</code> 类型</strong>，因此所有类型都共享相同的基本属性和方法。 </p>
+<p><strong>每个节点都有 <code>nodeType</code> 属性，表示该节点的类型。</strong>节点类型由定义在 <code>Node</code> 类型上的 12 个数值常量表示：</p>
+<ul>
+<li><code>Node.ELEMENT_NODE（1）</code></li>
+<li><code>Node.ATTRIBUTE_NODE（2）</code></li>
+<li><code>Node.TEXT_NODE（3）</code></li>
+<li><code>Node.CDATA_SECTION_NODE（4）</code></li>
+<li><code>Node.ENTITY_REFERENCE_NODE（5）</code></li>
+<li><code>Node.ENTITY_NODE（6）</code></li>
+<li><code>Node.PROCESSING_INSTRUCTION_NODE（7）</code></li>
+<li><code>Node.COMMENT_NODE（8）</code></li>
+<li><code>Node.DOCUMENT_NODE（9）</code></li>
+<li><code>Node.DOCUMENT_TYPE_NODE（10）</code></li>
+<li><code>Node.DOCUMENT_FRAGMENT_NODE（11）</code></li>
+<li><code>Node.NOTATION_NODE（12）</code></li>
+</ul>
+<p><strong>节点类型可通过将节点的<code>nodeType</code>属性值与这些常量比较来确定。</strong></p>
+<p>浏览器并不支持所有节点类型。</p>
+<h5 id="1-nodeName-与-nodeValue"><a href="#1-nodeName-与-nodeValue" class="headerlink" title="1.nodeName 与 nodeValue"></a>1.nodeName 与 nodeValue</h5><p><code>nodeName</code> 与 <code>nodeValue</code> 保存着有关节点的信息，这两个属性的值完全取决于节点类型。在使用这两个属性前，最好先检测节点类型。</p>
+<p><strong>对元素而言，<code>nodeName</code> 始终等于元素的标签名，而 <code>nodeValue</code> 则始终为 <code>null</code>。</strong></p>
+<h5 id="2-元素遍历"><a href="#2-元素遍历" class="headerlink" title="2.元素遍历"></a>2.元素遍历</h5><p>文档中的所有节点都与其他节点有关系：父子关系、兄弟关系。</p>
+<p><strong>（1）父子关系</strong></p>
+<p><strong>（i）每个节点都有一个 <code>childNodes</code> 属性，</strong>其中包含一个 <code>NodeList</code> 的实例。<code>NodeList</code> 是一个类数组对象，用于存储可以按位置存取的有序节点。</p>
+<p>注意，<code>NodeList</code> 并不是 <code>Array</code> 的实例，但是它仍然拥有entries（）、forEach（）、item（）、keys（）、values（）方法和length属性，length 属性表示那一时刻 <code>NodeList</code> 中节点的数量。</p>
+<p><code>NodeList</code> 对象独特的地方在于，它是一个实时的活动对象，<strong>因此 DOM 结构的变化会自动地在 NodeList 中反映出来。</strong>使用 <code>Array.prototype.slice()</code>可以把 <code>NodeList</code> 对象转换为数组。当然，使用 ES6 的 <code>Array.from()</code>静态方法也可以。</p>
+<blockquote>
+<p>childNodes属性会将所有类型的节点全部列出来，如果只想关注Element类型的节点的话，可以用<code>children</code>属性代替childNodes，这个属性会给出所有元素类型的子节点。</p>
+</blockquote>
+<p><strong>（ii）每个节点都有一个 <code>parentNode</code> 属性</strong>，指向其 DOM 树中的父元素。<code>childNodes</code> 中的所有节点都 有同一个父元素，因此它们的 <code>parentNode</code> 属性都指向同一个节点。</p>
+<p><strong>（iii）父节点和它的第一个及最后一个子节点也有专门属性：<code>firstChild</code> 和 <code>lastChild</code></strong> ，分别指向 <code>childNodes</code> 中的第一个和最后一个子节点：</p>
+<p><code>someNode.firstChild</code> &#x3D;&#x3D; <code>someNode.childNodes[0]</code></p>
+<p> <code>someNode.lastChild</code> &#x3D;&#x3D;<code>someNode.childNodes[someNode.childNodes.length-1]</code></p>
+<p>如果只有一个子节点，则 <code>firstChild</code> 和 <code>lastChild</code> 指向同一个节点。如果没有子节点，则 <code>firstChild</code> 和 <code>lastChild</code> 都是 <code>null</code>。</p>
+<p><strong>（iv）每个节点还有一个<code>hasChildNodes()</code>方法</strong>，这个方法如果返回 <code>true</code> 则说明节点有一个或多个子节点。相比查询 <code>childNodes</code> 的 <code>length</code> 属性，这个方法无疑更方便。</p>
+<p><strong>（v）最后还有一个所有节点都共享的关系：ownerDocument 属性是一个指向代表整个文档的文档节点的指针。</strong>所有节点都被创建它们（或自己所在）的文档所拥有，因为一个节点不可能同时存在于两个或者多个文档中。这个属性为迅速访问文档节点提供了便利，因为无需在文档结构中逐层上溯了。</p>
+<p><strong>（2）兄弟关系</strong></p>
+<p><code>childNodes</code> 列表中的每个节点都是同一列表中其他节点的同胞节点。</p>
+<p><strong>使用 <code>previousSibling</code> 和 <code>nextSibling</code> 可以在这个列表的节点间导航。</strong>这个列表中第一个节点的 <code>previousSibling</code> 属性是 <code>null</code>，最后一个节点的 <code>nextSibling</code> 属性也是 <code>null</code>。</p>
+<p>注意，如果 <code>childNodes</code> 中只有一个节点，则它的 <code>previousSibling</code> 和 <code>nextSibling</code> 属性都是 <code>null</code>。</p>
+<h5 id="3-添加-x2F-插入-x2F-替换-x2F-移除节点"><a href="#3-添加-x2F-插入-x2F-替换-x2F-移除节点" class="headerlink" title="3.添加&#x2F;插入&#x2F;替换&#x2F;移除节点"></a>3.添加&#x2F;插入&#x2F;替换&#x2F;移除节点</h5><p><strong>（i）appendChild()：</strong><code>appendChild()</code>用于<strong>在 <code>childNodes</code> 列表末尾添加节点并返回新添加的节点。</strong></p>
+<p>如果把文档中已经存在的节点传给 <code>appendChild()</code>，则这个节点<strong>会从之前的位置被转移到新位置</strong>。即使 DOM 树通过各种关系指针维系，一个节点也不会在文档中同时出现在两个或更多个地方。</p>
+<p>添加新节点会更新相关的关系指针，包括父节点和之前的最后一个子节点。</p>
+<p><strong>（ii） insertBefore()方法：</strong>这个方法接收两个参数：要插入的节点和参照节点。调用这个方法后，<strong>要插入的节点会变成参照节点的前一个同胞节点，并被返回。</strong>如果参照节点是 <code>null</code>，则 <code>insertBefore()</code>与 <code>appendChild()</code>效果相同。</p>
+<p><strong>（iii）replaceChild()方法：</strong>这个方法接收两个参数：要插入的节点和要替换的节点。要替换的节点会被返回并从文档树中完全移除，要插入的节点会取而代之。</p>
+<p>使用 <code>replaceChild()</code>插入一个节点后，所有关系指针都会从被替换的节点复制过来。虽然被替换的节点从技术上说仍然被同一个文档所拥有，但文档中已经没有它的位置。</p>
+<p><strong>（iv）removeChild()方法：</strong>这个方法接收一个参数，即要移除的节点。被移除的节点会被返回。</p>
+<p>上面这些是旧式的方法，下面是其他插入&#x2F;替换&#x2F;移除节点的方法（没有返回值）：</p>
+<ul>
+<li><code>node.append(...nodes or strings)</code> — 在 <code>node</code> 末尾插入，</li>
+<li><code>node.prepend(...nodes or strings)</code> — 在 <code>node</code> 开头插入，</li>
+<li><code>node.before(...nodes or strings)</code> — 在 <code>node</code> 之前插入，</li>
+<li><code>node.after(...nodes or strings)</code> — 在 <code>node</code> 之后插入，</li>
+<li><code>node.replaceWith(...nodes or strings)</code> — 替换 <code>node</code>。</li>
+<li><code>node.remove()</code> — 移除 <code>node</code>。</li>
+</ul>
+<p>文本字符串将被作为节点内的文本插入。</p>
+<h5 id="4-克隆节点"><a href="#4-克隆节点" class="headerlink" title="4.克隆节点"></a>4.克隆节点</h5><p><code>cloneNode()</code>会返回与调用它的节点一模一样的节点。</p>
+<p><code>cloneNode()</code>方法接收一个布尔值参数，表示是否深复制。在传入 <code>true</code> 参数时，会进行深复制， 即复制节点及其整个子DOM树。如果传入 <code>false</code>，则只会复制调用该方法的节点。</p>
+<p>复制返回的节点属于文档所有，但尚未指定父节点，所以可称为孤儿节点（orphan）。可以通过 <code>appendChild()</code>、 <code>insertBefore()</code>或 <code>replaceChild()</code>方法把孤儿节点添加到文档中。</p>
+<p>IE8 及更低版本和其他浏览器对空格的处理方式不同，IE9 之前的版本不会为空格创建节点。 </p>
+<p><strong>注意： <code>cloneNode()</code>方法不会复制添加到 DOM 节点的 JavaScript 属性</strong>，比如事件处理程序。这个方法只复制 HTML 属性，以及可选地复制子节点，除此之外则一概不会复制。 IE 在很长时间内会复制事件处理程序，这是一个 bug，所以推荐在复制前先删除事件处理程序。</p>
+<h4 id="Document类型"><a href="#Document类型" class="headerlink" title="Document类型"></a>Document类型</h4><p><code>Document</code> 类型是 JavaScript 中表示文档节点的类型。</p>
+<p>在浏览器中，文档对象 <code>document</code> 是 <code>HTMLDocument</code> 的实例（<code>HTMLDocument</code> 继承 <code>Document</code>），表示整个 HTML 页面。<code>document</code> 是 <code>window</code> 对象的属性，因此是一个全局对象。</p>
+<p><code> 关系：Document类型 =</code>（子类）HTMLDocument类型 &#x3D;<code>（实例化） document对象 </code>&#x3D; window对象的属性</p>
+<p>Document 类型的节点有以下特征：</p>
+<ul>
+<li><p><code>nodeType</code>等于9；</p>
+</li>
+<li><p><code>nodeName</code>值为”#document”；</p>
+</li>
+<li><p><code>nodeValue</code>值为null；</p>
+</li>
+<li><p><code>parentNode</code>值为null；</p>
+</li>
+<li><p><code>ownerDocument</code>值为null；</p>
+</li>
+<li><p>子节点可以是<code>DocumentType</code>（最多一个）、<code>Element</code>（最多一个）、<code>ProcessingInstruction</code> 或 <code>Comment</code> 类型。</p>
+</li>
+</ul>
+<p><strong>Document 类型可以表示 HTML 页面或其他 XML 文档，但最常用的还是通过 HTMLDocument 的实例取得 document 对象。</strong></p>
+<h5 id="1-Document类型的子节点"><a href="#1-Document类型的子节点" class="headerlink" title="1.Document类型的子节点"></a>1.Document类型的子节点</h5><p><strong>（i）DOM 规范提供了两个访问<code>Document</code>类型的子节点的快捷方式。</strong></p>
+<p><strong>第一个是 documentElement 属性</strong>，始终指向 HTML 页面中的元素。虽然 <code>document.childNodes</code> 中始终有元素，但使用 <code>documentElement</code> 属性可以更快更直接地访问这些元素。</p>
+<p><strong>document 对象还有一个 body 属性，</strong>直接指向<code>body</code>元素。因为这个元素是开发者使用最多的元素，所以 JavaScript 代码中经常可以看到 <code>document.body</code>。</p>
+<p>所有主流浏览器都支持 <code>document.documentElement</code> 和 <code>document.body</code>。</p>
+<p><strong>（ii）Document 类型另一种可能的子节点是 DocumentType。</strong>标签是文档中独立的部分， 其信息可以通过 <code>doctype</code> 属性（在浏览器中是 <code>document.doctype</code>）来访问。</p>
+<p><strong>（iii）另外，严格来讲出现在元素外面的注释也是文档的子节点，它们的类型是 Comment。</strong>不过， 由于浏览器实现不同，这些注释不一定能被识别，或者表现可能不一致。实际上，浏览器有可能以不同方式对待元素外部的注释，比如忽略一个或两个注释。</p>
+<p> 一般来说，<code>appendChild()</code>、<code>removeChild()</code>和 <code>replaceChild()</code>方法不会用在 <code>document</code> 对象上。这是因为一般来说文档类型（如果存在）是只读的，而且只能有一个 <code>Element</code> 类型的子节点（即<code>html</code>，已经存在了）。</p>
+<h5 id="2-文档信息属性"><a href="#2-文档信息属性" class="headerlink" title="2.文档信息属性"></a>2.文档信息属性</h5><p>以下属性提供浏览器加载的网页信息。</p>
+<p><strong>（i）document.title属性：</strong>可以读写并修改网页的标题（<code>title</code>元素），不过修改只改变标题栏的显示，并不会改变<code>title</code>元素的内容。</p>
+<p><strong>（ii）document.URL属性：</strong>包含当前页面的完整 URL（地址栏中的 URL）。</p>
+<p><strong>（iii）document.domain属性：</strong>包含页面的域名。</p>
+<p><strong>（iv）document.referrer属性：</strong>包含链接到当前页面的那个页面的 URL。如果当前页面没有来源，则 referrer 属性包含空字符串。</p>
+<p>所有这些信息都可以在请求的 HTTP 头部信息中获取，只是在 JavaScript 中通过这几个属性暴露出来而已。</p>
+<p>在这些属性中，只有 <code>domain</code> 属性是可以设置的。出于安全考虑，给 <code>domain</code> 属性设置的值是有限制的。</p>
+<p><strong>（i）不能给这个属性设置为原URL 中不包含的内容。</strong></p>
+<p><strong>（ii）这个属性一旦放松就不能再收紧。</strong>比如，把<code>document.domain</code> 设置为”wrox.com”之后，就不能再将其设置回”p2p.wrox.com”，后者会导致错误。</p>
+<p>当页面中包含来自某个不同子域的窗格（<code>frame</code>）或内嵌窗格（<code>iframe</code>）时，设置<code>document.domain</code>是有用的。因为跨源通信存在安全隐患，所以不同子域的页面间无法通过 JavaScript通信。此时，在每个页面上把 <code>document.domain</code> 设置为相同的值，这些页面就可以访问对方的 JavaScript对象了。比如，一个加载自 <a target="_blank" rel="noopener" href="http://www.wrox.com/">www.wrox.com</a> 的页面中包含一个内嵌窗格，其中的页面加载自p2p.wrox.com。这两个页面的 <code>document.domain</code> 包含不同的字符串，内部和外部页面相互之间不能访问对方的 JavaScript 对象。如果每个页面都把<code>document.domain</code> 设置为 wrox.com，那这两个页面之间就可以通信了。</p>
+<h5 id="3-定位元素方法"><a href="#3-定位元素方法" class="headerlink" title="3.定位元素方法"></a>3.定位元素方法</h5><p>使用 DOM 最常见的情形可能就是获取某个或某组元素的引用，然后对它们执行某些操作。 <code>document</code> 对象上暴露了一些方法，可以实现这些操作。</p>
+<p><strong>（i）document.getElementById()方法</strong>。这个方法接收一个参数，即要获取元素的 id（<strong>字符串形式</strong>），如果找到了则返回这个元素，如果没找到则返回 <code>null</code>。参数 id 必须跟元素在页面中的 id 属性值完全匹配，包括大小写。如果页面中存在多个具有相同 id 的元素，则 <code>getElementById()</code>返回在文档中出现的第一个元素。 </p>
+<p><strong>（ii）document.getElementsByTagName()是另一个常用来获取元素引用的方法。</strong>这个方法接收一个参数，即要获取元素的标签名，返回包含零个或多个元素的 <code>NodeList</code>。在 HTML 文档中，这个方法返回一个 <code>HTMLCollection</code> 对象，它也是一个“实时”列表。</p>
+<p>与 <code>NodeList</code> 对象一样，也可以使用<strong>中括号</strong>或 <code>item()</code>方法从 <code>HTMLCollection</code> 中取得特定的元素，而取得元素的数量同样可以通过 <code>length</code> 属性得知。 <code>HTMLCollection</code> 对象还有一个额外的方法 <code>namedItem()</code>，可通过标签的 <code>name</code> 属性取得某一项的引用。对于拥有<code>name</code> 属性的元素，还可以直接使用中括号来获取。</p>
+<p>对 <code>HTMLCollection</code> 对象而言，中括号既可以接收数值索引，也可以接收字符串索引。而在后台，数值索引会调用 <code>item()</code>，字符串索引会调用 <code>namedItem()</code>。</p>
+<p>*<em>要取得文档中的所有元素，可以给 <code>getElementsByTagName()</code>传入 * ** 。在 JavaScript 和 CSS 中，</em> 一般被认为是匹配一切的字符。</p>
+<p>注意对于<code>document.getElementsByTagName()</code>方法，虽然规范要求区分标签的大小写，但为了最大限度兼容原有 HTML 页面，实际上是不区分大小写的。如果是在 XML 页面（如 XHTML）中使用，那么 <code>document.getElementsByTagName()</code>就是区分大小写的。</p>
+<p> <strong>（iii）HTMLDocument 类型上定义的获取元素的第三个方法是 getElementsByName()。</strong>顾名思义，这个方法会返回具有给定 <code>name</code> 属性的所有元素。<code>getElementsByName()</code>方法最常用于单选按钮，因为同一字段的单选按钮必须具有相同的 <code>name</code> 属性才能确保把正确的值发送给服务器。</p>
+<p>与<code>getElementsByTagName()</code>一样，<code>getElementsByName()</code>方法也返回<code>HTMLCollection</code>。不过在这种情况下，<code>namedItem()</code>方法只会取得第一项（因为所有项的 <code>name</code> 属性都一样)。</p>
+<h5 id="4-特殊集合属性"><a href="#4-特殊集合属性" class="headerlink" title="4.特殊集合属性"></a>4.特殊集合属性</h5><p><code>document</code> 对象上还暴露了几个特殊集合，这些集合也都是 <code>HTMLCollection</code> 的实例。这些集合是访问文档中公共部分的快捷方式，列举如下。</p>
+<ul>
+<li><code>document.anchors</code>包含文档中所有带<code>name</code>属性的元素。</li>
+<li><code>document.forms</code>包含文档中所有<code>form</code>元素（与<code>document.getElementsByTagName(&quot;form&quot;)</code>返回的结果相同）。</li>
+<li><code>document.images</code>包含文档中所有<code>img</code>元素（与<code>document.getElementsByTagName(&quot;img&quot;)</code>返回的结果相同)。</li>
+<li><code>document.links</code>包含文档中所有带<code>href</code>属性的<code>a</code>元素。</li>
+</ul>
+<p>这些特殊集合始终存在于<code>HTMLDocument</code>对象上，而且与所有<code>HTMLCollection</code>对象一样，其内容也会实时更新以符合当前文档的内容。</p>
+<h5 id="5-文档写入方法"><a href="#5-文档写入方法" class="headerlink" title="5.文档写入方法"></a>5.文档写入方法</h5><p><code>document</code>对象有一个古老的能力，即向网页输出流中写入内容。这个能力对应2个方法：<code>write()</code>、<code>writeln()</code>。</p>
+<p><code>write()</code>和<code>writeln()</code>方法都接收一个字符串参数，可以将这个字符串写入网页中。<code>write()</code>简单地写入文本，而<code>writeln()</code>还会在字符串末尾追加一个换行符（<code>\n</code>）。</p>
+<p><strong>这两个方法可以用来在页面加载期间向页面中动态添加内容，</strong>比如HTML代码，这意味着会创建一个DOM元素，而且以后也可以访问。通过<code>write()</code>和<code>writeln()</code>输出的任何HTML都会以这种方式来处理。</p>
+<p><strong><code>write()</code>和<code>writeln()</code>方法也经常用于动态包含外部资源，</strong>如JavaScript文件。在包含JavaScript文件时，记住结束标签<code>/script</code>一定要写成<code>\/script</code>，不然会出错。</p>
+<p><strong>如果使<code>document.write()</code>推迟到页面加载完毕后再执行的话会重写整个页面内容</strong>，在网页渲染期间执行则不会。</p>
+<blockquote>
+<p>注意严格的XHTML文档不支持文档写入。对于内容类型为application&#x2F;xml+xhtml的页面，这些方法不起作用。</p>
+</blockquote>
+<h4 id="Element类型"><a href="#Element类型" class="headerlink" title="Element类型"></a>Element类型</h4><p><code>Element</code> 类型的节点具有以下特征：</p>
+<ul>
+<li><code>nodeType</code>等于1；</li>
+<li><code>nodeName</code>值为元素的标签名；</li>
+<li><code>nodeValue</code>值为<code>null</code>；</li>
+<li><code>parentNode</code>值为<code>Document</code>或<code>Element</code>对象；</li>
+<li>子节点可以是<code>Element</code>、<code>Text</code>、<code>Comment</code>、<code>ProcessingInstruction</code>、<code>CDATASection</code>、<code>EntityReference</code> 类型</li>
+</ul>
+<p><code>Element</code>类型的<code>nodeName</code>和<code>tagName</code>属性都可以获取标签名，但是在HTML中<code>tagName</code>会始终返回标签名的大写形式，在XML中则大小写一致。如果不确定脚本是在 HTML 文档还是 XML 文档中运行，最好将标签名转换为小写形式。</p>
+<h5 id="1-HTMLElement类型"><a href="#1-HTMLElement类型" class="headerlink" title="1.HTMLElement类型"></a>1.HTMLElement类型</h5><p>HTML元素是<code>HTMLElement</code>类型及其子类型的实例，<code>HTMLElement</code>继承了<code>Element</code>类型。</p>
+<p>所有HTML元素上都有的标准属性：</p>
+<ul>
+<li><code>id</code>，元素在文档中的唯一标识符；</li>
+<li><code>title</code>，包含元素的额外信息，通常以提示条形式展示；</li>
+<li><code>lang</code>，元素内容的语言代码（很少用）；</li>
+<li><code>dir</code>，语言的书写方向（”ltr”表示从左到右，”rtl”表示从右到左，同样很少用。修改 <code>dir</code> 会导致页面文本立即向左或向右对齐）；</li>
+<li><code>className</code>，相当于<code>class</code>属性，用于指定元素的CSS类（因为<code>class</code>是ECMAScript关键字， 所以不能直接用这个名字）。</li>
+</ul>
+<h5 id="2-检查元素属性是否存在和获取元素属性"><a href="#2-检查元素属性是否存在和获取元素属性" class="headerlink" title="2.检查元素属性是否存在和获取元素属性"></a>2.检查元素属性是否存在和获取元素属性</h5><p>可以用<code>hasAttribute(name)</code>方法检查该属性是否存在。</p>
+<p>可以使用<code>getAttribute(name)</code>方法来获取HTML元素的属性值。</p>
+<p>注意传给<code>getAttribute()</code>的属性名与它们实际的属性名是一样的，因此这里要传”class”而非”className”（className是作为对象属性时才那么拼写的）。</p>
+<p>如果给定的属性不存在，则<code>getAttribute()</code>返回<code>null</code>。</p>
+<p><code>getAttribute()</code>方法也能取得不是HTML语言正式属性的自定义属性(加了data-前缀的属性)的值。自定义属性值还可以通过元素的<code>dataset</code>属性来获取。</p>
+<p><strong>元素的所有属性也可以通过相应DOM元素对象的属性来取得。</strong>所有公认（非自定义）的属性会被添加为DOM对象的属性，但是自定义属性不会成为DOM对象的属性。</p>
+<p>通过DOM对象访问的属性中有三个返回的值跟使用<code>getAttribute()</code>取得的值不一样。</p>
+<ul>
+<li>首先是<code>style</code>属性，这个属性用于为元素设定CSS样式。在使用<code>getAttribute()</code>访问<code>style</code>属性时，返回的是CSS字符串。而在通过DOM对象的属性访问时，<code>style</code>属性返回的是一个<code>CSSStyleDeclaration</code>对象。DOM对象的<code>style</code>属性用于以编程方式读写元素样式，因此不会直接映射为元素中<code>style</code>属性的字符串值。</li>
+<li>第二个属性其实是一类，即事件处理程序（或者事件属性）。在元素上使用事件属性时，属性的值是一段JavaScript代码。如果使用<code>getAttribute()</code>访问事件属性，则返回的是字符串形式的源代码。而通过DOM对象的属性访问事件属性时返回的则是一个JavaScript函数（未指定该属性则返回<code>null</code>）。这是因为事件属性是可以接受函数作为值的。</li>
+<li>第三个属性就是a元素中的href属性。如果某一个a元素的href属性的值是类似于”&#x2F;tutorial.html”这样的本地路径，使用<code>getAttribute</code>（）方法可以获得一模一样的值，但是如果使用<code>a.href</code>的话获取到的地址会被浏览器自动加上file协议，和HTML属性中写的值不同。</li>
+<li>总结起来，<code>getAttribute()</code>方法获取属性值时可以获得HTML属性中的原模原样的字符串，而<code>obj.attr</code>方式获得的HTML属性值可能会发生某些变化。</li>
+</ul>
+<h5 id="3-设置-x2F-删除元素属性"><a href="#3-设置-x2F-删除元素属性" class="headerlink" title="3.设置&#x2F;删除元素属性"></a>3.设置&#x2F;删除元素属性</h5><p><code>setAttribute()</code>方法接收两个参数：要设置的属性名和属性的值。如果属性已经存在，则<code>setAttribute()</code>会以指定的值替换原来的值；如果属性不存在，则<code>setAttribute()</code>会以指定的值创建该属性。</p>
+<p><code>setAttribute()</code>适用于HTML属性，也适用于自定义属性。另外，使用<code>setAttribute()</code>方法设置的属性名会规范为小写形式。</p>
+<p>因为元素属性也是DOM对象属性，所以<strong>直接给DOM对象的属性赋值也可以设置元素属性的值</strong>。注意，在DOM对象上添加自定义属性不会自动让它变成元素的属性（IE除外）。</p>
+<p><code>removeAttribute()</code>方法用于从元素中删除属性。这样不单单是清除属性的值，而是会把整个属性完全从元素中去掉。这个方法用得并不多，但在序列化DOM元素时可以通过它控制要包含的属性。</p>
+<h5 id="4-创建新元素"><a href="#4-创建新元素" class="headerlink" title="4.创建新元素"></a>4.创建新元素</h5><p>可以使用<code>document.createElement()</code>方法创建新元素。这个方法接收一个参数，即要创建元素的标签名。在HTML文档中，标签名是不区分大小写的，而XML文档（包括XHTML）是区分大小写的。</p>
+<p>使用<code>createElement()</code>方法创建新元素的同时也会将其<code>ownerDocument</code>属性设置为<code>document</code>。此时，可以再为其添加属性、添加更多子元素。在新元素上设置属性只会附加信息，因为这个元素还没有添加到文档树，所以不会影响浏览器显示。要把元素添加到文档树，可以使用<code>appendChild()</code>、<code>insertBefore()</code>或<code>replaceChild()</code>。元素被添加到文档树之后，浏览器会立即将其渲染出来。之后再对这个元素所做的任何修改，都会立即在浏览器中反映出来。</p>
+<h5 id="5-元素后代"><a href="#5-元素后代" class="headerlink" title="5.元素后代"></a>5.元素后代</h5><p>在判断元素后代数量时不要忽略了空格即文本节点。</p>
+<p>要取得某个元素的子节点和其他后代节点，可以使用元素的<code>getElementsByTagName()</code>方法。在元素上调用这个方法与在文档上调用是一样的，<strong>只不过搜索范围限制在当前元素之内，即只会返回当前元素的所有层级的后代。</strong></p>
+<h5 id="6-insertAdjacentHTML-方法插入HTML"><a href="#6-insertAdjacentHTML-方法插入HTML" class="headerlink" title="6.insertAdjacentHTML()方法插入HTML"></a>6.<code>insertAdjacentHTML()</code>方法插入HTML</h5><ul>
+<li>在 <code>html</code> 中给定一些 HTML，<code>elem.insertAdjacentHTML(where, html)</code> 会根据 <code>where</code> 的值来插入它：<ul>
+<li><code>&quot;beforebegin&quot;</code> — 将 <code>html</code> 插入到 <code>elem</code> 前面，</li>
+<li><code>&quot;afterbegin&quot;</code> — 将 <code>html</code> 插入到 <code>elem</code> 的开头，</li>
+<li><code>&quot;beforeend&quot;</code> — 将 <code>html</code> 插入到 <code>elem</code> 的末尾，</li>
+<li><code>&quot;afterend&quot;</code> — 将 <code>html</code> 插入到 <code>elem</code> 后面。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Text类型"><a href="#Text类型" class="headerlink" title="Text类型"></a>Text类型</h4><p>Text类型的节点具有以下特征：</p>
+<ul>
+<li>nodeType等于3；</li>
+<li>nodeName值为”#text”；</li>
+<li>nodeValue值为节点中包含的文本；</li>
+<li>parentNode值为Element对象；</li>
+<li>不支持子节点。</li>
+</ul>
+<p><strong>Text节点中包含的文本可以通过nodeValue属性访问，也可以通过data属性访问，这两个属性包含相同的值。</strong></p>
+<p>文本节点暴露了以下操作文本的方法：</p>
+<ul>
+<li>appendData(text)，向节点末尾添加文本text；</li>
+<li>deleteData(offset,count)，从位置offset开始删除count个字符；</li>
+<li>insertData(offset,text)，在位置offset插入text；</li>
+<li>replaceData(offset,count,text)，用text替换从位置offset到offset+count的文本；</li>
+<li>splitText(offset)，在位置offset将当前文本节点拆分为两个文本节点；</li>
+<li>substringData(offset,count)，提取从位置offset到offset+count的文本。</li>
+</ul>
+<p>除了这些方法，<strong>还可以通过length属性获取文本节点中包含的字符数量。这个值等于nodeValue.length和data.length。</strong></p>
+<p>修改文本节点还有一点要注意，就是 HTML 或 XML 代码（取决于文档类型）会被转换成实体编码，即<strong>小于号、大于号或引号会被转义</strong>。（也就是没有代码的效果，只有纯文本形式）</p>
+<h5 id="1-创建文本节点"><a href="#1-创建文本节点" class="headerlink" title="1.创建文本节点"></a>1.创建文本节点</h5><p><code>document.createTextNode()</code>可以用来创建新文本节点，它接收一个参数，即要插入节点的文本。</p>
+<p>创建新文本节点后，其 <code>ownerDocument</code> 属性会被设置为 <code>document</code>。但在把这个节点添加到文档树之前，我们不会在浏览器中看到它。</p>
+<p>一般来说一个元素只包含一个文本子节点。不过当然也可以让元素包含多个文本子节点。</p>
+<h5 id="2-规范化文本节点"><a href="#2-规范化文本节点" class="headerlink" title="2.规范化文本节点"></a>2.规范化文本节点</h5><p>DOM 文档中的同胞文本节点可能导致困惑，因为一个文本节点足以表示一个文本字符串。为此，有一个方法可以合并相邻的文本节点。</p>
+<p>这个方法叫 <code>normalize()</code>，所有类型的节点上都有这个方法。如果发现空文本节点，则将其删除；在包含两个或多个相邻文本节点的父节点上调用 <code>normalize()</code>时，所有同胞文本节点会被合并为一个文本节点，这个文本节点的 <code>nodeValue</code> 就等于之前所有同胞节点拼接在一起得到的字符串。</p>
+<p>浏览器在解析文档时，永远不会创建同胞文本节点。同胞文本节点只会出现在 DOM 脚本生成的文档树中。</p>
+<h5 id="3-拆分文本节点"><a href="#3-拆分文本节点" class="headerlink" title="3.拆分文本节点"></a>3.拆分文本节点</h5><p>Text 类型定义了一个与 <code>normalize()</code>相反的方法——<code>splitText()</code>。</p>
+<p>这个方法可以在指定的偏移位置将一个文本节点拆分成两个文本节点。拆分之后，原来的文本节点包含开头到偏移位置前的文本，新文本节点包含剩下的文本。</p>
+<p>这个方法返回新的文本节点，具有与原来的文本节点相同的 <code>parentNode</code>。</p>
+<p>拆分文本节点最常用于从文本节点中提取数据的 DOM 解析技术。</p>
+<h5 id="4-innerHTML与outerHTML"><a href="#4-innerHTML与outerHTML" class="headerlink" title="4.innerHTML与outerHTML"></a>4.innerHTML与outerHTML</h5><p>innerHTML是元素里面的HTML内容；outerHTML是元素的完整HTML。</p>
+<p><code>innerText</code>：也可以获取元素内部及其所有后代元素内部的文本。</p>
+<p><code>textContent</code>：元素内的文本，即HTML 减去所有标签 <code>&lt;tags&gt;</code>。写入文本会将文本放入元素内，<strong>所有特殊字符和标签均被视为文本</strong>。可以安全地插入用户生成的文本，并防止不必要的 HTML 插入。</p>
+<blockquote>
+<p>总结：读取文本的几种方式：</p>
+<ol>
+<li>获取文本节点，读取其data或nodeValue属性（推荐）。注意，如果是注释节点也可以通过data或nodeValue来访问其中的文本（忽略注释标签）。</li>
+<li>innerText</li>
+<li>textContent</li>
+</ol>
+</blockquote>
+<h3 id="DOM编程"><a href="#DOM编程" class="headerlink" title="DOM编程"></a>DOM编程</h3><h4 id="动态脚本"><a href="#动态脚本" class="headerlink" title="动态脚本"></a>动态脚本</h4><p>即利用DOM动态创建一个引入外部JavaScript文件的<code>script</code>元素。</p>
+<p>注意！通过 innerHTML 属性创建的<code>script</code>元素永远不会执行。浏览器会尽责地创建<code>script</code>元素，以及其中的脚本文本，但解析器会给这个<code>script</code>元素打上永不执行的标签。</p>
+<h4 id="动态样式"><a href="#动态样式" class="headerlink" title="动态样式"></a>动态样式</h4><p>即利用DOM动态创建一个<code>style</code>元素或者<code>link</code>元素。</p>
+<h4 id="操作表格"><a href="#操作表格" class="headerlink" title="操作表格"></a>操作表格</h4><p>为了方便创建表格，HTMLDOM给<code>table</code>、<code>tbody</code>和<code>tr</code>元素添加了一些属性和方法。</p>
+<p><code>table</code>元素添加了以下属性和方法：</p>
+<ul>
+<li>caption，指向<code>caption</code>元素的指针（如果存在）；</li>
+<li>tBodies，包含<code>tbody</code>元素的HTMLCollection；</li>
+<li>tFoot，指向<code>tfoot</code>元素（如果存在）；</li>
+<li>tHead，指向<code>thead</code>元素（如果存在）；</li>
+<li>rows，包含表示所有行的HTMLCollection；</li>
+<li>createTHead()，创建<code>thead</code>元素，放到表格中，返回引用；</li>
+<li>createTFoot()，创建<code>tfoot</code>元素，放到表格中，返回引用；</li>
+<li>createCaption()，创建<code>caption</code>元素，放到表格中，返回引用；</li>
+<li>deleteTHead()，删除<code>thead</code>元素；</li>
+<li>deleteTFoot()，删除<code>tfoot</code>元素；</li>
+<li>deleteCaption()，删除<code>caption</code>元素；</li>
+<li>deleteRow(pos)，删除给定位置的行；</li>
+<li>insertRow(pos)，在行集合中给定位置插入一行。</li>
+</ul>
+<p><code>tbody</code>元素添加了以下属性和方法：</p>
+<ul>
+<li>rows，包含<code>tbody</code>元素中所有tr元素的HTMLCollection；</li>
+<li>deleteRow(pos)，删除给定位置的tr元素；</li>
+<li>insertRow(pos)，在行集合中给定位置插入一行，返回该行的引用。</li>
+</ul>
+<p><code>tr</code>元素添加了以下属性和方法：</p>
+<ul>
+<li>cells，包含<code>tr</code>元素所有表元的HTMLCollection；</li>
+<li>deleteCell(pos)，删除给定位置的表元；</li>
+<li>insertCell(pos)，在表元集合给定位置插入一个表元，返回该表元的引用。</li>
+</ul>
+<h3 id="MutationObserver接口"><a href="#MutationObserver接口" class="headerlink" title="MutationObserver接口"></a>MutationObserver接口</h3><h3 id="Selectors-API"><a href="#Selectors-API" class="headerlink" title="Selectors API"></a>Selectors API</h3><h4 id="querySelector（）"><a href="#querySelector（）" class="headerlink" title="querySelector（）"></a>querySelector（）</h4><p><code>querySelector()</code>方法接收 CSS 选择器参数，返回匹配该模式的第一个后代元素，如果没有匹配项则返回 null。</p>
+<p>在 Document 上使用 <code>querySelector()</code>方法时，会从文档元素开始搜索；在 Element 上使用 <code>querySelector()</code>方法时，则只会从当前元素的后代中查询。 </p>
+<p>用于查询模式的 CSS 选择符可繁可简，依需求而定。如果选择符有语法错误或碰到不支持的选择符， 则 <code>querySelector()</code>方法会抛出错误。</p>
+<h4 id="querySelecotorAll（）"><a href="#querySelecotorAll（）" class="headerlink" title="querySelecotorAll（）"></a>querySelecotorAll（）</h4><p><code>querySelectorAll()</code>方法跟 <code>querySelector()</code>一样，也接收一个用于查询的参数，但它会返回所有匹配的节点，而不止一个。这个方法返回的是一个 NodeList 的静态实例。如果没有匹配项，则返回空的 NodeList 实例。</p>
+<p>再强调一次，<code>querySelectorAll()</code>返回的 NodeList 实例一个属性和方法都不缺，但它是一 个静态的“快照”，而非“实时”的查询。这样的底层实现避免了使用 NodeList 对象可能造成的性能问题。</p>
+<p>与 <code>querySelector()</code>一样，<code>querySelectorAll()</code>也可以在 Document和 Element类型上使用。</p>
+<p>返回的 NodeList对象可以通过 for-of 循环、item()方法或中括号语法取得个别元素。</p>
+<p>与 <code>querySelector()</code>方法一样，如果选择符有语法错误或碰到不支持的选择符，则 <code>querySelectorAll()</code>方法会抛出错误。</p>
+<blockquote>
+<p>querySelector API很适合在指定的某个元素后代中查找元素。</p>
+</blockquote>
+<h4 id="matches（）"><a href="#matches（）" class="headerlink" title="matches（）"></a>matches（）</h4><p><code>matches()</code>方法接收一个 CSS 选择符参数，如果元素匹配则该选择符返回 true，否则返回 false。</p>
+<p>使用这个方法可以方便地检测某个元素会不会被 <code>querySelector()</code>或 <code>querySelectorAll()</code>方法返回。</p>
+<h3 id="元素遍历"><a href="#元素遍历" class="headerlink" title="元素遍历"></a>元素遍历</h3><p>IE9之前的版本不会把元素间的空格当成空白节点,而其他浏览器则会。这样就导致了childNodes和firstchild等属性上的差异。为了弥补这个差异，同时不影响DOM规范，W3C通过新的ElementTraversal规范定义了一组新属性。</p>
+<p>Element Traversal API为DOM元素添加了5个属性:</p>
+<p>childElementcount，返回子元素数量（不包含文本节点和注释);</p>
+<p>firstElementchild，指向第一个Element类型的子元素(Element版firstchild );</p>
+<p>lastElementchild，指向最后一个Element类型的子元素(Element版lastchild );</p>
+<p>previousElementsibling ，指向前一个Element类型的同胞元素（Element版previoussibling );</p>
+<p>nextElementsibling，指向后一个Element 类型的同胞元素(Element 版nextsibling )。</p>
+<p>在支持的浏览器中，所有 DOM元素都会有这些属性，为遍历DOM元素提供便利。这样开发者就不用担心空白文本节点的问题了。</p>
+<h3 id="CSS属性操作"><a href="#CSS属性操作" class="headerlink" title="CSS属性操作"></a>CSS属性操作</h3><h4 id="用style属性获取-x2F-设置CSS属性值"><a href="#用style属性获取-x2F-设置CSS属性值" class="headerlink" title="用style属性获取&#x2F;设置CSS属性值"></a>用style属性获取&#x2F;设置CSS属性值</h4><p><code>obj.style.attr</code>获取行内css属性值。</p>
+<p><code>obj.style.attr = &quot;value&quot;</code> or <code>obj.style[attr] = &quot;value&quot;</code></p>
+<p>其中obj &#x3D; DOM对象；attr &#x3D; CSS属性名，属性名采用小驼峰形式，如果是<code>-moz-border-radius</code>这种属性，连字符表示大写，即写成MozBorderRadius。</p>
+<p>或者</p>
+<p><code>obj.style.cssText = &quot;CSS代码&quot;</code></p>
+<blockquote>
+<p>这两种方法添加的CSS属性最终都是添加到元素的style属性中的，而且也只能用于获取行内样式，无法用于获取内部样式和外部样式。</p>
+</blockquote>
+<h4 id="用getComputedStyle（）方法获取CSS属性值"><a href="#用getComputedStyle（）方法获取CSS属性值" class="headerlink" title="用getComputedStyle（）方法获取CSS属性值"></a>用getComputedStyle（）方法获取CSS属性值</h4><p><code>getComputedStyle（获取到的元素节点[,伪元素]).attr</code></p>
+<p>或者</p>
+<p><code>getComputedStyle（获取到的元素节点[,伪元素]）[“attr”]</code></p>
+<p>attr是CSS属性名，注意应写为小驼峰形式。</p>
+<p>另外属性名应尽量详细，就是有复合属性的时候尽量不要用复合属性而是具体的属性，不然不能保证正确的结果。</p>
+<p>这种方法可以获取元素的相应的已计算的属性值，无论是来自行内样式、内部样式还是外部样式，只要已经Computed就可以获取，类似于在开发者工具中的Computed模块中查看属性值一样。</p>
+<blockquote>
+<p>getComputedStyle()方法无法获取:visited伪类的样式，也无法更改。</p>
+</blockquote>
+<h4 id="classList对象"><a href="#classList对象" class="headerlink" title="classList对象"></a>classList对象</h4><p><code>classList</code> 是一个DOMTokenList对象，它的方法：</p>
+<ul>
+<li><code>elem.classList.add/remove(class)</code> — 添加&#x2F;移除类。</li>
+<li><code>elem.classList.toggle(class)</code> — 如果类不存在就添加类，存在就移除它。</li>
+<li><code>elem.classList.contains(class)</code> — 检查给定类，返回 <code>true/false</code>。</li>
+<li>除此之外，它还有<code>entries</code>&#x2F;<code>forEach</code>&#x2F;<code>item</code>&#x2F;<code>keys</code>&#x2F;<code>values</code>&#x2F;<code>replace</code>&#x2F;<code>supports</code>方法，是一个类数组对象。也有length属性。</li>
+</ul>
+<p>另外<code>classList</code>可以用for-of循环迭代。</p>
+<h4 id="重置样式属性"><a href="#重置样式属性" class="headerlink" title="重置样式属性"></a>重置样式属性</h4><p>使用<code>elem.style.attr=&quot;&quot;</code>赋值为空来重置自己之前给该属性赋的值。</p>
+<h4 id="元素大小和滚动（-Left-x2F-Top-x2F-Width-x2F-Height-x3D-offset-x2F-client-x2F-scroll）"><a href="#元素大小和滚动（-Left-x2F-Top-x2F-Width-x2F-Height-x3D-offset-x2F-client-x2F-scroll）" class="headerlink" title="元素大小和滚动（*Left&#x2F;Top&#x2F;Width&#x2F;Height, *&#x3D;offset&#x2F;client&#x2F;scroll）"></a>元素大小和滚动（*Left&#x2F;Top&#x2F;Width&#x2F;Height, *&#x3D;offset&#x2F;client&#x2F;scroll）</h4><p>如果元素设置了<code>overflow:scroll</code>，当元素内的内容超出了元素尺寸时，元素会出现滚动条。这个滚动条的空间属于元素的宽高的一部分，也就是说元素会拿出它的内容区的面积的一部分来做滚动条，而真正有内容的内容区尺寸会比设定的width、height小。</p>
+<p>有几个属性可以获取元素的几何属性：</p>
+<p>offsetParent：计算元素的坐标的基准祖先元素。它是最近的非static定位的元素或td&#x2F;th&#x2F;table元素或body元素。当元素display属性为none时、当元素为body&#x2F;html元素时、当元素定位为fixed固定定位时offsetParent值为null。</p>
+<p>offsetLeft和offsetTop：提供相对于offsetParent左上角的x&#x2F;y坐标。当offsetParent为非static定位元素或body元素时，这两个值相当于left和top属性的值。</p>
+<p>offsetWidth和offsetHeight：提供元素的外部宽度和高度，即width&#x2F;height+padding-left&#x2F;padding-top+padding-right&#x2F;padding-bottom+border-width。</p>
+<p>如果元素的display为none，或者其根本不存在，那么其offsetParent为null，其他几何属性为0。我们可以利用这个特点检查一个元素是否被隐藏。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">isHidden</span>(<span class="params">elem</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> !elem.<span class="property">offsetWidth</span> &amp;&amp; !elem.<span class="property">offsetHeight</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过屏幕上显示了但大小为0的元素也会被判断为隐藏，虽然效果差不多。</p>
+<p>clientTop和clientLeft：给出元素的边框的宽度。不过严格来说给出的是内侧与外侧的相对坐标，当元素有滚动条且文字是从右到左显示（如阿拉伯语&#x2F;希伯来语）时滚动条会跑到左边，这时clientLeft将包含滚动条的宽度。</p>
+<p>clientWidth和clientHeight：给出元素的width&#x2F;height+padding-left+padding-right，不会包括滚动条的宽度。所以如果没有padding的时候可以用这两个属性获取元素内容区的宽高。</p>
+<p>scrollWidth和scrollHeight：类似于clientWidth和clientHeight，不过会包括那些由于水平&#x2F;垂直滚动而被隐藏了的部分内容的宽高。</p>
+<p>可以利用这两个属性将元素展开到它们完整的宽高（显示全部内容）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.<span class="property">style</span>.<span class="property">height</span> = <span class="string">`<span class="subst">$&#123;element.scrollHeight&#125;</span>px`</span>;</span><br></pre></td></tr></table></figure>
+
+<p>scrollLeft和scrollTop：给出左侧&#x2F;顶部已经水平&#x2F;垂直滚动出来了多少长度。这两个属性是可修改的，如果修改，浏览器会滚动该元素以满足这两个属性的值。将 <code>scrollTop</code> 设置为 <code>0</code> 或一个大的值，例如 <code>1e9</code>，将会使元素滚动到顶部&#x2F;底部。</p>
+<blockquote>
+<p>不要直接读取width和height这两个属性值，因为：</p>
+<ol>
+<li>首先，CSS <code>width/height</code> 取决于另一个属性：<code>box-sizing</code>，它定义了“什么是” CSS 宽度和高度。出于 CSS 的目的而对 <code>box-sizing</code> 进行的更改可能会破坏此类 JavaScript 操作。</li>
+<li>其次，CSS 的 <code>width/height</code> 可能是 <code>auto</code>，例如内联（inline）元素。</li>
+<li>出现滚动条之后代码可能会出现bug，因为有些浏览器如Chrome会将内容宽度减去滚动条宽度，而火狐浏览器等则不会这么做。</li>
+</ol>
+<p>读取元素大小的好方法是使用<code>clientWidth</code>和<code>clientHeight</code>属性，没有padding的话比较简单，如果有padding的话可以再读取padding-left&#x2F;right&#x2F;top&#x2F;bottom的值并减去它们。</p>
+<p>对于一个没有padding和border的元素，其offsetWidth与clientWidth的差值就是滚动条的宽度。</p>
+</blockquote>
+<h4 id="窗口大小和滚动"><a href="#窗口大小和滚动" class="headerlink" title="窗口大小和滚动"></a>窗口大小和滚动</h4><p>文档可见部分的width&#x2F;height（内容区的width&#x2F;height）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">clientWidth</span>/clientHeight</span><br></pre></td></tr></table></figure>
+
+<p>整个文档的width&#x2F;height（包括滚动出去的部分）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> scrollHeight = <span class="title class_">Math</span>.<span class="title function_">max</span>(</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">scrollHeight</span>, <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">scrollHeight</span>,</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">offsetHeight</span>, <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">offsetHeight</span>,</span><br><span class="line">  <span class="variable language_">document</span>.<span class="property">body</span>.<span class="property">clientHeight</span>, <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">clientHeight</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>滚动：</p>
+<ul>
+<li>读取当前滚动：<code>window.pageYOffset/pageXOffset</code></li>
+<li>更改当前的滚动：<ul>
+<li><code>window.scrollTo(pageX,pageY)</code> — 滚动使得可见部分的左上角具有相对于文档左上角的坐标（pageX，pageY）。滚动到最开始就是<code>scrollTo(0, 0)</code></li>
+<li><code>window.scrollBy(x,y)</code> — 相对当前位置进行滚动，</li>
+<li><code>elem.scrollIntoView(top)</code> — 滚动以使 <code>elem</code> 可见（top为true&#x2F;false时<code>elem</code> 与窗口的顶部&#x2F;底部对齐）。</li>
+</ul>
+</li>
+<li>禁用窗口滚动：<code>document.body.style.overflow=&#39;hidden&#39;</code>，这会使页面冻结在当前位置无法滚动，且滚动条会消失。如果滚动条占用空间的话它消失后可能会使内容跳进去填充它，可以再加一点padding来占用滚动条原来的位置，保证内容的排版不变。</li>
+</ul>
+<h4 id="相对于窗口和文档的坐标"><a href="#相对于窗口和文档的坐标" class="headerlink" title="相对于窗口和文档的坐标"></a>相对于窗口和文档的坐标</h4><p><code>elem.getBoundingClientRect()</code>方法返回一个DOMRect对象，其拥有left&#x2F;top&#x2F;bottom&#x2F;right（表示元素的最左&#x2F;上&#x2F;下&#x2F;右边距离浏览器视窗的距离）和width&#x2F;height（相当于offsetWidth、offsetHeight）还有x&#x2F;y（左上角相对于浏览器视窗左上角的坐标）这些属性。</p>
+<p>这些是元素相对于窗口的坐标，如果要获取相对于文档的坐标，就要再加上scrollLeft&#x2F;scrollTop。</p>
+<h3 id="选择与范围"><a href="#选择与范围" class="headerlink" title="选择与范围"></a>选择与范围</h3><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><h4 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h4><p><strong>当一个事件发生在一个元素上，它会首先运行在该元素上的处理程序，然后运行其父元素上的处理程序，然后一直向上到其他祖先上的处理程序。</strong></p>
+<p>几乎所有事件都会冒泡，但也有例外，比如focus事件不会冒泡。</p>
+<p>停止冒泡：冒泡事件从目标元素开始向上冒泡。通常，它会一直上升到 <code>&lt;html&gt;</code>，然后再到 <code>document</code> 对象，有些事件甚至会到达 <code>window</code>，它们会调用路径上所有的处理程序。</p>
+<p>但是任意处理程序都可以决定事件已经被完全处理，并停止冒泡。用于停止冒泡的方法是在那一个事件处理程序里写一行<code>event.stopPropagation()</code>或<code>event.stopImmediatePropagation()</code>，前者阻止冒泡后当前元素上其他处理程序仍会执行，后者会阻止冒泡和当前元素上其他处理程序的执行。</p>
+<blockquote>
+<p>不过没有特殊需求的情况下不要去停止冒泡。</p>
+</blockquote>
+<h4 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h4><p>Netscape Communicator事件流：事件捕获的意思是最不具体的节点应该最先收到事件，而最具体的节点应该最后收到事件。事件捕获实际上是为了在事件到达最终目标前拦截事件。</p>
+<h4 id="DOM事件流"><a href="#DOM事件流" class="headerlink" title="DOM事件流"></a>DOM事件流</h4><p>DOM2 Events 规范规定事件流分为 3 个阶段：事件捕获、到达目标和事件冒泡。事件捕获最先发生， 为提前拦截事件提供了可能。然后，实际的目标元素接收到事件。最后一个阶段是冒泡，最迟要在这个阶段响应事件。</p>
+<blockquote>
+<p>所有现代浏览器都支持这三种事件流，但是一般用的是事件冒泡。</p>
+</blockquote>
+<h4 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h4><p>如果我们有许多以类似方式处理的元素，那么就不必为每个元素分配一个处理程序 —— 而是将单个处理程序放在它们的共同祖先上。在这个处理程序中，我们获取<code>event.target</code>的值来判断事件实际发生的位置在那个位置上进行处理。</p>
+<p>算法：</p>
+<ol>
+<li>在容器（container）上放一个处理程序。</li>
+<li>在处理程序中 —— 检查源元素 <code>event.target</code>。</li>
+<li>如果事件发生在我们感兴趣的元素内，那么处理该事件。</li>
+</ol>
+<p>好处：</p>
+<ul>
+<li>简化初始化并节省内存：无需添加许多处理程序。</li>
+<li>更少的代码：添加或移除元素时，无需添加&#x2F;移除处理程序。</li>
+<li>DOM 修改 ：我们可以使用 <code>innerHTML</code> 等，来批量添加&#x2F;移除元素。</li>
+</ul>
+<p>事件委托也有其局限性：</p>
+<ul>
+<li>首先，事件必须冒泡。而有些事件不会冒泡。此外，低级别的处理程序不应该使用 <code>event.stopPropagation()</code>。</li>
+<li>其次，委托可能会增加 CPU 负载，因为容器级别的处理程序会对容器中任意位置的事件做出反应，而不管我们是否对该事件感兴趣。但是，通常负载可以忽略不计，所以我们不考虑它。</li>
+</ul>
+<h3 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h3><p>为响应事件而调用的函数被称为事件处理程序（或事件监听器）。事件处理程序的名字 以”on”开头。</p>
+<h4 id="HTML事件处理程序"><a href="#HTML事件处理程序" class="headerlink" title="HTML事件处理程序"></a>HTML事件处理程序</h4><p>即使用HTML元素的事件属性指定事件处理程序。在这样的事件处理出现中this的值就是它所在的那个元素。</p>
+<h4 id="DOM0事件处理程序"><a href="#DOM0事件处理程序" class="headerlink" title="DOM0事件处理程序"></a>DOM0事件处理程序</h4><p>即在JavaScript代码中将事件处理函数赋值给元素的事件属性。</p>
+<h4 id="DOM2-事件处理程序（事件监听器）"><a href="#DOM2-事件处理程序（事件监听器）" class="headerlink" title="DOM2 事件处理程序（事件监听器）"></a>DOM2 事件处理程序（事件监听器）</h4><p>即事件监听器，用<code>elem.addEventListener</code>方法创建。它们都接收三个参数，第一个参数是事件名，如“click”；第二个参数是事件处理程序（函数）；第三个参数是一个对象，可以有以下属性：</p>
+<ol>
+<li>once，为true则会在被触发后自动删除监听器；</li>
+<li>capture，表示事件处理的阶段，默认为false，表示在事件冒泡阶段设置处理程序；true表示在捕获阶段设置事件处理程序。如果只把第三个参数写成true或false，则相当于写成{caputure：true&#x2F;false}。</li>
+<li>passive，为true则处理程序不调用preventDefalut（）方法。</li>
+</ol>
+<p>事件监听器用于解决事件处理器不能给同一个元素添加多个相同事件的问题。</p>
+<p><strong>绑定事件</strong></p>
+<p>obj.addEventListener(type, fn, false)；</p>
+<p>obj是元素节点；</p>
+<p>type即不带on前缀的事件类型，如click，mouseover等。</p>
+<p>fn即要绑定的函数的名字，或者是一个匿名函数。</p>
+<p><strong>解绑事件</strong></p>
+<p>obj.removeEventListener(type, fn, false)；</p>
+<p>obj是元素节点；</p>
+<p>type同上；fn只能是函数名，不能是匿名函数。</p>
+<p>removeEventListener只能移除事件监听器添加的事件，要移除事件处理器可以将事件属性设置为null。</p>
+<p>可以为同一个事件添加多个事件处理程序。多个事件处理程序以添加顺序来触发。</p>
+<p>通过 addEventListener()添加的事件处理程序只能使用 removeEventListener()并传入与添加时同样的参数来移除。这意味着<strong>使用 addEventListener()添加的匿名函数无法移除</strong>。</p>
+<p>大多数情况下，事件处理程序会被添加到事件流的冒泡阶段，主要原因是跨浏览器兼容性好。把事件处理程序注册到捕获阶段通常用于在事件到达其指定目标之前拦截事件。如果不需要拦截，则不要使用事件捕获。这意味这addEventListener方法和removeEventListener方法一般需要指定第三个参数为false。</p>
+<h3 id="event对象"><a href="#event对象" class="headerlink" title="event对象"></a>event对象</h3><p><strong>event对象的属性：</strong></p>
+<p>type：事件类型</p>
+<p>keyCode：键码值（不直接对应按键上的值）</p>
+<p>shiftKey：是否按下shift键</p>
+<p>ctrlKey：是否按下ctrl键</p>
+<p>altKey：是否按下alt键</p>
+<p>clientX&#x2F;clientY：指针事件的指针的相对于窗口的坐标</p>
+<p>每次调用一个事件函数时JavaScript会隐式地将函数的第一个参数传入event对象，常常将这个参数写作e。</p>
+<h4 id="DOM事件对象"><a href="#DOM事件对象" class="headerlink" title="DOM事件对象"></a>DOM事件对象</h4><p>在 DOM 合规的浏览器中，event 对象是传给事件处理程序的唯一参数。不管以哪种方式（DOM0 或 DOM2）指定事件处理程序，都会传入这个 event 对象。在通过 HTML 属性指定的事件处理程序中，同样可以使用变量 event 引用事件对象。</p>
+<p>事件对象包含与特定事件相关的属性和方法。不同的事件生成的事件对象也会包含不同的属性和方法。不过，所有事件对象都会包含下表列出的这些公共属性和方法。 </p>
+<ul>
+<li>bubbles布尔值只读表示事件是否冒泡</li>
+<li>cancelable布尔值只读表示是否可以取消事件的默认行为</li>
+<li>currentTarget元素只读当前事件处理程序所在的元素</li>
+<li>defaultPrevented布尔值只读true表示已经调用preventDefault()方法（DOM3Events中新增）</li>
+<li>detail整数只读事件相关的其他信息</li>
+<li>eventPhase整数只读表示调用事件处理程序的阶段：1代表捕获阶段，2代表到达目标，3代表冒泡阶段</li>
+<li>preventDefault()函数只读用于取消事件的默认行为。只有cancelable为true才可以调用这个方法</li>
+<li>stopImmediatePropagation()函数只读用于取消所有后续事件捕获或事件冒泡，并阻止调用任何后续事件处理程序（DOM3Events中新增）</li>
+<li>stopPropagation()函数只读用于取消所有后续事件捕获或事件冒泡。只有bubbles为true才可以调用这个方法</li>
+<li>target（重要）：只读，引发事件的目标元素，在冒泡过程中不会发生变化。</li>
+<li>trusted布尔值只读true表示事件是由浏览器生成的。false表示事件是开发者通过JavaScript创建的（DOM3Events中新增）</li>
+<li>type字符串只读被触发的事件类型</li>
+<li>ViewAbstractView只读与事件相关的抽象视图。等于事件所发生的window对象</li>
+</ul>
+<p>在事件处理程序内部，this对象始终等于currentTarget的值，在冒泡过程中会发生变化，而target只包含事件的实际目标，在冒泡过程中不会变化。如果事件处理程序直接添加在了意图的目标，则this、currentTarget和target的值是一样的。</p>
+<h3 id="浏览器默认行为"><a href="#浏览器默认行为" class="headerlink" title="浏览器默认行为"></a>浏览器默认行为</h3><p>许多事件会自动触发浏览器执行某些行为。</p>
+<p>例如：</p>
+<ul>
+<li>点击一个链接 —— 触发导航（navigation）到该 URL。</li>
+<li>点击表单的提交按钮 —— 触发提交到服务器的行为。</li>
+<li>在文本上按下鼠标按钮并移动 —— 选中文本。</li>
+</ul>
+<p>如果不想浏览器执行默认行为，可以使用<code>event.preventDefault()</code>方法。或者如果处理程序是用事件属性分配的，也可以直接返回false，同样有效。</p>
+<p>如果默认行为被阻止，那么<code>event.defaultPrevented</code>属性将变成true。</p>
+<p>实例：<br>如果你使用类似于li、button之类的标签来实现导航（没有用a标签），那么用户是无法在上面右键单击显示出“在新窗口中打开链接”的。所以为了处理这个问题的话我们可以在里面使用a标签，同时使用event.preventDefault()或返回false来阻止浏览器默认行为（不用向url发送请求，而是直接导航）。</p>
+<p>或者你也可以利用这个方法在右键单击事件发生时阻止默认行为，从而实现自定义右键菜单。</p>
+<h3 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h3><h4 id="用户界面事件"><a href="#用户界面事件" class="headerlink" title="用户界面事件"></a>用户界面事件</h4><p>load：在window上当页面加载完成后触发，在窗套frameset上当所有窗格frame都加载完成后触发，在img元素上当图片加载完成后触发，在object元素上当相应对象加载完成后触发。</p>
+<p>unload：在window上当页面完全卸载后触发，在窗套上当所有窗格都卸载完成后触发，在object元素上当相应对象卸载完成后触发。</p>
+<p>abort：在object元素上当相应对象加载完成前被用户提前终止下载时触发。</p>
+<p>error：在window上当JavaScript报错时触发，在img元素上当无法加载指定图片时触发，在object元素上当无法加载相应对象时触发，在窗套上当一个或多个窗格无法完成加载时触发。</p>
+<p>select：在文本框（input或textarea)上当用户选择了一个或多个字符时触发。</p>
+<p>resize：在window或窗格上当窗口或窗格被缩放时触发。</p>
+<p>scroll：当用户滚动包含滚动条的元素时在该元素上触发。如果想要某些东西变成不可滚动的，可以在导致滚动的事件上，例如在 pageUp 和 pageDown 的 <code>keydown</code> 事件上，使用 <code>event.preventDefault()</code> 来阻止滚动。（不能通过在 <code>onscroll</code> 监听器中使用 <code>event.preventDefault()</code> 来阻止滚动，因为它会在滚动发生 <strong>之后</strong> 才触发）</p>
+<p>滚动的两个重要特性是：</p>
+<ol>
+<li><strong>滚动是“弹性的”</strong>。在某些浏览器&#x2F;设备中，我们可以在文档的顶端或末端稍微多滚动出一点（超出部分显示的是空白区域，然后文档将自动“弹回”到正常状态）。</li>
+<li><strong>滚动并不精确</strong>。当我们滚动到页面末端时，实际上我们可能距真实的文档末端约 0-50px。</li>
+</ol>
+<p>滚动事件的一个应用是实现“按需”加载图像，当用户滚动到相应位置时才显示图像，以节省流量。</p>
+<h4 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h4><p>onclick：点击</p>
+<p>onmouseover：移入</p>
+<p>onmouseout：移出，当从父元素移入其后代元素中也会触发</p>
+<p>onmouseenter：移入元素（不会在乎是不是后代元素，且不会冒泡）</p>
+<p>onmouseleave：移出元素（不会在乎是不是后代元素，且不会冒泡）</p>
+<p>onmousedown：按下</p>
+<p>onmouseup：松开</p>
+<p>onmousemove：移动</p>
+<p>ondbclick：短时间双击同一元素</p>
+<p>oncontextmenu：右键单击</p>
+<p>click（）方法：自动点击调用该方法的元素。</p>
+<p>点击事件和mousedown&#x2F;up事件都有button属性，里面存储了确切的鼠标按钮信息。</p>
+<table>
+<thead>
+<tr>
+<th align="left">鼠标按键状态</th>
+<th align="left"><code>event.button</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">左键 (主要按键)</td>
+<td align="left">0</td>
+</tr>
+<tr>
+<td align="left">中键 (辅助按键)</td>
+<td align="left">1</td>
+</tr>
+<tr>
+<td align="left">右键 (次要按键)</td>
+<td align="left">2</td>
+</tr>
+<tr>
+<td align="left">X1 键 (后退按键)</td>
+<td align="left">3</td>
+</tr>
+<tr>
+<td align="left">X2 键 (前进按键)</td>
+<td align="left">4</td>
+</tr>
+</tbody></table>
+<p>所有鼠标事件都有存储按下的组合键的属性：</p>
+<ul>
+<li><code>shiftKey</code>：Shift</li>
+<li><code>altKey</code>：Alt（或对于 Mac 是 Opt）</li>
+<li><code>ctrlKey</code>：Ctrl</li>
+<li><code>metaKey</code>：Mac 的 Cmd（不要忘记mac上的是cmd不是ctrl）</li>
+</ul>
+<p>如果这些键被按下，相应的属性值为true。</p>
+<p>所有鼠标事件都有坐标属性：</p>
+<ol>
+<li>相对于窗口的坐标：<code>clientX</code> 和 <code>clientY</code>。</li>
+<li>相对于文档的坐标：<code>pageX</code> 和 <code>pageY</code>。</li>
+</ol>
+<p>mouseover&#x2F;out和mouseenter&#x2F;leave事件还有一个附加属性<code>relatedTarget</code>，表示鼠标来自&#x2F;到的元素。该属性可以为null，表示鼠标来自窗口之外。</p>
+<h5 id="鼠标拖放的实现"><a href="#鼠标拖放的实现" class="headerlink" title="鼠标拖放的实现"></a>鼠标拖放的实现</h5><p>基础的拖放算法如下：</p>
+<ol>
+<li>在被拖动元素的mousedown事件里为元素设置absolute定位和一个很大的z-index属性确保元素在顶部，还要记住按下鼠标时指针相对于元素左上角的位置，当然也可以干点其他的事情；</li>
+<li>在开始拖动之前禁用浏览器默认的拖放行为：在元素的ondragstart事件属性里使用<code>event.preventDefault()</code>；</li>
+<li>在被拖动元素的mousemove事件里改变元素的left&#x2F;top属性来移动它，改变时要注意使得元素与鼠标之间保持着第一步时记住的那个相对位置。为确保元素相对于窗口定位，可以将元素的节点直接移动到body的直接子节点位置。；</li>
+<li>在被拖动元素的mouseup里执行完成拖放后所要做的事，如移除不需要的事件处理程序mousemove和mouseup。</li>
+</ol>
+<p>如果要在拖动过程中检查下面正在经过的是什么元素，可以先设置被拖动元素的hidden属性为true隐藏元素，然后使用document.elementFromPoint(x，y)方法返回给定的窗口相对坐标处嵌套最深的元素。</p>
+<h4 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h4><p>onkeydown：按下</p>
+<p>onkeyup：松开</p>
+<p>这两个事件有一个key属性和keyCode属性还有一个code属性。key属性获取的是输入的字符，keyCode属性获取的是数字形式的按键代码，而code获取的是字母形式的按键代码。按键代码可网上查询。</p>
+<p>如果按下一个键足够长的时间，它就会开始“自动重复”：<code>keydown</code> 会被一次又一次地触发，然后当按键被释放时，我们最终会得到 <code>keyup</code>。因此，有很多 <code>keydown</code> 却只有一个 <code>keyup</code> 是很正常的。</p>
+<p>对于由自动重复触发的事件，<code>event</code> 对象的 <code>event.repeat</code> 属性被设置为 <code>true</code>。</p>
+<p>默认行为各不相同，因为键盘可能会触发很多可能的东西。</p>
+<p>例如：</p>
+<ul>
+<li>出现在屏幕上的一个字符（最明显的结果）。</li>
+<li>一个字符被删除（Delete 键）。</li>
+<li>滚动页面（PageDown 键）。</li>
+<li>浏览器打开“保存页面”对话框（Ctrl+S）</li>
+</ul>
+<p>阻止对 <code>keydown</code> 的默认行为可以取消大多数的行为，但基于 OS 的特殊按键除外。例如，在 Windows 中，Alt+F4 会关闭当前浏览器窗口。并且无法通过在 JavaScript 中阻止默认行为来阻止它。</p>
+<p>还可以检测两个键同时按下的事件，例如：只需要在keydown事件监听器中判断<code>e.keyCode === 13 &amp;&amp; e.ctrlKey</code>即可判断Ctrl+Enter键。</p>
+<h4 id="表单事件"><a href="#表单事件" class="headerlink" title="表单事件"></a>表单事件</h4><p>onfocus：获得焦点</p>
+<p>onblur：失去焦点</p>
+<p>onselect：单行&#x2F;多行文本框内容被选中</p>
+<p>onchange：单选框&#x2F;复选框&#x2F;下拉列表中的选项被选择</p>
+<p>focus（）方法：让元素获取焦点</p>
+<p>select（）方法：让文本框中文本被全选</p>
+<p>对于select元素，可以用obj.options[n]来获取某一个列表项，以及obj.selectedIndex来获取被选择的这个列表项的下标。</p>
+<h4 id="编辑事件"><a href="#编辑事件" class="headerlink" title="编辑事件"></a>编辑事件</h4><p>oncopy：对其赋值一个返回布尔值的函数，决定网页内容是否可以被复制</p>
+<p>onselectstart：对其赋值一个返回布尔值的函数，决定网页内容是否可以被选取</p>
+<p>oncontextmenu：对其赋值一个返回布尔值的函数，决定鼠标右键菜单是否可以使用</p>
+<h4 id="页面事件"><a href="#页面事件" class="headerlink" title="页面事件"></a>页面事件</h4><p>HTML 页面的生命周期包含四个重要事件：</p>
+<ul>
+<li><code>DOMContentLoaded</code> —— 浏览器已完全加载 HTML，并构建了 DOM 树，但像 <code>&lt;img&gt;</code> 和样式表之类的外部资源可能尚未加载完成。</li>
+<li><code>load</code> —— 浏览器不仅加载完成了 HTML，还加载完成了所有外部资源：图片，样式等。</li>
+<li><code>beforeunload/unload</code> —— 当用户正在离开页面时。</li>
+</ul>
+<p>每个事件都是有用的：</p>
+<ul>
+<li><code>DOMContentLoaded</code> 事件 —— DOM 已经就绪，因此处理程序可以查找 DOM 节点，并初始化接口。</li>
+<li><code>load</code> 事件 —— 外部资源已加载完成，样式已被应用，图片大小也已知了。</li>
+<li><code>beforeunload</code> 事件 —— 用户正在离开：我们可以检查用户是否保存了更改，并询问他是否真的要离开。</li>
+<li><code>unload</code> 事件 —— 用户几乎已经离开了，但是我们仍然可以启动一些操作，例如发送统计数据。</li>
+</ul>
+<p>DOMContentLoaded事件必须使用addEventListener来捕获它，不能使用on&lt; event &gt;。</p>
+<p>可以在onbeforeunload（）事件中return false或者调用event.preventDefault()来取消该事件，这样用户在刷新页面或离开页面时浏览器会出现自带的提示消息询问用户是否确定重新加载网站或离开。</p>
+<p><code>document.readyState</code>属性可以提供当前加载状态的信息：</p>
+<ul>
+<li>loading——文档正在被加载。</li>
+<li>interactive——文档被全部读取，与 <code>DOMContentLoaded</code> 几乎同时发生，但是在 <code>DOMContentLoaded</code> 之前发生。</li>
+<li>complete——文档已全部被读取且所有外部资源已加载完成，与 <code>window.onload</code> 几乎同时发生，但是在 <code>window.onload</code> 之前发生。</li>
+</ul>
+<p>当readyState发生改变的时候会触发<code>readyStatechange</code>事件。</p>
+<h5 id="脚本加载：async，defer"><a href="#脚本加载：async，defer" class="headerlink" title="脚本加载：async，defer"></a>脚本加载：async，defer</h5><p>浏览器加载HTML时如果遇到script脚本，会阻塞DOM的构建，等待脚本加载完成后才会接着构建DOM树。为了防止脚本加载阻塞页面渲染造成延迟或卡顿，可以将script标签放在body的底部。不过这种方法的问题在于浏览器只有下载了完整的HTML后才会注意到该脚本，对于很长的HTML文档来说可能会造成延迟。</p>
+<p>script标签的async和defer属性可以解决这个问题。defer属性使得脚本会后台下载不会阻塞页面渲染，并等待文档加载、解析完成之后、DOMContentLoaded事件之前执行。defer属性常用于那些在文档中的顺序比较重要的时候，如需要整个DOM的脚本。</p>
+<p>async属性也会使得脚本后台加载，不会阻塞页面渲染，且加载完就执行，不会等待页面中的其他任何部分。async属性常用于那些在文档中的顺序完全不重要的脚本，如第三方脚本。</p>
+<p>JavaScript操作这两个属性的方法是将这两个属性值设为true或false。</p>
+<h4 id="资源加载事件"><a href="#资源加载事件" class="headerlink" title="资源加载事件"></a>资源加载事件</h4><p>基本上所有具有外部src的资源都有load和error事件，如脚本、图片样式等。</p>
+<p>load事件会在成功加载时触发，error事件会在加载失败时触发。唯一的例外是iframe标签，无论是加载成功还是加载失败都会触发load事件。</p>
+<p>如果我们动态地创建了一个脚本元素，那么需要等待它加载完成后才能调用它里面声明的函数。这时就可以将函数调用放在srcipt元素的load事件处理程序里面。</p>
+<p>注意这里的error事件只是跟踪资源的加载情况，如果想要跟踪脚本内部的编程错误，需要使用<code>window.onerror</code>全局处理程序。另外如果脚本是来自另一个域的，我们是无法获取error的详细信息的，这是由跨源策略（CORS）限制的。</p>
+<p>如果我们需要error的详细信息，可以为脚本元素添加crossorigin属性，取值可以在 <code>&quot;anonymous&quot;</code>（不会发送 cookie，需要一个服务器端的 header）和 <code>&quot;use-credentials&quot;</code>（会发送 cookie，需要两个服务器端的 header）之间进行选择。如果我们不关心 cookie，那么可以选择 <code>&quot;anonymous&quot;</code>。</p>
+<h2 id="表单脚本"><a href="#表单脚本" class="headerlink" title="表单脚本"></a>表单脚本</h2><h3 id="表单属性和方法"><a href="#表单属性和方法" class="headerlink" title="表单属性和方法"></a>表单属性和方法</h3><p>可以用document.forms来获取文档中所有的form元素。如果一个form元素的name属性为”name”，那么可以使用document.forms.name来获取到该表单，或者用中括号和索引像数组那样获取到指定位置的表单。</p>
+<p>表单中的元素可以通过form.elements来获取到。对name属性为”name”的表单元素，可以通过form.elements.name或form.elements[name]来获取，和上面一样。像单选按钮等经常会出现一组相同name属性的元素，这时获取到的就是这些元素的集合。</p>
+<p>一个表单内会有一个或多个 <code>&lt;fieldset&gt;</code> 元素。它们也具有 <code>elements</code> 属性，该属性列出了 <code>&lt;fieldset&gt;</code> 中的表单控件。</p>
+<p>还有一个更简短的表示方式：我们可以通过 <code>form[index/name]</code> 来访问元素。换句话说，我们可以将 <code>form.elements.login</code> 写成 <code>form.login</code>。</p>
+<p>这也有效，但是会有一个小问题：如果我们访问一个元素，然后修改它的 <code>name</code>，之后它仍然可以被通过旧的 <code>name</code> 访问到（当然也能通过新的 <code>name</code> 访问）。</p>
+<p>对于任何元素，其对应的表单都可以通过 <code>element.form</code> 访问到。</p>
+<h3 id="表单控件"><a href="#表单控件" class="headerlink" title="表单控件"></a>表单控件</h3><p>select元素的options属性表示option子元素的集合；</p>
+<p>select元素的selectedIndex属性表示当前所选择的option子元素的编号。</p>
+<p>为select元素设置value属性的三种方式：</p>
+<ol>
+<li>找到对应的 <code>&lt;option&gt;</code> 元素，并将 <code>option.selected</code> 设置为 <code>true</code>。</li>
+<li>将 <code>select.value</code> 设置为对应的 <code>value</code>。</li>
+<li>将 <code>select.selectedIndex</code> 设置为对应 <code>&lt;option&gt;</code> 的编号。</li>
+</ol>
+<p>方法2和3往往更方便。方法1往往用在如果select元素有一个multiple属性的时候，这时使用方法1来为select设置value。</p>
+<p>有一个比较少用的简单的创建option元素的语法：<code>let option = new Option(text, value, defaultSelected,selected)</code></p>
+<p>option元素的selected属性表示是否被选择；</p>
+<p>option元素的index属性表示该项在select父元素中的编号；</p>
+<p>option元素的text属性表示该项的文本内容。</p>
+<h3 id="获得焦点与失去焦点：focus-x2F-blur"><a href="#获得焦点与失去焦点：focus-x2F-blur" class="headerlink" title="获得焦点与失去焦点：focus&#x2F;blur"></a>获得焦点与失去焦点：focus&#x2F;blur</h3><p>聚焦到一个元素通常意味着：“准备在此处接受数据”，所以，这正是我们可以运行代码以初始化所需功能的时刻。</p>
+<p>失去焦点通常意味着：“数据已经输入完成”，所以我们可以运行代码来检查它，甚至可以将其保存到服务器上，或进行其他操作。</p>
+<p>例如，可以在失去焦点时触发的blur事件里面检查输入的字段是否合法，不合法则显示error信息；在获得焦点的focus事件里面移除之前显示的error信息。</p>
+<p><code>elem.focus()</code> 和 <code>elem.blur()</code> 方法可以设置和移除元素上的焦点。</p>
+<p>JavaScript造成的焦点丢失：</p>
+<ol>
+<li>alert函数执行时会将页面的焦点移到它自己身上，导致元素失去焦点触发blur事件。取消alert对话框后元素的焦点会回来。</li>
+<li>如果一个元素被从DOM中移除，也会导致焦点丢失触发blur事件。即使重新插入焦点也不会回来。</li>
+</ol>
+<p>使得默认不可聚焦的元素变成可聚焦的：在其HTML标签上加一个属性：tabindex（也可以使用js的<code>elem.tabIndex</code>来添加属性），其值为一个数字1，2，3，4…，表示使用tab键在页面上的可聚焦元素之间切换时的顺序。</p>
+<p>这里有两个特殊的值：</p>
+<ul>
+<li><p><code>tabindex=&quot;0&quot;</code> 会使该元素被与那些不具有 <code>tabindex</code> 的元素放在一起。也就是说，当我们切换元素时，具有 <code>tabindex=&quot;0&quot;</code> 的元素将排在那些具有 <code>tabindex ≥ 1</code> 的元素的后面。</p>
+<p>通常，它用于使元素具有焦点，但是保留默认的切换顺序。使元素成为与 <code>&lt;input&gt;</code> 一样的表单的一部分。</p>
+</li>
+<li><p><code>tabindex=&quot;-1&quot;</code> 只允许以编程的方式聚焦于元素。Tab 键会忽略这样的元素，但是 <code>elem.focus()</code> 有效。</p>
+</li>
+</ul>
+<p>focus和blur事件不会向上冒泡，因此无法直接使用事件委托。有两个解决方法：</p>
+<ol>
+<li><p><code>focus/blur</code> 不会向上冒泡，但会在捕获阶段向下传播。可以将处理程序设置在父元素上，并放在捕获阶段执行，即使用addEventListener添加事件处理程序，并将第三个参数设置为true。</p>
+</li>
+<li><p>可以使用 <code>focusin</code> 和 <code>focusout</code> 事件 —— 与 <code>focus/blur</code> 事件完全一样，只是它们会冒泡。</p>
+<p>值得注意的是，必须使用 <code>elem.addEventListener</code> 来分配它们，而不是 <code>on&lt;event&gt;</code>。</p>
+</li>
+</ol>
+<p>可以通过 <code>document.activeElement</code> 来获取当前所聚焦的元素。</p>
+<h3 id="数据更新伴随事件"><a href="#数据更新伴随事件" class="headerlink" title="数据更新伴随事件"></a>数据更新伴随事件</h3><h4 id="change事件"><a href="#change事件" class="headerlink" title="change事件"></a>change事件</h4><p>当元素更改完成时，将触发 <code>change</code> 事件。</p>
+<p>对于文本输入框，当其被编辑后失去焦点时，就会触发 <code>change</code> 事件。</p>
+<p>对于其它元素：<code>select</code>，<code>input type=checkbox/radio</code>，会在选项选中状态更改后立即触发 <code>change</code> 事件。</p>
+<h4 id="input事件"><a href="#input事件" class="headerlink" title="input事件"></a>input事件</h4><p>每当用户对输入值进行修改后，就会触发 <code>input</code> 事件。</p>
+<p>该事件无法使用<code>event.preventDefault()</code>方法来阻止，因为它会在输入值被修改之后才执行。</p>
+<h4 id="cut-x2F-copy-x2F-paste事件"><a href="#cut-x2F-copy-x2F-paste事件" class="headerlink" title="cut&#x2F;copy&#x2F;paste事件"></a>cut&#x2F;copy&#x2F;paste事件</h4><p>当剪切&#x2F;拷贝&#x2F;粘贴一个值的时候触发这些事件。可以使用<code>event.preventDefault()</code>来阻止事件发生。即实际的剪切&#x2F;拷贝&#x2F;粘贴操作会在这之后发生。</p>
+<p>安全限制：剪贴板是操作系统级别的东西，用户可能会在各种应用程序之间切换，复制&#x2F;粘贴不同的内容，而浏览器页面不应该能访问这些内容。因此，大多数浏览器仅允许在某些用户操作范围内（例如复制&#x2F;粘贴等）对剪切板进行读&#x2F;写访问。</p>
+<h3 id="表单提交事件"><a href="#表单提交事件" class="headerlink" title="表单提交事件"></a>表单提交事件</h3><p>提交表单时会触发submit事件，可以在这个事件里在发送表单之前检查表单内容或者中止提交并使用JavaScript处理表单。</p>
+<p><code>form.submit()</code>方法可以手动提交表单，此时不会触发submit事件。</p>
+<p>提交表单主要有两种方式：</p>
+<ol>
+<li>第一种：点击 <code>&lt;input type=&quot;submit&quot;&gt;</code> 或 <code>&lt;input type=&quot;image&quot;&gt;</code>（后者就是把图片当作提交按钮）。</li>
+<li>第二种 ： <code>input</code> 字段中按下 Enter 键。（虽然没有点击按钮，但是也会在<code>&lt;input type=&quot;submit&quot;&gt;</code>上触发一次click事件）</li>
+</ol>
+<p>这两个行为都会触发表单的 <code>submit</code> 事件。处理程序可以检查数据，如果有错误，就显示出来，并调用 <code>event.preventDefault()</code>，这样表单就不会被发送到服务器了。</p>
+<h2 id="JavaScript-Web-API"><a href="#JavaScript-Web-API" class="headerlink" title="JavaScript  Web API"></a>JavaScript  Web API</h2><h3 id="ArrayBuffer"><a href="#ArrayBuffer" class="headerlink" title="ArrayBuffer"></a>ArrayBuffer</h3><h4 id="ArrayBuffer对象与视图对象"><a href="#ArrayBuffer对象与视图对象" class="headerlink" title="ArrayBuffer对象与视图对象"></a>ArrayBuffer对象与视图对象</h4><p>JavaScript有多种二进制数据格式，基本的是ArrayBuffer，它是对固定长度的连续内存空间的引用。</p>
+<p>创建ArrayBuffer对象：<code>let buffer = new ArrayBuffer(bytelength)</code>，参数表示创建的对象占用内存空间的字节（B）数。创建之后会用0来预填充每个字节。</p>
+<p>读取ArrayBuffer对象的字节长度：<code>buffer.bytelength</code>。</p>
+<p>如果要访问单个字节，需要使用另一个视图对象。视图对象有如下几种：</p>
+<ul>
+<li><strong><code>Uint8Array</code></strong> —— 将 <code>ArrayBuffer</code> 中的每个字节视为 0 到 255 之间的单个数字（每个字节是 8 位，因此只能容纳那么多）。这称为 “8 位无符号整数”。</li>
+<li><strong><code>Uint16Array</code></strong> —— 将每 2 个字节视为一个 0 到 65535 之间的整数。这称为 “16 位无符号整数”。</li>
+<li><strong><code>Uint32Array</code></strong> —— 将每 4 个字节视为一个 0 到 4294967295 之间的整数。这称为 “32 位无符号整数”。</li>
+<li><strong><code>Float64Array</code></strong> —— 将每 8 个字节视为一个 <code>5.0x10-324</code> 到 <code>1.8x10308</code> 之间的浮点数。</li>
+</ul>
+<p>简单来说如果一个ArrayBuffer对象的bytelength为N，且假设N为8的倍数。那么Uint8Array就是将该对象看作N份，每份是一个0-255的整数，占一个字节；Uint16Array将该对象看作N&#x2F;2份，每份是一个0-65535的整数，占两个字节；Uint32Array将该对象看作N&#x2F;4份，每份是一个0-4294967295的整数，占四个字节；Float64Array将该对象看作N&#x2F;8份，每份是一个5x10^-324^-1.8x10^308^的浮点数，占8个字节。</p>
+<p>使用视图对象来解释ArrayBuffer对象：<code>let view = new Uint32Array(buffer)</code></p>
+<p>该视图对象有几个属性：</p>
+<ul>
+<li>BYTES_PER_ELEMENT：常量，表示每份几个字节</li>
+<li>length：表示视图对象的长度，或者说将ArrayBuffer对象看作了几份</li>
+<li>bytelength：与ArrayBuffer对象的bytelength相同。</li>
+</ul>
+<p>使用视图对象向ArrayBuffer对象中写入值：<code>view[0] = 123456</code>（写入的值需要在每份所能表示的范围内，如果值超出范围不会报错，但是会切除高位上多余的位而保留低位，除了Uint8ClampedArray会将高于&#x2F;低于范围的数字都保存为255&#x2F;0）。</p>
+<p>使用视图对象遍历ArrayBuffer对象：用for-of循环遍历视图对象即可。</p>
+<h4 id="TypedArray类型化数组"><a href="#TypedArray类型化数组" class="headerlink" title="TypedArray类型化数组"></a>TypedArray类型化数组</h4><p>上面的那些视图对象的通用术语叫做TypedArray，即类型化数组。注意，不是说JavaScript里有一个叫TypedArray的构造器。</p>
+<p>类型化数组总共有这些：</p>
+<ul>
+<li><code>Uint8Array</code>，<code>Uint16Array</code>，<code>Uint32Array</code>—— 用于 8、16 和 32 位的整数。<ul>
+<li><code>Uint8ClampedArray</code> —— 用于 8 位整数，在赋值时便“固定“其值。</li>
+</ul>
+</li>
+<li><code>Int8Array</code>，<code>Int16Array</code>，<code>Int32Array</code> —— 用于有符号整数（可以为负数）。</li>
+<li><code>Float32Array</code>，<code>Float64Array</code> —— 用于 32 位和 64 位的有符号浮点数</li>
+</ul>
+<p>类型化数组的构造器参数有五种：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">TypedArray</span>(buffer, [byteOffset], [length]);</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">TypedArray</span>(object);</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">TypedArray</span>(typedArray);</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">TypedArray</span>(length);</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">TypedArray</span>();</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>如果给定的是 <code>ArrayBuffer</code> 参数，则会在其上创建视图。我们已经用过该语法了。</p>
+<p>可选，我们可以给定起始位置 <code>byteOffset</code>（默认为 0）以及 <code>length</code>（默认至 buffer 的末尾），这样视图将仅涵盖 <code>buffer</code> 的一部分。</p>
+</li>
+<li><p>如果给定的是 <code>Array</code>，或任何类数组对象，则会创建一个相同长度的类型化数组，并复制其内容。</p>
+<p>我们可以使用它来预填充数组的数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="title function_">alert</span>( arr.<span class="property">length</span> ); <span class="comment">// 4，创建了相同长度的二进制数组</span></span><br><span class="line"><span class="title function_">alert</span>( arr[<span class="number">1</span>] ); <span class="comment">// 1，用给定值填充了 4 个字节（无符号 8 位整数）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果给定的是另一个 <code>TypedArray</code>，也是如此：创建一个相同长度的类型化数组，并复制其内容。如果需要的话，数据在此过程中会被转换为新的类型。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr16 = <span class="keyword">new</span> <span class="title class_">Uint16Array</span>([<span class="number">1</span>, <span class="number">1000</span>]);</span><br><span class="line"><span class="keyword">let</span> arr8 = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>(arr16);</span><br><span class="line"><span class="title function_">alert</span>( arr8[<span class="number">0</span>] ); <span class="comment">// 1</span></span><br><span class="line"><span class="title function_">alert</span>( arr8[<span class="number">1</span>] ); <span class="comment">// 232，试图复制 1000，但无法将 1000 放进 8 位字节中（详述见下文）。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对于数字参数 <code>length</code> —— 创建类型化数组以包含这么多元素。它的字节长度将是 <code>length</code> 乘以单个 <code>TypedArray.BYTES_PER_ELEMENT</code> 中的字节数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = <span class="keyword">new</span> <span class="title class_">Uint16Array</span>(<span class="number">4</span>); <span class="comment">// 为 4 个整数创建类型化数组</span></span><br><span class="line"><span class="title function_">alert</span>( <span class="title class_">Uint16Array</span>.<span class="property">BYTES_PER_ELEMENT</span> ); <span class="comment">// 每个整数 2 个字节</span></span><br><span class="line"><span class="title function_">alert</span>( arr.<span class="property">byteLength</span> ); <span class="comment">// 8（字节中的大小）</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不带参数的情况下，创建长度为零的类型化数组。</p>
+</li>
+</ol>
+<p>我们可以直接创建一个 <code>TypedArray</code>，而无需提及 <code>ArrayBuffer</code>。但是，视图离不开底层的 <code>ArrayBuffer</code>，因此，除第一种情况（已提供 <code>ArrayBuffer</code>）外，其他所有情况都会自动创建 <code>ArrayBuffer</code>。</p>
+<p>如要访问 <code>ArrayBuffer</code>，可以用以下属性：</p>
+<ul>
+<li><code>typeArray.buffer</code> —— 引用 <code>ArrayBuffer</code>。</li>
+<li><code>typeArray.byteLength</code> —— <code>ArrayBuffer</code> 的长度。</li>
+</ul>
+<p>这样的话，我们就可以自由地从用一种视图解释ArrayBuffer对象转换到用另一种视图解释了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr8 = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="keyword">let</span> arr16 = <span class="keyword">new</span> <span class="title class_">Uint16Array</span>(arr8.<span class="property">buffer</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="TypedArray的方法"><a href="#TypedArray的方法" class="headerlink" title="TypedArray的方法"></a>TypedArray的方法</h5><p>TypedArray有一些数组类型的方法，除了splice方法和concat方法没有之外，其他的基本上都有。</p>
+<p>还有两种附加的方法：</p>
+<ul>
+<li><code>arr.set(fromArr, [offset])</code> 从 <code>offset</code>（默认为 0）开始，将 <code>fromArr</code> 中的所有元素复制到 <code>arr</code>。</li>
+<li><code>arr.subarray([begin, end])</code> 创建一个从 <code>begin</code> 到 <code>end</code>（不包括）相同类型的新视图，类似于切取子数组。</li>
+</ul>
+<h4 id="DataView类型"><a href="#DataView类型" class="headerlink" title="DataView类型"></a>DataView类型</h4><p>DataView 是在 <code>ArrayBuffer</code> 上的一种特殊的超灵活“未类型化”视图。它允许以任何格式访问任何偏移量（offset）的数据。</p>
+<p>对于类型化的数组，构造器决定了其格式。通过 <code>DataView</code>，我们可以使用 <code>.getUint8(i)</code> 或 <code>.getUint16(i)</code> 之类的方法访问数据。我们在调用方法时选择格式，而不是在构造的时候。</p>
+<p>创建DataView对象：<code>new DataView(buffer, [byteOffset], [byteLength])</code>，buffer是ArrayBuffer对象；byteOffset是视图的起始字节位置，默认为0；byteLength是视图的字节长度，默认到buffer的末尾。</p>
+<p>当我们在同一buffer里存储了不同格式的数据时DataView就非常有用。</p>
+<h3 id="TextDecoder与TextEncoder"><a href="#TextDecoder与TextEncoder" class="headerlink" title="TextDecoder与TextEncoder"></a>TextDecoder与TextEncoder</h3><h4 id="TextDecoder"><a href="#TextDecoder" class="headerlink" title="TextDecoder"></a>TextDecoder</h4><p>二进制数据也可以用来表示一个字符串。JavaScript的TextDecoder对象在给定了缓冲区buffer和编码格式encoding的情况下可以将这样的二进制数据读取到实际的JavaScript字符串中。</p>
+<p>创建TextDecoder对象：<code>let decoder = new TextDecoder([label],[options])</code>，其中label为编码格式，默认为UTF-8；options为一个对象，其拥有两个属性：布尔值fatal，为true表示无法解码并抛出异常，为false表示无法解码但用字符\uFFFD来替换无效字符（默认）；布尔值ignoreBOM，为true表示使用BOM，很少使用。</p>
+<p>用TextDecoder对象解码：<code>let str = decoder.decode([input], [options])</code>，其中input为要解码的buffer对象，options为一个对象，有一个stream属性。</p>
+<p>解码实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> decoder = <span class="keyword">new</span> <span class="title class_">TextDecoder</span>();</span><br><span class="line"><span class="keyword">let</span> buffer = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>([<span class="number">72</span>, <span class="number">101</span>, <span class="number">108</span>, <span class="number">108</span>, <span class="number">111</span>]);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(decoder.<span class="title function_">decode</span>(buffer)); <span class="comment">//Hello</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以通过创建子数组视图来解码缓冲区的一部分：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> uint8Array = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>([<span class="number">0</span>, <span class="number">72</span>, <span class="number">101</span>, <span class="number">108</span>, <span class="number">108</span>, <span class="number">111</span>, <span class="number">0</span>]);</span><br><span class="line"><span class="comment">//创建子数组视图对象</span></span><br><span class="line"><span class="keyword">let</span> binaryString = uint8Array.<span class="title function_">subarray</span>(<span class="number">1</span>, -<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>( <span class="keyword">new</span> <span class="title class_">TextDecoder</span>().<span class="title function_">decode</span>(binaryString) ); <span class="comment">// Hello</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="TextEncoder"><a href="#TextEncoder" class="headerlink" title="TextEncoder"></a>TextEncoder</h4><p>TextEncoder与TextDecoder相反，它将字符串编码为二进制数据格式。</p>
+<p>创建TextEncoder对象：<code>let encoder = new TextEncoder()</code>，它只支持UTF-8格式编码。</p>
+<p>TextEncoder对象有两个方法：</p>
+<ol>
+<li>encode（str），将字符串str编码成其相应的Uint8Array对象。</li>
+<li>encodeInto（str，destination），将字符串str编码到目标destination中，destination是一个Uint8Array对象。</li>
+</ol>
+<h3 id="Blob"><a href="#Blob" class="headerlink" title="Blob"></a>Blob</h3><p>ArrayBuffer和视图都是JavaScript语言的一部分，而Blob对象是浏览器中的一个高级对象。</p>
+<p>创建Blob对象：<code>new Blob(blobParts, options)</code>，其中blobParts是<code>Blob</code>&#x2F;<code>BufferSource</code>&#x2F;<code>String</code> 类型的值的数组。而<code>options</code>是一个对象，拥有两个属性：</p>
+<ul>
+<li><strong><code>type</code></strong> —— <code>Blob</code> 类型，通常是 MIME 类型，例如 <code>image/png</code>。</li>
+<li><strong><code>endings</code></strong> —— 是否转换换行符，使 <code>Blob</code> 对应于当前操作系统的换行符（<code>\r\n</code> 或 <code>\n</code>）。默认为 <code>&quot;transparent&quot;</code>（啥也不做），不过也可以是 <code>&quot;native&quot;</code>（转换）。</li>
+</ul>
+<p>Blob对象有一个slice方法可以用来提取Blob片段：<code>blob.slice(byteStart, byteEnd, contentType)</code>，三个参数分别为起始字节位置（默认为0，可以为负数）、最后一个字节位置（默认为最后，可以为负数）、新blob对象的type（默认与源blob相同）。</p>
+<p>Blob对象不可更改，但是可以通过slice方法提取多个片段组合形成新的Blob对象。</p>
+<h4 id="Blob用作URL"><a href="#Blob用作URL" class="headerlink" title="Blob用作URL"></a>Blob用作URL</h4><p>使用<code>URL.createObjectURL()</code>方法可以为一个Blob对象创建一个唯一的URL，形式为<code>blob:&lt;origin&gt;/&lt;uuid&gt;</code>。该方法接收一个参数，即要生成url的Blob对象。利用这个方法可以实现下载Blob对象，在a标签上添加download属性，再将其href属性设置为<code>URL.createObjectURL()</code>方法生成的链接，点击即可下载。</p>
+<p>该方法生成的链接只有当前文档打开的状态下才有效。</p>
+<p>另外，如果我们这样为Blob对象创建了一个URL，那么<strong>即使我们不再需要该 <code>Blob</code> 了，它也会被挂在内存中。</strong></p>
+<p><code>URL.revokeObjectURL(url)</code> 从内部映射中移除引用，因此可以用来删除 <code>Blob</code> （如果没有其他引用的话），并释放内存。</p>
+<h4 id="Blob转换为base64"><a href="#Blob转换为base64" class="headerlink" title="Blob转换为base64"></a>Blob转换为base64</h4><p>base64编码将二进制数据表示为一个0-64的ASCII码字符串，将它用在链接中（如src、href）格式如下：<code>data:[&lt;mediatype&gt;][;base64],&lt;data&gt;</code>。</p>
+<p>将Blob对象转换为base64编码：<code>new FileReader().readAsDataURL(blob)</code>。</p>
+<p><strong>使用URL.createObjectURL(blob)与base64两种为Blob对象生成链接的比较：</strong></p>
+<p>前者需要撤销防止占用内存，但是可以直接访问Blob对象而无需编码解码；后者无需撤销，但是对于大的Blob对象可能会消耗内存和性能。</p>
+<h4 id="将图像转换为Blob"><a href="#将图像转换为Blob" class="headerlink" title="将图像转换为Blob"></a>将图像转换为Blob</h4><p>图像转Blob是通过canvas技术实现的：<code>cxt.toBlob(callback, format, quailty)</code>。</p>
+<p>这是将canvas画布上的内容转换为Blob对象。</p>
+<h4 id="Blob转换为ArrayBuffer"><a href="#Blob转换为ArrayBuffer" class="headerlink" title="Blob转换为ArrayBuffer"></a>Blob转换为ArrayBuffer</h4><p>使用Blob对象的<code>arrayBuffer()</code>方法即可。</p>
+<h4 id="Blob转换为stream"><a href="#Blob转换为stream" class="headerlink" title="Blob转换为stream"></a>Blob转换为stream</h4><p>对于超过2GB的Blob对象，可以转换为stream来处理。stream对象可以让我们逐段读取或写入。</p>
+<p>从Blob中获得可读流：<code>const stream = blob.stream().getReader()</code></p>
+<p>逐段读取stream示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从 blob 获取可读流（readableStream）</span></span><br><span class="line"><span class="keyword">const</span> readableStream = blob.<span class="title function_">stream</span>();</span><br><span class="line"><span class="keyword">const</span> stream = readableStream.<span class="title function_">getReader</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">  <span class="comment">// 对于每次迭代：data 是下一个 blob 数据片段</span></span><br><span class="line">  <span class="keyword">let</span> &#123; done, data &#125; = <span class="keyword">await</span> stream.<span class="title function_">read</span>();</span><br><span class="line">  <span class="keyword">if</span> (done) &#123;</span><br><span class="line">    <span class="comment">// 读取完毕，stream 里已经没有数据了</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;all blob processed.&#x27;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 对刚从 blob 中读取的数据片段做一些处理</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="File-API"><a href="#File-API" class="headerlink" title="File API"></a>File API</h3><h4 id="File类型"><a href="#File类型" class="headerlink" title="File类型"></a>File类型</h4><p>FileAPI仍然以表单中的文件输入字段为基础，但是增加了直接访问文件信息的能力。HTML5在DOM上为文件输入元素添加了files集合。当用户在文件字段中选择一个或多个文件时，这个files集合中会包含一组File对象，表示被选中的文件。每个File对象都有一些只读属性。</p>
+<blockquote>
+<p>由于files是集合，所以可以用obj.files[i]的方法获取其中的File对象。obj是file类型的input元素。</p>
+</blockquote>
+<p>name：本地系统中的文件名。</p>
+<p>size：以字节计的文件大小。</p>
+<p>type：包含文件MIME类型的字符串。</p>
+<p>lastModifiedDate：表示文件最后修改时间的字符串。这个属性只有Chome实现了</p>
+<h4 id="FileReader类型"><a href="#FileReader类型" class="headerlink" title="FileReader类型"></a>FileReader类型</h4><p>FileReader 类型提供了几个读取文件数据的方法。</p>
+<ul>
+<li>readAsText(file,encoding)：从文件中读取纯文本内容并保存在result属性中。第二个参数表示编码，是可选的。</li>
+<li>readAsDataURL(file)：读取文件并将内容的数据URI保存在result属性中。</li>
+<li>readAsBinaryString(file)：读取文件并将每个字符的二进制数据保存在result属性中。</li>
+<li>readAsArrayBuffer(file)：读取文件并将文件内容以ArrayBuffer形式保存在result属性。</li>
+</ul>
+<p>这些读取数据的方法为处理文件数据提供了极大的灵活性。例如，为了向用户显示图片，可以将图片读取为数据URI，而为了解析文件内容，可以将文件读取为文本。</p>
+<p>因为这些读取方法是异步的，所以每个FileReader会发布几个事件，其中3个最有用的事件是progress、error和load，分别表示还有更多数据、发生了错误和读取完成。</p>
+<p>progress事件每50毫秒就会触发一次，其与XHR的progress事件具有相同的信息：lengthComputable、loaded和total。此外，在progress事件中可以读取FileReader的result属性，即使其中尚未包含全部数据。</p>
+<p>error事件会在由于某种原因无法读取文件时触发。触发error事件时，FileReader的error属性会包含错误信息。这个属性是一个对象，只包含一个属性：code。这个错误码的值可能是1（未找到文件）、2（安全错误）、3（读取被中断）、4（文件不可读）或5（编码错误）。</p>
+<p>load事件会在文件成功加载后触发。如果error事件被触发，则不会再触发load事件。</p>
+<p>如果想提前结束文件读取，则可以在过程中调用abort()方法，从而触发abort事件。在load、error和abort事件触发后，还会触发loadend事件。loadend事件表示在上述3种情况下，所有读取操作都已经结束。</p>
+<p>readAsText()和readAsDataURL()方法已经得到了所有主流浏览器支持</p>
+<h4 id="读取拖放文件"><a href="#读取拖放文件" class="headerlink" title="读取拖放文件"></a>读取拖放文件</h4><p>在页面上创建放置目标后，可以从桌面上把文件拖动并放到放置目标。这样会像拖放图片或链接一样触发drop事件。被放置的文件可以通过事件的event.dataTransfer.files属性读到，这个属性保存着一组File对象，就像文本输入字段一样。</p>
+<p>与后面要介绍的拖放的例子一样，必须取消dragenter、dragover和drop的默认行为。在drop事件处理程序中，可以通过event.dataTransfer.files读到文件，此时可以获取文件的相关信息。</p>
+<h3 id="原生拖放"><a href="#原生拖放" class="headerlink" title="原生拖放"></a>原生拖放</h3><h4 id="拖放事件"><a href="#拖放事件" class="headerlink" title="拖放事件"></a>拖放事件</h4><p>在某个元素被拖动时，会（按顺序）触发以下事件：</p>
+<p>(1)dragstart</p>
+<p>(2)drag</p>
+<p>(3)dragend</p>
+<p>在按住鼠标键不放并开始移动鼠标的那一刻，被拖动元素上会触发dragstart事件。此时光标会变成非放置符号（圆环中间一条斜杠），表示元素不能放到自身上。</p>
+<p>dragstart事件触发后，只要目标还被拖动就会持续触发drag事件。这个事件类似于mousemove，即随着鼠标移动而不断触发。</p>
+<p>当拖动停止时（把元素放到有效或无效的放置目标上），会触发dragend事件。</p>
+<p>所有这3个事件的目标都是被拖动的元素。大多数浏览器拖动开始后会创建元素的一个半透明副本，始终跟随在光标下方。</p>
+<p>在把元素拖动到一个有效的放置目标上时，会依次触发以下事件：</p>
+<p>(1)dragenter</p>
+<p>(2)dragover</p>
+<p>(3)dragleave或drop</p>
+<p>只要一把元素拖动到放置目标上，dragenter事件（类似于mouseover事件）就会触发。dragenter事件触发之后，会立即触发dragover事件，并且元素在放置目标范围内被拖动期间此事件会持续触发。当元素被拖动到放置目标之外，dragover事件停止触发，dragleave事件触发（类似于mouseout事件）。</p>
+<p>如果被拖动元素被放到了目标上，则会触发drop事件而不是dragleave事件。这些事件的目标是放置目标元素。</p>
+<h4 id="自定义放置目标"><a href="#自定义放置目标" class="headerlink" title="自定义放置目标"></a>自定义放置目标</h4><p>在把某个元素拖动到无效放置目标上时，会看到一个特殊光标（圆环中间一条斜杠）表示不能放下。 即使所有元素都支持放置目标事件，这些元素默认也是不允许放置的。<strong>如果把元素拖动到不允许放置的目标上，无论用户动作是什么都不会触发 drop 事件。不过，通过覆盖 dragenter 和 dragover 事件的默认行为，可以把任何元素转换为有效的放置目标</strong>。</p>
+<p>可以通过在拖动事件的事件处理函数中调用event.preventDefault方法来达到目的。event是event参数。</p>
+<p>在 Firefox 中，放置事件的默认行为是导航到放在放置目标上的 URL。这意味着把图片拖动到放置 目标上会导致页面导航到图片文件，把文本拖动到放置目标上会导致无效 URL 错误。为阻止这个行为， 在 Firefox 中必须取消 drop 事件的默认行为。</p>
+<h4 id="dataTransfer对象"><a href="#dataTransfer对象" class="headerlink" title="dataTransfer对象"></a>dataTransfer对象</h4><p>为实现拖动操作中的数据传输，IE5在event对象上暴露了dataTransfer对象，用于从被拖动元素向放置目标传递字符串数据。因为这个对象是event的属性，所以在拖放事件的事件处理程序外部无法访问dataTransfer。在事件处理程序内部，可以使用这个对象的属性和方法实现拖放功能。</p>
+<p>dataTransfer对象有两个主要方法：getData()和setData()。</p>
+<p>setData()的第一个参数以及getData()的唯一参数是一个字符串，表示要设置的数据类型：”text”或”URL”，虽然这两种数据类型是IE最初引入的，但HTML5已经将其扩展为允许任何MIME类型。为向后兼容，HTML5还会继续支持”text”和”URL”，但它们会分别被映射到”text&#x2F;plain”和”text&#x2F;uri-list”。dataTransfer对象实际上可以包含每种MIME类型的一个值，也就是说可以同时保存文本和URL，两者不会相互覆盖。</p>
+<p>存储在dataTransfer对象中的数据只能在放置事件中读取。<strong>如果没有在ondrop事件处理程序中取得这些数据，dataTransfer对象就会被销毁，数据也会丢失</strong>。</p>
+<p>作为文本的数据和作为URL的数据有一个区别。当把数据作为文本存储时，数据不会被特殊对待。而当把数据作为URL存储时，数据会被作为网页中的一个链接，意味着如果把它放到另一个浏览器窗口，浏览器会导航到该URL。直到版本5，Firefox都不能正确地把”url”映射为”text&#x2F;uri-list”或把”text”映射为”text&#x2F;plain”。不过，它可以把”Text”（第一个字母大写）正确映射为”text&#x2F;plain”。在通过dataTransfer获取数据时，为保持最大兼容性，需要对URL检测两个值并对文本使用”Text”：letdataTransfer&#x3D;event.dataTransfer;&#x2F;&#x2F;读取URLleturl&#x3D;dataTransfer.getData(“url”)||dataTransfer.getData(“text&#x2F;uri-list”);&#x2F;&#x2F;读取文本lettext&#x3D;dataTransfer.getData(“Text”);这里要注意，首先应该尝试短数据名。这是因为直到版本10，IE都不支持扩展的类型名，而且会在遇到无法识别的类型名时抛出错误。</p>
+<h4 id="dropEffect和effectAllowed"><a href="#dropEffect和effectAllowed" class="headerlink" title="dropEffect和effectAllowed"></a>dropEffect和effectAllowed</h4><p>dataTransfer 对象不仅可以用于实现简单的数据传输，还可以用于确定能够对被拖动元素和放置目标执行什么操作。</p>
+<p>为此，可以使用两个属性：dropEffect 与 effectAllowed。</p>
+<p>dropEffect 属性可以告诉浏览器允许哪种放置行为。</p>
+<p>这个属性有以下4种可能的值。</p>
+<ul>
+<li>“none”：被拖动元素不能放到这里。这是除文本框之外所有元素的默认值。</li>
+<li>“move”：被拖动元素应该移动到放置目标。</li>
+<li>“copy”：被拖动元素应该复制到放置目标。</li>
+<li>“link”：表示放置目标会导航到被拖动元素（仅在它是URL的情况下）。</li>
+</ul>
+<p>在把元素拖动到放置目标上时，上述每种值都会导致显示一种不同的光标。不过，是否导致光标示意的动作还要取决于开发者。换句话说，如果没有代码参与，则没有什么会自动移动、复制或链接。唯一不用考虑的就是光标自己会变。</p>
+<p>为了使用dropEffect属性，必须在放置目标的ondragenter事件处理程序中设置它。</p>
+<p>除非同时设置effectAllowed，否则dropEffect属性也没有用。effectAllowed属性表示对被拖动元素是否允许dropEffect。这个属性有如下几个可能的值。</p>
+<ul>
+<li>“uninitialized”：没有给被拖动元素设置动作。</li>
+<li>“none”：被拖动元素上没有允许的操作。</li>
+<li>“copy”：只允许”copy”这种dropEffect。</li>
+<li>“link”：只允许”link”这种dropEffect。</li>
+<li>“move”：只允许”move”这种dropEffect。</li>
+<li>“copyLink”：允许”copy”和”link”两种dropEffect。</li>
+<li>“copyMove”：允许”copy”和”move”两种dropEffect。</li>
+<li>“linkMove”：允许”link”和”move”两种dropEffect。</li>
+<li>“all”：允许所有dropEffect。</li>
+</ul>
+<p>必须在ondragstart事件处理程序中设置这个属性。</p>
+<h4 id="可拖动能力"><a href="#可拖动能力" class="headerlink" title="可拖动能力"></a>可拖动能力</h4><p>默认情况下，图片、链接和文本是可拖动的，这意味着无须额外代码用户便可以拖动它们。文本只有在被选中后才可以拖动，而图片和链接在任意时候都是可以拖动的。 </p>
+<p>我们也可以让其他元素变得可以拖动。HTML5 在所有 HTML 元素上规定了一个 draggable 属性， 表示元素是否可以拖动。图片和链接的 draggable 属性自动被设置为 true，而其他所有元素此属性的默认值为 false。如果想让其他元素可拖动，或者不允许图片和链接被拖动，都可以设置这个属性。</p>
+<h2 id="动画：requestAnimationFrame（）"><a href="#动画：requestAnimationFrame（）" class="headerlink" title="动画：requestAnimationFrame（）"></a>动画：requestAnimationFrame（）</h2><blockquote>
+<p>动画可以类比于动态图，同样有着帧数、帧率、每帧耗时、总耗时等概念。同时动画每帧的改变都会使得浏览器进行回流重绘的操作。</p>
+</blockquote>
+<p>传统的 <code>javascript</code> 动画是通过定时器 <code>setTimeout</code> 或者 <code>setInterval</code> 实现的。但是定时器动画一直存在两个问题，第一个就是动画的循时间环间隔不好确定，设置长了帧率就低（每秒刷新次数少），动画显得不够平滑流畅，设置短了浏览器的重绘频率跟不上，推荐的最佳循环间隔是16.6ms（大多数电脑的显示器刷新频率是60Hz，1000ms&#x2F;60）；第二个问题是定时器第二个时间参数只是指定了多久后将动画任务添加到浏览器的UI线程队列中，如果UI线程处于忙碌状态，那么动画不会立刻执行。为了解决这些问题，H5 中加入了 <code>requestAnimationFrame</code>方法。</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
+<li><code>requestAnimationFrame</code> 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成（或者放到下一次重新渲染时完成），并且其回调函数执行次数通常与浏览器屏幕刷新次数匹配（不会使得浏览器刷新率跟不上），这样可以提高帧率（每帧回流重绘次数少了，耗时就少了，每秒刷新次数就多了），使得动画流畅，同时缩短总的时间（总帧数固定，每帧耗时少，总耗时减少），提高页面性能。</li>
+<li>在隐藏或不可见的元素中，<code>requestAnimationFrame</code> 将不会进行重绘或回流，这当然就意味着更少的 CPU、GPU 和内存使用量。</li>
+<li><code>requestAnimationFrame</code> 是由浏览器专门为动画提供的 API，在运行时浏览器会自动优化方法的调用，并且如果页面不是激活状态下的话，动画会自动暂停，有效节省了 CPU 开销。</li>
+</ol>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>语法：<code>let requestId = requestAnimationFrame(callback)</code></p>
+<p>当浏览器想要做动画时，回调函数会被安排在最接近的时间运行。</p>
+<p>可以将更改元素的操作写在回调函数中，requestAnimationFrame会将它们和其他的requestAnimationFrame回调还有CSS动画组合到一起在一次重新渲染中执行，而不是很多次。</p>
+<p>回调函数会被自动传入一个参数，表示当前被rAF排序的回调函数被触发的时间（毫秒），同一帧中的多个回调函数接收到的该时间参数是一样的。</p>
+<p>这个方法返回一个id值可用于传入<code>cancelAnimationFrame()</code>函数取消调用。</p>
+<p>rAF通常用法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">animate</span>(<span class="params">&#123;timing, draw, duration&#125;</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> start = performance.<span class="title function_">now</span>();</span><br><span class="line"></span><br><span class="line">  <span class="title function_">requestAnimationFrame</span>(<span class="keyword">function</span> <span class="title function_">animate</span>(<span class="params">time</span>) &#123;</span><br><span class="line">    <span class="comment">// timeFraction goes from 0 to 1</span></span><br><span class="line">    <span class="keyword">let</span> timeFraction = (time - start) / duration;</span><br><span class="line">    <span class="keyword">if</span> (timeFraction &gt; <span class="number">1</span>) timeFraction = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// calculate the current animation state</span></span><br><span class="line">    <span class="keyword">let</span> progress = <span class="title function_">timing</span>(timeFraction);</span><br><span class="line"></span><br><span class="line">    <span class="title function_">draw</span>(progress); <span class="comment">// draw it</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (timeFraction &lt; <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="title function_">requestAnimationFrame</span>(animate);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意最后一行代码是一个递归调用，即rAF的回调函数中调用了rAF。这是因为没有这句的话，rAF只会执行一次，在这次重绘之前更新本帧动画，如果需要在下次重绘之前继续更新下帧动画，就需要这样递归调用。</p>
+<p><code>duration</code>是动画总持续时间，以毫秒为单位。</p>
+<p><code>timing</code>是一个计时函数，计的是百分比时间，就和CSS @keyframes中的百分比时间一样。代码中的<code>timeFraction</code>变量就是一个0-1之间的百分比时间。这个计时函数获取经过的百分比时间作为参数，返回动画的完成度（即代码中的<code>progress</code>，也是一个0-1之间的值），就像获取贝塞尔动画速率曲线上的横坐标，返回相应的纵坐标一样。timing这个函数本身就相当于CSS动画中的速率函数。</p>
+<p><code>draw</code>是绘制动画的函数，它接收动画完成度<code>progress</code>作为参数，<code>progress</code>为0时开始动画，为1时结束动画。通过改变元素的某些属性（宽高尺寸、位置、或者颜色等等）来绘制动画。</p>
+<p>我们可以将许多属性动画化。</p>
+<h3 id="时序函数（timing-functions）"><a href="#时序函数（timing-functions）" class="headerlink" title="时序函数（timing functions）"></a>时序函数（timing functions）</h3><h4 id="线性函数"><a href="#线性函数" class="headerlink" title="线性函数"></a>线性函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">linear</span>(<span class="params">timeFraction</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> timeFraction;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="指数函数"><a href="#指数函数" class="headerlink" title="指数函数"></a>指数函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">quad</span>(<span class="params">timeFraction</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">pow</span>(timeFraction, <span class="number">2</span>) <span class="comment">//这是二次函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="弧线函数"><a href="#弧线函数" class="headerlink" title="弧线函数"></a>弧线函数</h4><p>指那些使用到了三角函数等等的函数，比如圆弧形函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">circ</span>(<span class="params">timeFraction</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> - <span class="title class_">Math</span>.<span class="title function_">sin</span>(<span class="title class_">Math</span>.<span class="title function_">acos</span>(timeFraction));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="射箭函数"><a href="#射箭函数" class="headerlink" title="射箭函数"></a>射箭函数</h4><p>这个函数要多接收一个参数，叫做弹性系数，决定了后退的距离。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">back</span>(<span class="params">x, timeFraction</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">pow</span>(timeFraction, <span class="number">2</span>) * ((x + <span class="number">1</span>) * timeFraction - x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="弹跳函数"><a href="#弹跳函数" class="headerlink" title="弹跳函数"></a>弹跳函数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">bounce</span>(<span class="params">timeFraction</span>) &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> a = <span class="number">0</span>, b = <span class="number">1</span>; <span class="number">1</span>; a += b, b /= <span class="number">2</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timeFraction &gt;= (<span class="number">7</span> - <span class="number">4</span> * a) / <span class="number">11</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> -<span class="title class_">Math</span>.<span class="title function_">pow</span>((<span class="number">11</span> - <span class="number">6</span> * a - <span class="number">11</span> * timeFraction) / <span class="number">4</span>, <span class="number">2</span>) + <span class="title class_">Math</span>.<span class="title function_">pow</span>(b, <span class="number">2</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="蹦蹦床函数"><a href="#蹦蹦床函数" class="headerlink" title="蹦蹦床函数"></a>蹦蹦床函数</h4><p>这个函数也会接收一个弹性系数参数，决定初始的弹跳范围。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">elastic</span>(<span class="params">x, timeFraction</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">2</span>, <span class="number">10</span> * (timeFraction - <span class="number">1</span>)) * <span class="title class_">Math</span>.<span class="title function_">cos</span>(<span class="number">20</span> * <span class="title class_">Math</span>.<span class="property">PI</span> * x / <span class="number">3</span> * timeFraction)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="缓入-x2F-缓出函数"><a href="#缓入-x2F-缓出函数" class="headerlink" title="缓入&#x2F;缓出函数"></a>缓入&#x2F;缓出函数</h4><h5 id="easeIn"><a href="#easeIn" class="headerlink" title="easeIn"></a>easeIn</h5><p>前面那些就相当于easeIn（缓入，开始慢后面快）了。</p>
+<h5 id="easeOut"><a href="#easeOut" class="headerlink" title="easeOut"></a>easeOut</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// accepts a timing function, returns the transformed variant</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">makeEaseOut</span>(<span class="params">timing</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">timeFraction</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> - <span class="title function_">timing</span>(<span class="number">1</span> - timeFraction);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接收一个计时函数并返回包装后的计时函数，这个函数会将动画速率逆转，类似于倒放。（缓出，开始快后面慢）</p>
+<h5 id="easeInOut"><a href="#easeInOut" class="headerlink" title="easeInOut"></a>easeInOut</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">makeEaseInOut</span>(<span class="params">timing</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">timeFraction</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (timeFraction &lt; <span class="number">.5</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">timing</span>(<span class="number">2</span> * timeFraction) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">return</span> (<span class="number">2</span> - <span class="title function_">timing</span>(<span class="number">2</span> * (<span class="number">1</span> - timeFraction))) / <span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接收一个计时函数并返回包装后的计时函数，这个函数会将easeIn和easeOut的效果结合，有点类似于前半部分是正放，后半部分是倒放。（缓入缓出，两头慢中间快）</p>
+<h2 id="窗口操作"><a href="#窗口操作" class="headerlink" title="窗口操作"></a>窗口操作</h2><h3 id="打开窗口"><a href="#打开窗口" class="headerlink" title="打开窗口"></a>打开窗口</h3><p>window.open(url, target);</p>
+<p>url：可以不指定；</p>
+<p>target：_blank or _self。</p>
+<p>open方法返回打开的窗口对象。</p>
+<h3 id="关闭窗口"><a href="#关闭窗口" class="headerlink" title="关闭窗口"></a>关闭窗口</h3><p>window.close()关闭当前窗口；</p>
+<p>newWindow.close()关闭用open方法打开的新窗口。</p>
+<h3 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h3><p>alert方法：警告框，换行用\n；</p>
+<p>confirm方法：确认框，点击确定返回true，取消返回fasle；</p>
+<p>prompt方法：需要输入，点击确定后返回输入的字符串，取消返回null。</p>
+<h2 id="拖放操作"><a href="#拖放操作" class="headerlink" title="拖放操作"></a>拖放操作</h2><h3 id="拖放过程中的事件（按顺序）"><a href="#拖放过程中的事件（按顺序）" class="headerlink" title="拖放过程中的事件（按顺序）"></a>拖放过程中的事件（按顺序）</h3><p>ondragstart – ondragenter – ondragover – ondragleave – ondrop – ondragend</p>
+<p>ondrag贯穿始终</p>
+<p>拖放事件函数的event参数有offsetX、offsetY属性，表示鼠标相对于触发事件的对象的x、y坐标，还有pageX、pageY属性，表示鼠标相对于当前文档的x、y坐标。</p>
+<h3 id="dataTransfer对象-1"><a href="#dataTransfer对象-1" class="headerlink" title="dataTransfer对象"></a>dataTransfer对象</h3><p>如何在元素拖放中实现数据传递？</p>
+<p>在ondragstart事件中调用setData方法保存数据，在ondrop事件中调用getData方法读取数据。</p>
+<p>setData（format，data）；format为MIME数据格式。</p>
+<p>getData（format）；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">source.<span class="property">ondragstart</span> = <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    e.<span class="property">dataTransfer</span>.<span class="title function_">setData</span>(<span class="string">&#x27;text/plain&#x27;</span>, e.<span class="property">target</span>.<span class="property">id</span>);</span><br><span class="line">&#125;;</span><br><span class="line">dest.<span class="property">ondrop</span> = <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    e.<span class="property">dataTransfer</span>.<span class="title function_">getData</span>(<span class="string">&#x27;text/plain&#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>实例（把source拖进dest中）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//拖动源source，拖动目标dest</span></span><br><span class="line">source.<span class="property">ondragstart</span> = <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    e.<span class="property">dataTransfer</span>.<span class="title function_">setData</span>(format, e.<span class="property">target</span>.<span class="property">id</span>);</span><br><span class="line">&#125;;<span class="comment">//如果元素没有内容，就可以不用写这个事件；一般来说如果是文本内容，则数据类型为text/plain</span></span><br><span class="line">dest.<span class="property">ondragover</span> = <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>();</span><br><span class="line">&#125;;<span class="comment">// 屏蔽元素默认行为，否则无法触发该事件</span></span><br><span class="line">dest.<span class="property">ondrop</span> = <span class="keyword">function</span>(<span class="params">e</span>)&#123;</span><br><span class="line">    e.<span class="title function_">preventDefault</span>();<span class="comment">// 屏蔽元素默认行为，否则无法触发该事件</span></span><br><span class="line">    <span class="keyword">var</span> id = e.<span class="property">dataTransfer</span>.<span class="title function_">getData</span>(<span class="string">&#x27;text/plain&#x27;</span>);</span><br><span class="line">    <span class="keyword">var</span> obj = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(id);</span><br><span class="line">    dest.<span class="title function_">appendChild</span>(obj);</span><br><span class="line">    <span class="comment">//如果是要删除元素，就把这个函数体里的代码改成把原来的元素移除掉就可以了</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><p>&lt; input type&#x3D;”file” mutiple accept&#x3D;””&#x2F;&gt;</p>
+<p>用opacity：0；隐藏原来的表单然后用绝对定位在原来的位置搞一个新的。</p>
+<h3 id="File对象"><a href="#File对象" class="headerlink" title="File对象"></a>File对象</h3><p>获得file类型的input元素后即获得了FileList对象oFile，它是一个类数组对象，其中的每一个文件是一个File对象。可用<code>oFile.files[n]</code>来获取第n+1个文件对象。</p>
+<p><strong>另外file类型的input对象选择上传文件时触发的是onchange事件</strong>，可能是因为选择文件类似于一个下拉列表之类的吧。</p>
+<p>File对象的属性：</p>
+<p>name：文件名称；</p>
+<p>type：文件类型；</p>
+<p>size：文件大小（单位为B）；</p>
+<p>lastModifiedDate：文件最后修改时间，支持的浏览器不多。</p>
+<h3 id="FileReader对象"><a href="#FileReader对象" class="headerlink" title="FileReader对象"></a>FileReader对象</h3><p><code>var reader = new FileReader();</code>构造一个FileReader对象。</p>
+<p><strong>FileReader对象的方法和事件属性：</strong></p>
+<p>readAsText方法：读取文件为文本；</p>
+<p>readAsDataURL方法：读取文件为DataURL；（可将图片转换为base64编码格式）</p>
+<p>readAsBinaryString方法：读取文件为二进制字符串；</p>
+<p>readAsArrayBuffer：读取文件为ArrayBuffer对象；</p>
+<p>以上方法的第一个参数都是File对象。readAsText方法还有第二个参数是文本编码方式，默认为“utf-8”。</p>
+<p>abort方法：中止读取操作。</p>
+<p>onloadstart事件：开始读取；</p>
+<p>onprogress事件：正在读取；</p>
+<p>onload事件：读取成功；</p>
+<p>onloadend事件：读取完成，无论是否成功；</p>
+<p>onabort事件：中断；</p>
+<p>onerror事件：出错。</p>
+<p>FileReader对象还有一个<code>result</code>属性，如果读取文件成功，result属性就是文件的内容；如果读取文件失败，result的值就是null。</p>
+<p>如果要读取一张图片文件添加到页面中，记得将result赋值给img的src属性来添加它。img的src属性和其他元素的background属性都能被赋值为base64编码。</p>
+<h4 id="Blob对象"><a href="#Blob对象" class="headerlink" title="Blob对象"></a>Blob对象</h4><p>Blob对象用于表示原始二进制数据。File对象就是继承自Blob对象的。</p>
+<p><code>var blob = new Blob(dataArray, type);</code></p>
+<p>dataArray是一个数组，数组中可以是字符串、其他Blob对象、ArrayBuffer对象和ArrayBufferView对象。</p>
+<p>type是一个对象，属性为type，值为Blob对象的MIME类型。</p>
+<p><strong>配合createObjectURL方法使用实现文件下载</strong>：</p>
+<p>给window.URL.createObjectURL()方法传入Blob对象作为参数，可以给Blob对象生成一个指向内存中的地址的URL，返回这个URL的字符串形式。</p>
+<p>关于下载按钮，可以用一个button按钮点击之后自动创建相应的a元素，自动点击链接，然后自动删除a元素来实现下载按钮。</p>
+<p><strong>将canvas下载为一个图片</strong>：</p>
+<p>Canvas对象的toBlob方法：</p>
+<p>cnv.toBlob(function(blob){}, ‘image&#x2F;jpeg’, 1);</p>
+<p>第一个参数是一个回调函数，函数体内写下载的代码；</p>
+<p>第二个参数是图片格式，默认为‘imgae&#x2F;jpeg’；</p>
+<p>第三个参数是图片质量，取值为0-1；</p>
+<p><strong>备份与恢复数据</strong>：</p>
+<p>用FileReader对象的readAsText方法、readAsArrayBuffer方法读取文件数据，结合Blob对象下载文件的功能实现导出数据为文件到本地；</p>
+<p>通过input元素上传备份文件，使用readAsText方法、readAsArrayBuffer方法读取文件实现恢复数据。</p>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top">Elzzach</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top/article/603077a48ac3.html">https://blog.elzzach.top/article/603077a48ac3.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.elzzach.top" target="_blank">暮紫天地</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/avatar.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Elzzach</div><div class="author-info__description">一个爱好视觉效果的(想花里胡哨却花不起来的)入门小前端</div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legend-cpu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:el-zzach@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到暮紫天地！🎉<br/>博主去知识的海洋里遨游了，更新随缘哦~<br/><strong>主站点</strong>：<a href="https://blog.elzzach.top/" target="_blank">blog.elzzach.top</a><br/><strong>镜像站</strong>：<a href="https://legend-cpu.github.io/" target="_blank">Github镜像站</a><br/>作者才疏学浅，读者若发现文章有错误之处，请不吝指出！<br/><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/202202241714592.gif" alt="可爱"/></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM"><span class="toc-number">1.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E8%8A%82%E7%82%B9%E7%B1%BB%E5%9E%8B%EF%BC%88%E8%BF%99%E9%87%8C%E5%8F%AA%E7%9C%8B%E5%9B%9B%E7%A7%8D%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">DOM节点类型（这里只看四种）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Node%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">Node类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-nodeName-%E4%B8%8E-nodeValue"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1.nodeName 与 nodeValue</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%85%83%E7%B4%A0%E9%81%8D%E5%8E%86"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2.元素遍历</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%B7%BB%E5%8A%A0-x2F-%E6%8F%92%E5%85%A5-x2F-%E6%9B%BF%E6%8D%A2-x2F-%E7%A7%BB%E9%99%A4%E8%8A%82%E7%82%B9"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">3.添加&#x2F;插入&#x2F;替换&#x2F;移除节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%85%8B%E9%9A%86%E8%8A%82%E7%82%B9"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">4.克隆节点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Document%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">Document类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Document%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AD%90%E8%8A%82%E7%82%B9"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">1.Document类型的子节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%96%87%E6%A1%A3%E4%BF%A1%E6%81%AF%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">2.文档信息属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">3.定位元素方法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E7%89%B9%E6%AE%8A%E9%9B%86%E5%90%88%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">4.特殊集合属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E6%96%87%E6%A1%A3%E5%86%99%E5%85%A5%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.2.5.</span> <span class="toc-text">5.文档写入方法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Element%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">Element类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-HTMLElement%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">1.HTMLElement类型</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E6%A3%80%E6%9F%A5%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E5%92%8C%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">2.检查元素属性是否存在和获取元素属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AE-x2F-%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0%E5%B1%9E%E6%80%A7"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">3.设置&#x2F;删除元素属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%88%9B%E5%BB%BA%E6%96%B0%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">4.创建新元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E5%85%83%E7%B4%A0%E5%90%8E%E4%BB%A3"><span class="toc-number">1.1.3.5.</span> <span class="toc-text">5.元素后代</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-insertAdjacentHTML-%E6%96%B9%E6%B3%95%E6%8F%92%E5%85%A5HTML"><span class="toc-number">1.1.3.6.</span> <span class="toc-text">6.insertAdjacentHTML()方法插入HTML</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Text%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.1.4.</span> <span class="toc-text">Text类型</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%88%9B%E5%BB%BA%E6%96%87%E6%9C%AC%E8%8A%82%E7%82%B9"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">1.创建文本节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E8%A7%84%E8%8C%83%E5%8C%96%E6%96%87%E6%9C%AC%E8%8A%82%E7%82%B9"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">2.规范化文本节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E6%8B%86%E5%88%86%E6%96%87%E6%9C%AC%E8%8A%82%E7%82%B9"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">3.拆分文本节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-innerHTML%E4%B8%8EouterHTML"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">4.innerHTML与outerHTML</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E7%BC%96%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">DOM编程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%84%9A%E6%9C%AC"><span class="toc-number">1.2.1.</span> <span class="toc-text">动态脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%A0%B7%E5%BC%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">动态样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%A1%A8%E6%A0%BC"><span class="toc-number">1.2.3.</span> <span class="toc-text">操作表格</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MutationObserver%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.3.</span> <span class="toc-text">MutationObserver接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Selectors-API"><span class="toc-number">1.4.</span> <span class="toc-text">Selectors API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#querySelector%EF%BC%88%EF%BC%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">querySelector（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#querySelecotorAll%EF%BC%88%EF%BC%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">querySelecotorAll（）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#matches%EF%BC%88%EF%BC%89"><span class="toc-number">1.4.3.</span> <span class="toc-text">matches（）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E9%81%8D%E5%8E%86"><span class="toc-number">1.5.</span> <span class="toc-text">元素遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS%E5%B1%9E%E6%80%A7%E6%93%8D%E4%BD%9C"><span class="toc-number">1.6.</span> <span class="toc-text">CSS属性操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8style%E5%B1%9E%E6%80%A7%E8%8E%B7%E5%8F%96-x2F-%E8%AE%BE%E7%BD%AECSS%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-number">1.6.1.</span> <span class="toc-text">用style属性获取&#x2F;设置CSS属性值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8getComputedStyle%EF%BC%88%EF%BC%89%E6%96%B9%E6%B3%95%E8%8E%B7%E5%8F%96CSS%E5%B1%9E%E6%80%A7%E5%80%BC"><span class="toc-number">1.6.2.</span> <span class="toc-text">用getComputedStyle（）方法获取CSS属性值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#classList%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.6.3.</span> <span class="toc-text">classList对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E7%BD%AE%E6%A0%B7%E5%BC%8F%E5%B1%9E%E6%80%A7"><span class="toc-number">1.6.4.</span> <span class="toc-text">重置样式属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%BB%9A%E5%8A%A8%EF%BC%88-Left-x2F-Top-x2F-Width-x2F-Height-x3D-offset-x2F-client-x2F-scroll%EF%BC%89"><span class="toc-number">1.6.5.</span> <span class="toc-text">元素大小和滚动（*Left&#x2F;Top&#x2F;Width&#x2F;Height, *&#x3D;offset&#x2F;client&#x2F;scroll）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%A4%A7%E5%B0%8F%E5%92%8C%E6%BB%9A%E5%8A%A8"><span class="toc-number">1.6.6.</span> <span class="toc-text">窗口大小和滚动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%AA%97%E5%8F%A3%E5%92%8C%E6%96%87%E6%A1%A3%E7%9A%84%E5%9D%90%E6%A0%87"><span class="toc-number">1.6.7.</span> <span class="toc-text">相对于窗口和文档的坐标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E4%B8%8E%E8%8C%83%E5%9B%B4"><span class="toc-number">1.7.</span> <span class="toc-text">选择与范围</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="toc-number">2.1.</span> <span class="toc-text">事件流</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1"><span class="toc-number">2.1.1.</span> <span class="toc-text">事件冒泡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7"><span class="toc-number">2.1.2.</span> <span class="toc-text">事件捕获</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="toc-number">2.1.3.</span> <span class="toc-text">DOM事件流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98"><span class="toc-number">2.1.4.</span> <span class="toc-text">事件委托</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.2.</span> <span class="toc-text">事件处理程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.2.1.</span> <span class="toc-text">HTML事件处理程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM0%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.2.2.</span> <span class="toc-text">DOM0事件处理程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM2-%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F%EF%BC%88%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E5%99%A8%EF%BC%89"><span class="toc-number">2.2.3.</span> <span class="toc-text">DOM2 事件处理程序（事件监听器）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.3.</span> <span class="toc-text">event对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DOM%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.3.1.</span> <span class="toc-text">DOM事件对象</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA"><span class="toc-number">2.4.</span> <span class="toc-text">浏览器默认行为</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.5.</span> <span class="toc-text">事件类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.5.1.</span> <span class="toc-text">用户界面事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.5.2.</span> <span class="toc-text">鼠标事件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%BC%A0%E6%A0%87%E6%8B%96%E6%94%BE%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.5.2.1.</span> <span class="toc-text">鼠标拖放的实现</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.5.3.</span> <span class="toc-text">键盘事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.5.4.</span> <span class="toc-text">表单事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.5.5.</span> <span class="toc-text">编辑事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.5.6.</span> <span class="toc-text">页面事件</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%84%9A%E6%9C%AC%E5%8A%A0%E8%BD%BD%EF%BC%9Aasync%EF%BC%8Cdefer"><span class="toc-number">2.5.6.1.</span> <span class="toc-text">脚本加载：async，defer</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%8A%A0%E8%BD%BD%E4%BA%8B%E4%BB%B6"><span class="toc-number">2.5.7.</span> <span class="toc-text">资源加载事件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E8%84%9A%E6%9C%AC"><span class="toc-number">3.</span> <span class="toc-text">表单脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">表单属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">表单控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%BE%97%E7%84%A6%E7%82%B9%E4%B8%8E%E5%A4%B1%E5%8E%BB%E7%84%A6%E7%82%B9%EF%BC%9Afocus-x2F-blur"><span class="toc-number">3.3.</span> <span class="toc-text">获得焦点与失去焦点：focus&#x2F;blur</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E4%BC%B4%E9%9A%8F%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.4.</span> <span class="toc-text">数据更新伴随事件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#change%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.4.1.</span> <span class="toc-text">change事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#input%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.4.2.</span> <span class="toc-text">input事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cut-x2F-copy-x2F-paste%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.4.3.</span> <span class="toc-text">cut&#x2F;copy&#x2F;paste事件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E6%8F%90%E4%BA%A4%E4%BA%8B%E4%BB%B6"><span class="toc-number">3.5.</span> <span class="toc-text">表单提交事件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-Web-API"><span class="toc-number">4.</span> <span class="toc-text">JavaScript  Web API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ArrayBuffer"><span class="toc-number">4.1.</span> <span class="toc-text">ArrayBuffer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ArrayBuffer%E5%AF%B9%E8%B1%A1%E4%B8%8E%E8%A7%86%E5%9B%BE%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.1.1.</span> <span class="toc-text">ArrayBuffer对象与视图对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TypedArray%E7%B1%BB%E5%9E%8B%E5%8C%96%E6%95%B0%E7%BB%84"><span class="toc-number">4.1.2.</span> <span class="toc-text">TypedArray类型化数组</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#TypedArray%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.2.1.</span> <span class="toc-text">TypedArray的方法</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DataView%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.1.3.</span> <span class="toc-text">DataView类型</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TextDecoder%E4%B8%8ETextEncoder"><span class="toc-number">4.2.</span> <span class="toc-text">TextDecoder与TextEncoder</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TextDecoder"><span class="toc-number">4.2.1.</span> <span class="toc-text">TextDecoder</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TextEncoder"><span class="toc-number">4.2.2.</span> <span class="toc-text">TextEncoder</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Blob"><span class="toc-number">4.3.</span> <span class="toc-text">Blob</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Blob%E7%94%A8%E4%BD%9CURL"><span class="toc-number">4.3.1.</span> <span class="toc-text">Blob用作URL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Blob%E8%BD%AC%E6%8D%A2%E4%B8%BAbase64"><span class="toc-number">4.3.2.</span> <span class="toc-text">Blob转换为base64</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%86%E5%9B%BE%E5%83%8F%E8%BD%AC%E6%8D%A2%E4%B8%BABlob"><span class="toc-number">4.3.3.</span> <span class="toc-text">将图像转换为Blob</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Blob%E8%BD%AC%E6%8D%A2%E4%B8%BAArrayBuffer"><span class="toc-number">4.3.4.</span> <span class="toc-text">Blob转换为ArrayBuffer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Blob%E8%BD%AC%E6%8D%A2%E4%B8%BAstream"><span class="toc-number">4.3.5.</span> <span class="toc-text">Blob转换为stream</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File-API"><span class="toc-number">4.4.</span> <span class="toc-text">File API</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#File%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.4.1.</span> <span class="toc-text">File类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FileReader%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.4.2.</span> <span class="toc-text">FileReader类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%8B%96%E6%94%BE%E6%96%87%E4%BB%B6"><span class="toc-number">4.4.3.</span> <span class="toc-text">读取拖放文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E6%8B%96%E6%94%BE"><span class="toc-number">4.5.</span> <span class="toc-text">原生拖放</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%96%E6%94%BE%E4%BA%8B%E4%BB%B6"><span class="toc-number">4.5.1.</span> <span class="toc-text">拖放事件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%94%BE%E7%BD%AE%E7%9B%AE%E6%A0%87"><span class="toc-number">4.5.2.</span> <span class="toc-text">自定义放置目标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dataTransfer%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.5.3.</span> <span class="toc-text">dataTransfer对象</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dropEffect%E5%92%8CeffectAllowed"><span class="toc-number">4.5.4.</span> <span class="toc-text">dropEffect和effectAllowed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E6%8B%96%E5%8A%A8%E8%83%BD%E5%8A%9B"><span class="toc-number">4.5.5.</span> <span class="toc-text">可拖动能力</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%EF%BC%9ArequestAnimationFrame%EF%BC%88%EF%BC%89"><span class="toc-number">5.</span> <span class="toc-text">动画：requestAnimationFrame（）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">5.1.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">5.2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E5%87%BD%E6%95%B0%EF%BC%88timing-functions%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">时序函数（timing functions）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%87%BD%E6%95%B0"><span class="toc-number">5.3.1.</span> <span class="toc-text">线性函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0"><span class="toc-number">5.3.2.</span> <span class="toc-text">指数函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%A7%E7%BA%BF%E5%87%BD%E6%95%B0"><span class="toc-number">5.3.3.</span> <span class="toc-text">弧线函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%84%E7%AE%AD%E5%87%BD%E6%95%B0"><span class="toc-number">5.3.4.</span> <span class="toc-text">射箭函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%B9%E8%B7%B3%E5%87%BD%E6%95%B0"><span class="toc-number">5.3.5.</span> <span class="toc-text">弹跳函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B9%A6%E8%B9%A6%E5%BA%8A%E5%87%BD%E6%95%B0"><span class="toc-number">5.3.6.</span> <span class="toc-text">蹦蹦床函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%93%E5%85%A5-x2F-%E7%BC%93%E5%87%BA%E5%87%BD%E6%95%B0"><span class="toc-number">5.3.7.</span> <span class="toc-text">缓入&#x2F;缓出函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#easeIn"><span class="toc-number">5.3.7.1.</span> <span class="toc-text">easeIn</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#easeOut"><span class="toc-number">5.3.7.2.</span> <span class="toc-text">easeOut</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#easeInOut"><span class="toc-number">5.3.7.3.</span> <span class="toc-text">easeInOut</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">窗口操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E7%AA%97%E5%8F%A3"><span class="toc-number">6.1.</span> <span class="toc-text">打开窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3"><span class="toc-number">6.2.</span> <span class="toc-text">关闭窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E6%A1%86"><span class="toc-number">6.3.</span> <span class="toc-text">对话框</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%96%E6%94%BE%E6%93%8D%E4%BD%9C"><span class="toc-number">7.</span> <span class="toc-text">拖放操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%96%E6%94%BE%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%EF%BC%88%E6%8C%89%E9%A1%BA%E5%BA%8F%EF%BC%89"><span class="toc-number">7.1.</span> <span class="toc-text">拖放过程中的事件（按顺序）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dataTransfer%E5%AF%B9%E8%B1%A1-1"><span class="toc-number">7.2.</span> <span class="toc-text">dataTransfer对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">8.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">8.1.</span> <span class="toc-text">文件上传</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File%E5%AF%B9%E8%B1%A1"><span class="toc-number">8.2.</span> <span class="toc-text">File对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FileReader%E5%AF%B9%E8%B1%A1"><span class="toc-number">8.3.</span> <span class="toc-text">FileReader对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Blob%E5%AF%B9%E8%B1%A1"><span class="toc-number">8.3.1.</span> <span class="toc-text">Blob对象</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: rgba(255, 255, 255, 0.8)"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Elzzach</div><div class="footer_custom_text"><div class="footer_custom_text"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span class="footer-separator">|</span><span>备案 </span><a href="https://beian.miit.gov.cn" target="_blank">皖ICP备2022000051号</a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/medium-zoom@latest/dist/medium-zoom.min.js"></script><script src="https://npm.elemecdn.com/vanilla-lazyload@latest/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu@latest/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script src="https://npm.elemecdn.com/ezsttcfs@latest/live2d-widget/autoload.js"></script><script src="/ext/ez.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/fireworks.min.js"></script><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script></div></body></html>

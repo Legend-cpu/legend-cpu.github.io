@@ -1,0 +1,264 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>移动端前端开发 | 暮紫天地</title><meta name="robots" content="noindex"><meta name="keywords" content="前端, 设计"><meta name="author" content="Elzzach"><meta name="copyright" content="Elzzach"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="移动端前端开发问题： 前端不建议纠结dp、dpi、pt、ppi等单位。（安卓&#x2F;iOS开发需要） 移动端调试：PC Chrome 打开chrome:&#x2F;&#x2F;inspect，电脑与手机用usb线相连，用手机浏览器打开网页，电脑端调试。 视口viewport：浏览器显示页面内容的屏幕区域  布局视口layout viewport：移动设备的浏览器默认设置了一个布局视口用于解决早">
+<meta property="og:type" content="article">
+<meta property="og:title" content="移动端前端开发">
+<meta property="og:url" content="https://blog.elzzach.top/article/8cc23fad8e11.html">
+<meta property="og:site_name" content="暮紫天地">
+<meta property="og:description" content="移动端前端开发问题： 前端不建议纠结dp、dpi、pt、ppi等单位。（安卓&#x2F;iOS开发需要） 移动端调试：PC Chrome 打开chrome:&#x2F;&#x2F;inspect，电脑与手机用usb线相连，用手机浏览器打开网页，电脑端调试。 视口viewport：浏览器显示页面内容的屏幕区域  布局视口layout viewport：移动设备的浏览器默认设置了一个布局视口用于解决早">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.elzzach.top/rgba(0,%200,%200,%200)">
+<meta property="article:published_time" content="2023-12-28T09:17:32.000Z">
+<meta property="article:modified_time" content="2023-12-28T09:45:18.181Z">
+<meta property="article:author" content="Elzzach">
+<meta property="article:tag" content="前端, 设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.elzzach.top/rgba(0,%200,%200,%200)"><link rel="shortcut icon" href="https://blog.elzzach.top/global-img/favicon.webp"><link rel="canonical" href="https://blog.elzzach.top/article/8cc23fad8e11.html"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"https://npm.elemecdn.com/ezsttcfs@latest/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离本文上次更新已经过去了","messageNext":"天，文章中的内容有可能已经过时。如果过时，请联系作者尝试更新为最新版。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":null},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#c449f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js',
+      css: 'https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '移动端前端开发',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-28 17:45:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Cache" content="no-cache"><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" /><link rel="stylesheet" href="/ext/ez.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/avatar.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img nav-fixed nav-visible" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">暮紫天地</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">移动端前端开发</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-28T09:17:32.000Z" title="发表于 2023-12-28 17:17:32">2023-12-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-28T09:45:18.181Z" title="更新于 2023-12-28 17:45:18">2023-12-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span></div></div></div><article class="post-content" id="article-container"><p>移动端前端开发问题：</p>
+<p>前端不建议纠结dp、dpi、pt、ppi等单位。（安卓&#x2F;iOS开发需要）</p>
+<p>移动端调试：PC Chrome 打开chrome:&#x2F;&#x2F;inspect，电脑与手机用usb线相连，用手机浏览器打开网页，电脑端调试。</p>
+<p>视口viewport：浏览器显示页面内容的屏幕区域</p>
+<ol>
+<li>布局视口layout viewport：移动设备的浏览器默认设置了一个布局视口用于解决早期PC端页面在手机上显示的问题，所以PC端网页在手机浏览器上能显示，但是各个元素被缩小了。布局视口一般默认宽度为980px，网页可以手动缩放。布局视口的宽度不变，而且一般比手机屏幕要宽。</li>
+<li>视觉视口visual viewport：指用户正在看到的网页的区域，即屏幕上显示出来的网页的区域，可以通过缩放操作，但不影响布局视口宽度。视觉视口往往与屏幕等宽。</li>
+<li>理想视口ideal viewport：对网站在移动端设备上的浏览和阅读来说最理想的视口尺寸，需手动添加meta视口标签来通知浏览器操作。meta视口标签的目的是使得布局视口的宽度与理想视口的宽度一致，即设备多宽视口就多宽。</li>
+</ol>
+<p>移动端网页需要添加meta视口标签以达到理想视口。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, user-scalable=no, initia-scale=1.0, maximum-scale=1.0, minimum-scale=1.0&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>物理像素，逻辑像素和物理像素比dpr：</p>
+<p>物理像素也叫设备像素（device pixel，dp），是屏幕显示的最小颗粒，是物理上真实存在的，和分辨率相同，如手机屏幕分辨率2400x1080，就是横向1080个物理像素，纵向2400个物理像素。</p>
+<p>css开发尺寸中的1px对应着1个css像素或者叫逻辑像素。</p>
+<p>pc端往往是1px等于1个物理像素，但移动端不一定，1px可能等于好几个物理像素。1px能显示的物理像素的个数就是物理像素比dpr。</p>
+<p>早前&#x2F;普通手机屏幕是1px等于1物理像素的，但后来能够将更多的物理像素点压缩到一块屏幕里来提高分辨率的Retina视网膜屏幕技术出现后1px就可能等于好几个物理像素了。</p>
+<p>二倍图：</p>
+<p>在前端开发中使用的图片尺寸以px为单位，对于Retina屏幕的手机，打开图片后会按照物理像素比放大，可能会导致图片模糊。解决方法是使用倍图，然后在css中手动将图片缩小相应倍数。dpr&#x3D;2.0的设备比较多，如iPhone6、7、8等，因此多用二倍图，三倍图四倍图需要看实际需求。</p>
+<p>例如，前端需要一张50px * 50px的图片，那么就准备一张100px * 100px的清晰图片，前端再将其在页面上缩小为50 * 50px。</p>
+<p>ps插件cutterman可以一键切出原图、2倍图和3倍图。</p>
+<p>移动端页面开发方案：</p>
+<ol>
+<li>单独制作移动端页面（主流方案）<ol>
+<li>流式布局（百分比布局，盒子嵌套较深的时候百分比计算会有问题）</li>
+<li>flex弹性布局（强烈推荐）</li>
+<li>less+rem+媒体查询布局（媒体查询麻烦）</li>
+</ol>
+</li>
+<li>pc端制作响应式页面并兼容移动端（媒体查询样式调整非常费力，当页面比较简单或者处理一些极端情况的时候可以使用）<ol>
+<li>媒体查询</li>
+<li>bootstrap</li>
+</ol>
+</li>
+</ol>
+<p>移动端技术解决方案：</p>
+<ol>
+<li>移动端浏览器兼容只需兼容webkit内核浏览器即可，大多数手机浏览器都是这个内核改的。因此前端可以放心使用H5标签和CSS3样式，私有前缀只需要添加-webkit-即可。</li>
+<li>css初始化使用normalize.css。</li>
+<li>css加一个<code>box-sizing: border-box;</code>可以使得padding和border不会再撑大盒子了。这种css3盒子模型在不考虑兼容性的时候可以使用，考虑兼容性的话还是用传统盒子模型。</li>
+<li>移动端特殊样式：<ol>
+<li>清除链接的点击高亮：<code>-webkit-tap-highlight-color: transparent;</code>，不过还是要注意需要给用户一定的点击链接反馈。</li>
+<li>想在iOS上给按钮和输入框自定义样式要加：<code>-webkit-appearance: none;</code></li>
+<li>禁用长按页面时的弹出菜单：<code>img, a &#123;-webkit-touch-callout: none;&#125;</code></li>
+</ol>
+</li>
+<li>移动端页面宽度最小设置为320px，因为320px已经很小了；上限可以设置为640px。</li>
+<li>二倍雪碧图的用法：先将整个雪碧图用background-size缩小为原来的一半，然后按照缩小后的尺寸测量上面图标的位置，再使用。</li>
+</ol>
+<p>移动端布局：</p>
+<ol>
+<li>流式布局（百分比布局）<ol>
+<li>通过盒子的宽度都设置成百分比来根据屏幕宽度进行伸缩，内容向两侧填充</li>
+<li>一般会通过max-width和min-width限制盒子的宽度在一定范围之内伸缩，同时盒子居中避免浏览器宽度超过伸长上限时单侧留白过多</li>
+<li>流式布局中实现多列效果常用float浮动。</li>
+</ol>
+</li>
+</ol>
+<p>流式布局常用css模板：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">640px</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">320px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: -apple-system, Helvetica, sans-serif;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.5</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li><p>rem+媒体查询适配方案</p>
+<ol>
+<li>设计稿常见尺寸宽度：iPhone4、5为640px，iPhone6、7、8为750px，而Android就有很多尺寸，4.7-5寸的设备为720px。一般以一到两套效果图来适应大部分屏幕，放弃一些极端屏的效果。现在基本以750px为准。</li>
+<li>rem适配的结果是在不同的屏幕下页面元素盒子等比例缩放。</li>
+<li>以设计稿750px为例，将屏幕宽度划分为n等份，每一份作为html字体大小即1rem&#x3D;(设备宽度&#x2F;n)px，则设置html标签的font-size属性值为(设备宽度&#x2F;n)px。n可以取15。</li>
+<li>页面元素尺寸要以rem为单位，如果是750px的设计稿，将设计稿上测得的px单位除以750px下的1rem值就得到rem单位了，这个rem单位无论屏宽多少，都是不变的。</li>
+<li>媒体查询关心的尺寸一般有320px、360px、375px、384px、400px、414px、424px、480px、540px、720px、750px，在这些尺寸下用媒体查询设置不同的html根元素字体大小，一般用css预处理器来写，写在公共样式文件common.scss里。</li>
+</ol>
+<p>rem+媒体查询布局常用css模板：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">320px</span>)&#123;</span><br><span class="line">    <span class="selector-tag">html</span>&#123;</span><br><span class="line">        <span class="attribute">font-size</span>: (<span class="number">320</span>/n)px;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*其他尺寸的媒体查询*/</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">320px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.5</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: Arial, Helvetica;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f2f2f2</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">15rem</span>; <span class="comment">/*如果将设计稿分成15份的话*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>响应式布局</p>
+<ol>
+<li>响应式布局需要一个父级作为布局容器，根据屏宽变化使子元素布局改变。即通过媒体查询改变布局容器的大小，再改变里面子元素的排列方式和大小。</li>
+<li>布局容器的大小怎么定？</li>
+</ol>
+<p>如果是&lt;768px屏，设置宽度为100%；</p>
+<p>如果是&gt;&#x3D;768px屏，设置宽度为750px；</p>
+<p>如果是&gt;&#x3D;992px屏，设置宽度为970px；</p>
+<p>如果是&gt;&#x3D;1200px屏，设置宽度为1170px；</p>
+</li>
+</ol>
+<p>响应式布局常用css模板：(html里需要一个<div class='container'></div>)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: npx;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>: <span class="number">767px</span>)&#123;</span><br><span class="line">    <span class="selector-class">.container</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">768px</span>)&#123;</span><br><span class="line">    <span class="selector-class">.container</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">750px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">992px</span>)&#123;</span><br><span class="line">    <span class="selector-class">.container</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">970px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>: <span class="number">1200px</span>)&#123;</span><br><span class="line">    <span class="selector-class">.container</span> &#123;</span><br><span class="line">        <span class="attribute">width</span>: <span class="number">1170px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在不同的屏幕下，不光布局容器的大小要改变，里面子元素的大小、排列方式等也需要改变并自适应。</p>
+<p>总结：</p>
+<p>移动端适配的目的：<strong>让拥有不同屏幕大小的终端设备拥有一致的 UI 界面，让拥有更大屏幕的终端展示更多的内容</strong>。</p>
+<p>代码方面，基本上就是哪些地方该用px写死，哪些地方不能写死该用比例的问题。</p>
+<p>head里永远写一个meta视口标签。</p>
+<p>布局上，无脑flex，浮动本职工作不是布局，定位根据需要使用（要想到定位能做的事情flex或许也可以做到）。</p>
+<p>对于文字，其大小使用px写死，可用媒体查询适配，因为屏幕更大应该显示更多的内容而不是更大的字。</p>
+<p>对于一行上的多个块盒，有些可以横向压缩，则宽度使用比例高度可写死，不能压的太扁的话，可以减少一行上元素的数量；有些不能横向压缩，可以采用减少一行上排列元素的数量解决；有些不能仅仅被横向压缩，那么就需要宽高都用比例并且等比例缩放。</p>
+<p>比例一般有百分比、rem、vw&#x2F;vh方法，rem相较于其他二者为不推荐方案。可以留意一下px转rem或者px转vw&#x2F;vh的插件。</p>
+<p>屏幕大小可以分为几个档位，在不同的档位之间还是可以使用媒体查询的。</p>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top">Elzzach</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top/article/8cc23fad8e11.html">https://blog.elzzach.top/article/8cc23fad8e11.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.elzzach.top" target="_blank">暮紫天地</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/avatar.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Elzzach</div><div class="author-info__description">一个爱好视觉效果的(想花里胡哨却花不起来的)入门小前端</div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legend-cpu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:el-zzach@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到暮紫天地！🎉<br/>博主去知识的海洋里遨游了，更新随缘哦~<br/><strong>主站点</strong>：<a href="https://blog.elzzach.top/" target="_blank">blog.elzzach.top</a><br/><strong>镜像站</strong>：<a href="https://legend-cpu.github.io/" target="_blank">Github镜像站</a><br/>作者才疏学浅，读者若发现文章有错误之处，请不吝指出！<br/><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/202202241714592.gif" alt="可爱"/></div></div><div class="sticky_layout"></div></div></main><footer id="footer" style="background: rgba(255, 255, 255, 0.8)"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Elzzach</div><div class="footer_custom_text"><div class="footer_custom_text"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span class="footer-separator">|</span><span>备案 </span><a href="https://beian.miit.gov.cn" target="_blank">皖ICP备2022000051号</a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/medium-zoom@latest/dist/medium-zoom.min.js"></script><script src="https://npm.elemecdn.com/vanilla-lazyload@latest/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu@latest/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script src="https://npm.elemecdn.com/ezsttcfs@latest/live2d-widget/autoload.js"></script><script src="/ext/ez.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/fireworks.min.js"></script><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script></div></body></html>

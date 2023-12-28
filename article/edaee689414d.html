@@ -1,0 +1,482 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计网笔记 | 暮紫天地</title><meta name="robots" content="noindex"><meta name="keywords" content="前端, 设计"><meta name="author" content="Elzzach"><meta name="copyright" content="Elzzach"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.网络的构成2.各种网络通信具体的工作过程 内网&#x2F;私网即局域网，在不同环境下具体表现不同，比如学校内部的局域网（校园网），公司内部的局域网，家庭内部的局域网，等等。外网&#x2F;公网即互联网，由多个局域网连接而成的大型网络。（如城域网，广域网）内网一般通过一台路由器或服务器（即网关）与外网相连，访问外网的公网ip（由运营商提供）就在这个网关上（网关一般同时还具有内网ip，两张网卡）。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网笔记">
+<meta property="og:url" content="https://blog.elzzach.top/article/edaee689414d.html">
+<meta property="og:site_name" content="暮紫天地">
+<meta property="og:description" content="1.网络的构成2.各种网络通信具体的工作过程 内网&#x2F;私网即局域网，在不同环境下具体表现不同，比如学校内部的局域网（校园网），公司内部的局域网，家庭内部的局域网，等等。外网&#x2F;公网即互联网，由多个局域网连接而成的大型网络。（如城域网，广域网）内网一般通过一台路由器或服务器（即网关）与外网相连，访问外网的公网ip（由运营商提供）就在这个网关上（网关一般同时还具有内网ip，两张网卡）。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.elzzach.top/rgba(0,%200,%200,%200)">
+<meta property="article:published_time" content="2023-12-28T09:17:32.000Z">
+<meta property="article:modified_time" content="2023-12-28T09:44:55.008Z">
+<meta property="article:author" content="Elzzach">
+<meta property="article:tag" content="前端, 设计">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.elzzach.top/rgba(0,%200,%200,%200)"><link rel="shortcut icon" href="https://blog.elzzach.top/global-img/favicon.webp"><link rel="canonical" href="https://blog.elzzach.top/article/edaee689414d.html"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@latest/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"https://npm.elemecdn.com/ezsttcfs@latest/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离本文上次更新已经过去了","messageNext":"天，文章中的内容有可能已经过时。如果过时，请联系作者尝试更新为最新版。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":null},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'mediumZoom',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#c449f5","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js',
+      css: 'https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计网笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-12-28 17:44:55'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" /><meta http-equiv="Cache" content="no-cache"><meta http-equiv="Pragma" content="no-cache" /><meta http-equiv="Expires" content="0" /><link rel="stylesheet" href="/ext/ez.css"><meta name="generator" content="Hexo 6.0.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/avatar.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">35</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">15</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img nav-fixed nav-visible" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">暮紫天地</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间线</span></a></div><div class="menus_item"><a class="site-page" href="/shuoshuo/"><i class="fa-fw fas fa-ellipsis"></i><span> 碎碎念</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">计网笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-28T09:17:32.000Z" title="发表于 2023-12-28 17:17:32">2023-12-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-28T09:44:55.008Z" title="更新于 2023-12-28 17:44:55">2023-12-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">20k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>61分钟</span></span></div></div></div><article class="post-content" id="article-container"><p>1.网络的构成<br>2.各种网络通信具体的工作过程</p>
+<p>内网&#x2F;私网即局域网，在不同环境下具体表现不同，比如学校内部的局域网（校园网），公司内部的局域网，家庭内部的局域网，等等。<br>外网&#x2F;公网即互联网，由多个局域网连接而成的大型网络。（如城域网，广域网）<br>内网一般通过一台路由器或服务器（即网关）与外网相连，访问外网的公网ip（由运营商提供）就在这个网关上（网关一般同时还具有内网ip，两张网卡）。内网设备访问外网时先向网关发出请求，网关再用外网ip去访问互联网。<br>内网与外网视参考系选择不同而不同，比如单位局域网相对于办公室局域网为外网。一般说的是从运营商分配的能访问到互联网世界的ip开始即进入外网。</p>
+<p>内网就像是自己的家，公网就像家外面的交通网络，想要访问别的站点就要在公网上。</p>
+<p>在电脑中常见到的“专用网络”和“公用网络”，可以简单理解为内网和公网。</p>
+<p>内网使用私有ip，不允许在公网上传播所以无法直接访问外网，但局域网内部可实现文件共享，软件共享，打印机共享等服务<br>另：NAS，网络附属存储技术，与局域网内文件管理操作相关</p>
+<p>内网ip网段三个：A类ip中：10开头的都是，B类ip中：172.16.0.0-172.31.255.255，C类ip中：192.168开头的都是</p>
+<p>另：因特网Internet是全球最大的开放互联网，由美国的ARPAnet发展而来，主要采用TCP&#x2F;IP协议。</p>
+<p>以太网是现实世界中最普遍的一种计算机网络。以太网有两类：第一类是经典以太网，第二类是交换式以太网，使用了一种称为交换机的设备连接不同的计算机。以太网的标准拓扑结构为总线型拓扑，但快速以太网为了减少冲突，使用交换机来进行网络连接和组织。如此一来，以太网的拓扑结构就成了星型；但在逻辑上，以太网仍然使用总线型拓扑和CSMA&#x2F;CD（Carrier Sense Multiple Access&#x2F;Collision Detection，即载波多重访问&#x2F;碰撞侦测）的总线技术。<br>以太网实现了网络上多个节点发送信息的想法，每个节点有时也叫作以太（Ether）。（这个名字来源于19世纪的物理学家假设的电磁辐射媒体-光以太。后来的研究证明光以太不存在。） 每一个节点有全球唯一的48位地址也就是制造商分配给网卡的MAC地址，以保证以太网上所有节点能互相鉴别。由于以太网十分普遍，许多制造商把以太网卡直接集成进计算机主板。</p>
+<p>互联网&#x3D;通过路由协议联通的N个局域网。</p>
+<p>局域网&#x3D;以太网+TCP&#x2F;IP协议。</p>
+<p>以太网&#x3D;基于广播(MAC寻址)和碰撞检测机制 CSMA&#x2F;CD 的网络。</p>
+<p>以太网技术可以用在局域网、广域网乃至互联网上，现在的网络都有以太化的趋势。</p>
+<h5 id="因特网服务提供者ISP（Internet-Service-Provider）"><a href="#因特网服务提供者ISP（Internet-Service-Provider）" class="headerlink" title="因特网服务提供者ISP（Internet Service Provider）"></a>因特网服务提供者ISP（Internet Service Provider）</h5><p>普通用户是通过ISP接入因特网的，ISP可以从因特网管理机构申请到成块的ISP地址，同时他们拥有通信线路和路由器等联网设备，任何单位和机构只要向ISP缴纳其规定的费用，就可以从ISP获得所需的IP地址，这样就可以通过ISP接入因特网。</p>
+<p>我国主要的ISP就是<strong>中国电信、中国联通和中国移动</strong>这三大电信运营商。</p>
+<h5 id="基于ISP的三层结构的因特网"><a href="#基于ISP的三层结构的因特网" class="headerlink" title="基于ISP的三层结构的因特网"></a>基于ISP的三层结构的因特网</h5><p>根据提供服务的覆盖面级大小和所拥有的IP地址数量的不同，ISP也分为不同的层次。</p>
+<p>第一层ISP服务面积最大，也称为因特网主干网，能覆盖国际性区域范围，拥有高速链路和交换设备。第一层ISP之间是直接互联的。</p>
+<p>第二层ISP和一些大公司都是第一层ISP的用户，具有国家性或区域性覆盖规模，与少数第一层ISP相连接。</p>
+<p>第三层ISP也叫本地ISP，是第二层ISP的用户，只拥有本地范围的网络。</p>
+<p>一般的校园网或企业网、住宅用户和无线移动用户都是第三层ISP的用户。</p>
+<blockquote>
+<p>如果一个用户能够接入因特网，那么他也可以成为一个ISP，只要购买一些调制解调器或者路由器等设备，让其他用户可以与他相连。</p>
+</blockquote>
+<p>骨干网：<strong>用来连接多个局域和地区网的几个高速网络之一</strong>，每个骨干网中至少有一个和其他骨干网进行包交换的连接点。 不同的供应商拥有它们自己的骨干网，以独立于其他供应商。 <strong>几台计算机连接起来，互相可以看到其他人的文件，这叫局域网，整个城市的计算机都连接起来，就是城域网，把城市之间连接起来的网就叫骨干网。</strong> 这些骨干网是国家批准的可以直接和国外连接的互联网。 其他有接入功能的ISP想连到国外都得通过这些骨干网。</p>
+<p>这里的骨干网大约相当于上面说的第一层ISP因特网主干网。</p>
+<h2 id="中国互联网骨干网"><a href="#中国互联网骨干网" class="headerlink" title="中国互联网骨干网"></a>中国互联网骨干网</h2><h3 id="4-1-九大骨干网"><a href="#4-1-九大骨干网" class="headerlink" title="4.1 九大骨干网"></a>4.1 九大骨干网</h3><p>目前，中国拥有九大骨干网:</p>
+<ul>
+<li>中国公用计算机互联网（CHINANET）</li>
+<li>中国科技网（CSTNET）</li>
+<li>中国教育和科研计算机网（CERNET）</li>
+<li>中国金桥信息网（CHINAGBN）</li>
+<li>中国联通互联网（UNINET）</li>
+<li>中国网通公用互联网（CNCNET）</li>
+<li>中国移动互联网（CMNET）</li>
+<li>中国国际经济贸易互联网（CIETNET）</li>
+<li>中国长城互联网（CGWNET）</li>
+</ul>
+<h3 id="4-2-CHINANET八大节点"><a href="#4-2-CHINANET八大节点" class="headerlink" title="4.2 CHINANET八大节点"></a>4.2 CHINANET八大节点</h3><p>中国电信CHINANET骨干网核心层由北京、上海、广州、沈阳、南京、武汉、成都、西安等8个城市的核心节点组成。</p>
+<p>核心节点之间为不完全网状结构。以北京、上海、广州为中心的三中心结构，其他核心节点分别以至少两条高速ATM链路与这三个中心相连。另外各省还建立了二级节点。</p>
+<ol>
+<li>北京是中国电信三大核心节点城市之一，同时也是 ChinaNet骨干网三个国际出口之一，中国电信北方网络的主节点在北京电信上地机房，现在的北京上地<a href="https://link.zhihu.com/?target=http://dc.idcquan.com/">数据中心</a>原来是263机房，后来被电信收购重组为中国电信北京数据中心之一，也是中国电信北方网络主节点ChinaNet骨干网的交换中枢。</li>
+<li>上海是中国电信CHINANET骨干网节点，同时也是 ChinaNet骨干网三个国际出口之一，总国际出口带宽12G；ChinaNet骨干网上海节点和上海本地网络的互联带宽为80G；ChinaNet骨干网上海节点和ChinaNet北京（北方电信）的互联带宽为10G；上海电信是中国电信国内长途电信网的重要枢纽节点，也是中国国际通信的三大出口局之一，拥有京沪、北沿海、北沿江、南沿海、沪杭、沪宁等国内长途光缆系统，以及国内卫星通信地球站；是中美、亚欧、亚太、环球、中日、中韩等国际大容量海光缆、陆地光缆系统的重要节点，并建有太平洋、印度洋卫星地球站；上海长信的机房是级别最高的，上海机房中线路不管怎么绕，任何机房最终的出口都在武胜机房和横浜机房。设有两台国际出口路由器，负责与国际i nternet互联，以及两台核心路由器与其他核心节点互联。个人认为上海在国际出口方面启到的作用比北就，广州要大很多。</li>
+<li>广州. 广州市Internet服务中心于1995年10月1日投入试运行，系统于1996年1月1日正式开通。广州市Internet服务中心节点作为中国公用互联网络服务系统ChinaNET的一个骨干节点，与北京和上海的Internet节点连接，与它们以及其它地区的节点共同构成ChinaNET骨干网。广州节点是继北京、上海之后的第三个国际出口，也是广东乃至全国最大的国际出口之一。</li>
+<li>沈阳是CHINANET八大节点之一，主要是作为CHINANET在东北地区的网络中心，在96年开通，由于东北大部分地区都被网通网络覆盖，因此CHINANET沈阳节点是八大节点中规模最小的。</li>
+<li>南京电信作为CHINANET的八大节点之一，南京电信拥有富足的网络资源，与同是八大节点之一的上海电信相比，南京与其他省市之间的骨干网络拥塞程度较轻，有较大的发展空间。省节点带宽资源丰厚 （20G），资源利用率适度 ，有较大的发展空间， 两个标准的 IDC 机房（龙江，苜蓿园）一个在建的超大机房（游府西街），交通极为便利。齐备的机房设施（电力，恒温，安全）。</li>
+<li>武汉.武汉电信是全国重要的通信枢纽和原中国电信第三大业务领导单位，其综合通信名列全国省会城市前5位。处于国家骨干通信网8纵8横一级通信干线中心位置。是中国电信建设的三大高速光缆环网（南环，西环和北环）的交汇中心。武汉热线数据中心属华中最大ISP“湖北电信武汉市分公司”，与中国电信（CHINANET）骨干网通过千兆光纤以千兆以太网方式接入主干网。具有高速、直连、高可用性、可扩展性、高安全性。</li>
+<li>成都.成都数据中心是中国电信全国8大节点之一，可支配带宽资源丰富，与Chinanet骨干网节点带宽60G，CN2节点带宽10G.机房内部网络全部采用千兆连接核心层与汇聚层，双百兆冗余到接入层的无瓶颈交换式结构，局域网采用千兆与百兆混合交换式可监控网络，中心网络设备确保高可靠性架构，做到无单点故障，分支网络提供冗余设备及线路，可针对客户数据传输，维护的需求提供XDSL，DDN，ISDN等多种接入手段，并能提供与国内Chinanet主要节点城市连接的长途专线。</li>
+<li>西安. 西安是中国公用计算机网络和中国多媒体信息网络在西北五省的网络核心中枢，同时，西安又是西北五省和中国公用计算机网络（CHINANET）连接的必由之路，拥有最大的网络传输线路。因此，在西安建立的互联网数据中心（IDC）必将拥有得天独厚的网络资源。</li>
+</ol>
+<h2 id="5-中国骨干网运营商"><a href="#5-中国骨干网运营商" class="headerlink" title="5 中国骨干网运营商"></a>5 中国骨干网运营商</h2><p>目前中国有七家<strong>骨干网运营商</strong>，分别是<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1">中国电信</a>、<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E8%81%94%E9%80%9A">中国联通</a>、<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8">中国移动</a>、<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E6%95%99%E8%82%B2%E5%92%8C%E7%A7%91%E7%A0%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91">中国教育和科研计算机网</a>、<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E5%9B%BD%E7%A7%91%E6%8A%80%E7%BD%91&action=edit&redlink=1">中国科技网</a> 、<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E5%9B%BD%E5%9B%BD%E9%99%85%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E7%BD%91&action=edit&redlink=1">中国国际电子商务网</a>和<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E5%9B%BD%E9%95%BF%E5%9F%8E%E4%BA%92%E8%81%94%E7%BD%91&action=edit&redlink=1">中国长城互联网</a></p>
+<ul>
+<li>**<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1">中国电信</a>**，拥有2张全国骨干网：中国公用计算机互联网（CHINANET &#x2F; CHINA163）和<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E5%9B%BD%E7%94%B5%E4%BF%A1%E4%B8%8B%E4%B8%80%E4%BB%A3%E6%89%BF%E8%BD%BD%E7%BD%91&action=edit&redlink=1">中国电信下一代承载网</a>（ChinaNet Next Carrying Network，简称CN2）。</li>
+<li>**<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E8%81%94%E9%80%9A">中国联通</a>**，拥有1张全国骨干网：中国网通互联网（CHINA169）。原中国金桥信息网(CHINAGBN)由吉通公司负责建设、运营和管理，2002年5月16日，吉通公司并入<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E7%BD%91%E9%80%9A">中国网通</a>[<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%AA%A8%E5%B9%B2%E7%BD%91%E8%BF%90%E8%90%A5%E5%95%86%23cite_note-2">2]</a>；2009年中国网通与中国联通合并。2009年<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E5%B7%A5%E4%B8%9A%E5%92%8C%E4%BF%A1%E6%81%AF%E5%8C%96%E9%83%A8">工业和信息化部</a>同意原中国网通互联网骨干网（CHINA169）和原中国联通互联网骨干网（UNINET）实施网络融合，并将 UNINET 作为下级网络接入 CHINA169[<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%AA%A8%E5%B9%B2%E7%BD%91%E8%BF%90%E8%90%A5%E5%95%86%23cite_note-3">3]</a>。</li>
+<li>**<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8">中国移动</a>**，拥有1张全国骨干网：中国移动互联网（CMNET），于2000年1月组建。</li>
+<li>**<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E6%95%99%E8%82%B2%E5%92%8C%E7%A7%91%E7%A0%94%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91">中国教育和科研计算机网</a>**（CERNET）：始建于1994年，由<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E8%8F%AF%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9C%8B%E6%95%99%E8%82%B2%E9%83%A8">中国教育部</a>投资并管理，是中国最大的公益性、学术性计算机互联网络，网络总控中心设在<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6">清华大学</a>。</li>
+<li>**<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E5%9B%BD%E7%A7%91%E6%8A%80%E7%BD%91&action=edit&redlink=1">中国科技网</a>**（CSTNET）：中国科技网的前身是<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9C%8B%E7%A7%91%E5%AD%B8%E9%99%A2">中国科学院</a>于1989年8月建立的中关村教育与科研示范网络（NCFC）。1994年4月，NCFC与美国NSFNET直接互联，实现了中国与国际互联网的首次全功能网络连接。1996年2月，以NCFC为基础发展起来的中国科学院院网（CASNET）更名为中国科技网（CSTNET）[<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%AA%A8%E5%B9%B2%E7%BD%91%E8%BF%90%E8%90%A5%E5%95%86%23cite_note-4">4]</a>。</li>
+<li>**<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E5%9B%BD%E5%9B%BD%E9%99%85%E7%BB%8F%E6%B5%8E%E8%B4%B8%E6%98%93%E4%BA%92%E8%81%94%E7%BD%91&action=edit&redlink=1">中国国际经济贸易互联网</a>**（CIETNET）：全国外贸系统企事业单位专用，由中国国际电子商务中心负责组建、运行和维护，不设国际出口带宽[<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E9%AA%A8%E5%B9%B2%E7%BD%91%E8%BF%90%E8%90%A5%E5%95%86%23cite_note-5">5]</a>。</li>
+<li>**<a href="https://link.zhihu.com/?target=https://zh.wikipedia.org/w/index.php?title=%E4%B8%AD%E5%9B%BD%E9%95%BF%E5%9F%8E%E4%BA%92%E8%81%94%E7%BD%91&action=edit&redlink=1">中国长城互联网</a>**（CGWNET）：军队专用，不设国际出口带宽。</li>
+</ul>
+<p>网关用来连接两个不同的网络，实质上是一个网络通向其他网络的IP地址。网关的IP地址是具有路由功能的设备的IP地址，具有路由功能的设备有路由器、启用了路由协议的服务器（实质上相当于一台路由器）、代理服务器（也相当于一台路由器）。至于默认网关的意思是一台主机如果找不到可用的网关，就把数据包发给默认指定的网关，由这个网关来处理数据包。现在主机使用的网关，一般指的是默认网关。默认网关的设置有手动设置和自动设置两种方式。</p>
+<ul>
+<li>手动设置：手动设置适用于电脑数量比较少、TCP&#x2F;IP参数基本不变的情况，比如只有几台到十几台电脑。因为这种方法需要在联入网络的每台电脑上设置“默认网关”，非常费劲，一旦因为迁移等原因导致必须修改默认网关的IP地址，就会给网管带来很大的麻烦，所以不推荐使用。需要特别注意的是：默认网关必须是电脑自己所在的网段中的IP地址，而不能填写其他网段中的IP地址。</li>
+<li>自动设置：自动设置就是利用DHCP服务器来自动给网络中的电脑分配IP地址、子网掩码和默认网关。这样做的好处是一旦网络的默认网关发生了变化时，只要更改了DHCP服务器中默认网关的设置，那么网络中所有的电脑均获得了新的默认网关的IP地址。这种方法适用于网络规模较大、TCP&#x2F;IP参数有可能变动的网络。</li>
+</ul>
+<p>默认网关指计算机所在网络边界的网关或路由器，因为只有网关和路由器才知道如何到达其他网络。对于网络内部的计算机来说，只有知道了默认网关的位置才能和网络外部通信。<br>所以默认网关是一个很重要的设置。但大多数情况下不需要我们手动设置，因为网络中的DHCP服务器可以自动提供默认网关的位置。对于使用宽带路由器共享上网，默认网关是宽带路由器。<br>对于拨号上网，默认网关是是运营商处的路由器。<br>对于网络中有启用了ICS (Internet连接共享）的计算机并共享上网，默认网关就是这台计算机。</p>
+<p>子网掩码用于划分IP地址的网络号部分（net id）和主机号部分（host id），子网掩码与ip地址一起使用才能表示该ip所在子网与其他子网的关系（子网掩码与ip地址做与运算得到的32位数就是网络号，另：与运算规则有0则0，全1才1，任何数与十进制的255做与运算都得到该数）。子网掩码也是32位二进制数，左边是网络位，网络位上都是1，右边为主机位，主机位上都是0。比如左边八位都是1，右边24位都是0的子网掩码用十进制表示就是255.0.0.0，表示子网中ip地址的左边八位（第一个字节）为网络号，右边24位（第2-4字节）为主机号。网络位是由子网掩码决定的，只有在相同子网掩码下网络位完全相同的两个ip才能说是在同一个子网中。<br>网络号相同的主机为本地网络主机，网络号不同的主机为远程网络主机，本地网络主机互相通信可以直接把数据包发到目标主机，而远程网络主机相互通讯需要通过本地网关（Gateway）传递转发数据，这就是需要子网掩码来判断两台主机是否处于同一网络中的理由。</p>
+<p>可以这么简单的理解：A主机要与B主机通信，A和B各自的IP地址与A主机的子网掩码进行And与运算，看得出的结果：</p>
+<p>1、结果如果相同，则说明这两台主机是处于同一个网段，这样A可以通过ARP广播发现B的MAC地址，B也可以发现A的MAC地址来实现正常通信。</p>
+<p>2、如果结果不同，ARP广播会在本地网关终结，这时候A会把发给B的数据包先发给本地网关，网关再根据B主机的IP地址来查询路由表，再将数据包继续传递转发，最终送达到目的地B。</p>
+<p>计算机的网关（Gateway）就是到其他网段的出口，也就是路由器接口IP地址。路由器接口使用的IP地址可以是本网段中任何一个地址，不过通常使用该网段的第一个可用的地址或最后一个可用的地址，这是为了尽可能避免和本网段中的主机地址冲突</p>
+<p>子网掩码的主机位有n位的话，对应的每个子网中就可容纳2^n-2台主机（主机位不能全0或全1）。</p>
+<p>子网中主机数计算：每个子网中主机号部分全部为0（指二进制形式全部为0，当然这样的话十进制形式也全部是0）的ip用于表示本网的网络地址，主机号二进制形式全部为1（主机号有8，16，24位的话即十进制形式全部为255）的ip是本网的广播地址，这两个ip主机不可用，所以算网段中可用ip数量时要减2</p>
+<p>如果看到ip地址&#x2F;n这样的表示形式，这个就是用CIDR斜线表示法表示的一个网段，n指的就是子网掩码，表示子网掩码中高n位为1。比如192.168.1.1&#x2F;24是一个网段。</p>
+<h4 id="子网掩码的分类"><a href="#子网掩码的分类" class="headerlink" title="子网掩码的分类"></a>子网掩码的分类</h4><p><strong>①、缺省子网掩码</strong></p>
+<p>也叫默认子网掩码，即未划分子网的状态，对应的网络号的位都置 1 ，主机号都置 0 。</p>
+<p>未做子网划分的IP地址：网络号＋主机号</p>
+<p>A类网络缺省子网掩码： 255.0.0.0，用CIDR表示为&#x2F;8</p>
+<p>B类网络缺省子网掩码： 255.255.0.0，用CIDR表示为&#x2F;16</p>
+<p>C类网络缺省子网掩码： 255.255.255.0，用CIDR表示为&#x2F;24</p>
+<p><strong>②、自定义子网掩码</strong>（VLSM）</p>
+<p>将一个网络划分子网后，把原本的主机号位置的一部分给了子网号，余下的才是给了子网的主机号。其形式如下：</p>
+<p>做子网划分后的IP地址：网络号＋子网号＋子网主机号</p>
+<p>举个栗子：</p>
+<p>如：192.168.1.100&#x2F;25，其子网掩码表示：255.255.255.128</p>
+<p>意思就是将192.168.1.0这个网段的主机位的最高1位划分为了子网，有2^1&#x3D;2个子网。</p>
+<p>IP地址的子网掩码设置不是任意的。如果将子网掩码设置过大，也就是说子网范围扩大，那么，根据子网寻径规则，很可能发往和本地主机不在同一子网内的目标主机的数据，会因为错误的判断而认为目标主机是在同一子网内，那么，数据包将在本子网内循环，直到超时并抛弃，使数据不能正确到达目标主机，导致网络传输错误；如果将子网掩码设置得过小，那么就会将本来属于同一子网内的机器之间的通信当做是跨子网传输，数据包都交给缺省网关处理，这样势必增加缺省网关(文章下方有解释)的负担，造成网络效率下降。因此，子网掩码应该根据网络的规模进行设置。如果一个网络的规模不超过254台电脑，采用“255.255.255.0”作为子网掩码就可以了，现在大多数局域网都不会超过这个数字，因此“255.255.255.0”是最常用的IP地址子网掩码；假如在一所大学具有1500多台电脑，这种规模的局域网可以使用“255.255.0.0”。</p>
+<p>路由分组转发是通过ip地址与子网掩码运算出的网络地址来转发的，不是根据ip地址。</p>
+<p>ip分ABCDE五类，DE两类为保留地址不能使用生活中碰不到，A类是第一节为网络号后三节为主机号，要求网络号部分转换为二进制后的最高位始终为0，所以A类地址的第一节为1-126（0开头是本机网络地址，127开头是环回地址），默认子网掩码（也叫缺省子网掩码）为255.0.0.0，A类网络有126个，每个网络可容纳（2 ^ 24-2）个即大约1600多万个设备。B类是前两节为网络号，第一节为128-191，默认子网掩码255.255.0.0，B类网络有16384个，每个网络可容纳（2 ^ 16-2）&#x3D;65534个设备。C类前三节为网络号，第一节为192-223，默认子网掩码255.255.255.0，C类网络有两百多万个，每个网络可容纳254个设备，用于小型网络。第一节为224-239为D类组播地址，第一节为240为E类地址。<br>复习二进制：十进制的255（2^8-1）是二进制的1111 1111，共八位（比特），即8b，也就是一个字节1B。十进制的偶数换算为二进制最右边肯定是0。二进制数左边为高位，右边为低位。<br>ip地址为32位二进制数，高位的0不要省略<br>ip0.0.0.0不真实存在，代表本机所有ipv4地址<br>ip255.255.255.255为本地网络的广播地址，不能被转发，不能过网关而是发送到同网段上的所有主机上<br>ip127.0.0.1为环回ip，表示本机ip地址，等效于localhost</p>
+<p>ABC类ip的子网数计算：A类直接数，126个；B类ip必须以10（二进制）开头所以网络号可变位有十四位，子网数有（2^14)个（不需要-2，不过很久以前网络位也不支持全0或全1要-2）&#x3D;16384个；C类ip必须以110（二进制）开头所以网络号可变位有21位，子网数有（2 ^21)&#x3D;2097152约两百多万个。如果算某网段内可划分多少个子网要看对应的子网掩码里子网号部分是哪几位（参考VLSM部分），比如划分出2位主机位做子网号，那就是2 ^2&#x3D;4个子网。<br>另：药大宿舍网分配给学生的内网ip是10开头的ip，为A类ip。</p>
+<h3 id="二、CIDR与VLSM"><a href="#二、CIDR与VLSM" class="headerlink" title="二、CIDR与VLSM"></a>二、CIDR与VLSM</h3><h4 id="1、有类和无类网络，超网和子网"><a href="#1、有类和无类网络，超网和子网" class="headerlink" title="1、有类和无类网络，超网和子网"></a>1、有类和无类网络，超网和子网</h4><p>我们先了解这几个概念，对于CIDR和VLSM以及子网划分都是很有用的。</p>
+<blockquote>
+<p>◆ 有类网络：也叫主类网络或标准网络，就是指把IP地址能归结到的A类、B类、C类IP，使用的是标准的默认子网掩码。</p>
+<p>◆ 无类网络：相对于有类网络，无类网络IP地址的掩码是变长的。在有类网络的基础上，拿出一部分主机ID作为子网ID。</p>
+<p>◆ 超网：把多个小网络组合成一个大网络，称为超网（SuperNetting），也可以说子网掩码长度小于相对应的有类网络的叫超网。</p>
+<p>◆ 子网：有类网络划分成更小后的网络，称为子网（Subnet），也可以说子网掩码长度大于相对应的有类网络的叫子网。</p>
+</blockquote>
+<h4 id="2、CIDR无类别域间路由"><a href="#2、CIDR无类别域间路由" class="headerlink" title="2、CIDR无类别域间路由"></a>2、CIDR无类别域间路由</h4><p>CIDR（Classless Inter-Domain Routing，无类别域间路由）本质是消除了传统的A类、B类和C类地址以及划分子网的概念，将多个地址块聚合在一起生成一个更大的网络，从而包含更多的主机。（网络位让给主机位）</p>
+<blockquote>
+<p>CIDR采用8-30位可变网络ID（最大可用的只能为30位，即必须要保留2位给主机位），而不是A、B、C类网络ID所用的固定的8、16和24位。<br>CIDR表示方法：IP地址&#x2F;n，n表示IP地址中的前n位代表网络部分（n个二进制数1），其余（32-n）位代表主机部分。这种方法称为“斜线记法”，它又称为CIDR记法。</p>
+</blockquote>
+<p>举个栗子：子网掩码255.255.255.192，用CIDR表示是多少呢？</p>
+<p>①、首先确认的是这是个C类网络地址（C类的默认子网掩码为255.255.255.0）</p>
+<p>②、前面三个字节都是255，转换成二进制都为1，即11111111.11111111.11111111，即24位1。</p>
+<p>③、后面一个字节是192，转换成二进制为11000000，即1占用了2位。</p>
+<p>④、子网掩码共占用了26位1，所以用CIDR表示为&#x2F;26。</p>
+<p>⑤、如果网络地址为192.168.10.0，再加上CIDR，最后表示为192.168.10.0&#x2F;26。</p>
+<p>CIDR支持路由聚合，能够将路由表中的许多路由条目合并为成更少的数目，因此可以限制路由器中路由表的增大，减少路由通告，减轻路由器的负担。</p>
+<h4 id="3、VLSM可变长子网掩码"><a href="#3、VLSM可变长子网掩码" class="headerlink" title="3、VLSM可变长子网掩码"></a>3、VLSM可变长子网掩码</h4><p>VLSM（Variable Length Subnet Mask，可变长子网掩码）规定了在一个有类（A、B、C类）网络内包含多个子网掩码的能力，以及对一个子网的再进行子网划分的能力。（主机位让给网络位）</p>
+<blockquote>
+<p>每一个IP地址都包含了2部分：网络号和主机号。在有类网络中，32bit的IP地址被分为4段，每段8bit来表示。这使得作为网络号的前缀必须是8位，16位或者24位。当网络号是24位的时候，主机号只有8位，也就是说，可分配的最小的地址块是256个（2^8&#x3D;256，而实际可分配的主机地址还要减去两个，一个是网络地址，一个是广播地址，最后为254个），这个数量对于大多数企业来说是不够的。</p>
+<p>而比这个大一点的IP地址块是网络号为16位的时候，这个时候可分配的地址块是65536（2^16&#x3D;65536），这个数量对于大多数公司又太多了。这导致无论公司选择哪种类型的网络，都可能对IP地址造成大量的浪费。</p>
+</blockquote>
+<p>IP地址如果只使用有类（A、B、C类）来划分，会造成大量的浪费或者不够用。VLSM的诞生有效的解决了这个问题，可以在有类网络的基础上，通过对IP地址的主机号进行再划分，把一部分划入网络号，就能划分各种类型大小的网络了。网络号也不再仅局限在8、16和24位这几个数，而是灵活变化的大小了。</p>
+<h4 id="4、CIDR与VLSM的区别"><a href="#4、CIDR与VLSM的区别" class="headerlink" title="4、CIDR与VLSM的区别"></a>4、CIDR与VLSM的区别</h4><ul>
+<li>在使用CIDR聚合地址时，将原来有类IP地址中的网络位划出一部分作为主机位使用。</li>
+<li>在使用VLSM划分子网时，将原来有类IP地址中的主机位按照需要划出一部分作为网络位使用。</li>
+<li>CIDR：子网掩码往左边移，掩码netmask缩短了。</li>
+<li>VLSM：子网掩码往右边移，掩码netmask增长了。</li>
+<li>CIDR是把几个有类网络合成一个大的网络（超网），用于路由地址聚合。</li>
+<li>VLSM是把一个有类网络分成几个小型网络（子网），用于更高效划分子网。</li>
+</ul>
+<blockquote>
+<p><strong>CIDR与VLSM总结：</strong><br>在某种程度上来说，CIDR和VLSM它们之间可以看做是逆过程。<br>CIDR是把几个小网络聚合成一个大网络来做表示，而VLSM则是把一个大网络继续细分为几个小网络进行IP地址分配。<br>CIDR能让路由器的路由条目得到有效的减少，从而减少路由通告，降低路由器负担，而VLSM则是充分利用IP进行地址分配来解决IP地址不被浪费的问题，节约IP地址空间，更为有效的使用。</p>
+</blockquote>
+<p>ip相关计算教程推荐（含子网划分掩码确定等）：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41207757/article/details/107839099">IP地址计算—子网掩码确定和子网划分等详解 (附常见相关习题)_子网掩码计算例题和讲解-CSDN博客</a></p>
+<p>VLSM和CIDR区别解析：<a target="_blank" rel="noopener" href="https://blog.csdn.net/chenyukk/article/details/107627724">VLSM和CIDR的区别和作用是什么？-CSDN博客</a></p>
+<p>内网ip无法访问互联网公网，可经NAT地址转换技术映射到公网ip再访问互联网，NAT技术（network address translation，网络地址转换）是可以将私网主机与公网主机通信时的数据包中的源ip在内网ip与公网ip间互相转换的技术。它可以节省公网IP资源，但同时也会增加边界设备的工作量，增加延迟。<br>ipv4地址早在2011年就几乎分配完毕，现在的很多设备都不能人手一个公网ipv4地址，只能通过先分配不能直接访问互联网的内网ip，再在路由&#x2F;防火墙等边界设备上通过NAT地址转换技术映射到公网ip进而访问互联网。内网ip访问外网有NAT很方便，但外网ip访问内网设备就需要特别做端口映射，即将外网ip主机（如路由器）的一个端口映射到内网中的一台设备上，访问外网主机的该端口时将自动把请求转发到局域网中的对应设备。</p>
+<p>外网访问内网的方式有端口映射（一般需要对外的路由器或光猫上有公网ip，没有可能就得向运营商申请，申请到的是固定ip最好，但个人用户一般不给；如果申请到动态公网ip就需要额外的一些处理）、内网穿透（不需要公网ip，比如说使用花生壳内网穿透工具等）、VPN等，应用场景如下：</p>
+<p>1.远程办公：在远程办公的情况下，员工需要访问公司内网的资源，如：文件同步、ERP系统、财务软件、数据库、FTP等。</p>
+<p>2.网络游戏：网络游戏或者局域网单机游戏，需要和远程玩家之间进行对战。</p>
+<p>3.远程控制：有些设备或机器需要通过内网连接，例如摄像头、NAS存储、智能家居等。</p>
+<p>4.有些学校的内网拥有大量的学术文献资源，学生可以通过连接学校提供的VPN来访问学校内网的学术资源。</p>
+<p>NAT转换时内网ip与外网ip的对应关系可以是多对一（最常见的搭配，多个内网ip共用一个外网ip），或多对多，或一对一。<br>ipv6推广后NAT技术或将成为历史</p>
+<p>ip分配问题：计算机网络中的每一个终端设备都被分配了一个或多个的ip地址（准确来说一张网卡一个ip地址，包括虚拟网卡），原则上同一网络中一个IP地址同时只能被分配给一个设备（一张网卡）使用（保证同一网络内没有重复ip造成冲突），但是一台设备可以被分配多个ip（安装多张网卡）：安装os即具有127.0.0.1，安装网卡配置DHCP服务后可以获取一个ip地址或者手动分配一个，如果是ipv6则还有一个代表自己的ip：：1，与因特网通信还需要运营商分配的全球唯一global ip等等。<br>另：理论上可以通过骗过ARP的方式使一个ip被多台设备共用，不过一般不管。</p>
+<h3 id="DNS服务器"><a href="#DNS服务器" class="headerlink" title="DNS服务器"></a><strong>DNS服务器</strong></h3><blockquote>
+<p>域名服务器(Domain Name Server)。在Internet上域名与IP地址之间是一一对应的，域名虽然便于人们记忆，但机器之间只能互相认识IP地址，它们之间的转换工作称为域名解析，域名解析需要由专门的域名解析服务器来完成，DNS就是进行域名解析的服务器 。</p>
+</blockquote>
+<p><strong>DNS服务器（Domain Name Server</strong>，域名服务器）是进行域名和与之相对应的IP地址进行转换的服务器。 DNS服务器中保存了一张域名和与之相对应的IP地址的表，以解析IP对应的域名。DNS运行在网络模型中的应用层。</p>
+<p>在Windows的命令行中可以通过nslookup指令来查看域名对应的ip地址。ipconfig &#x2F;all指令可以查看电脑的默认网关、默认DNS服务器等信息。平时上网时如果连的是运营商的网络，那么此时的DNS往往是运营商分配的DNS服务器地址。</p>
+<p>有一些公司提供了高质量的免费DNS供全球使用，如谷歌的OpenDNS（8.8.8.8）和Cloudflare的1.1.1.1。不过在国内，有些地区的运营商将这些公共DNS的ip设置成内网ip了，导致使用其提供的网络服务的人即使设置了这些DNS也无法使用。另外还有节点设置原因导致这些DNS在国内并不好用。</p>
+<blockquote>
+<p>为什么1.1.1.1这个外网地址会被设置成内网地址？</p>
+<p>实际上任何公网ip都可以被分配到内网的设备上，那三个私网ip段只是人为规定的规范，对于机器来说都是一样的。只不过，被分配到内网的公网ip无法再被这个局域网中的所有设备访问到真正在公网上的那个ip了而已。</p>
+</blockquote>
+<p><strong>DNS解析过程概述</strong>：</p>
+<ol>
+<li><p><strong>本地电脑会先检查浏览器缓存中有没有这个域名对应的解析过的IP地址</strong>，如果缓存中有，DNS解析过程就直接结束。</p>
+<p>浏览器缓存域名也是有限制的，不仅缓存大小有限制，而且缓存的时间也有限制，通常情况下为几分钟到几小时不等，域名被缓存的时间限制可以通过TTL属性来设置。这个缓存时间太长和太短都不好，如果时间太长，一旦域名被解析到的IP有变化，会导致被客户端缓存的域名无法解析到变化后的IP地址，以致该域名不能正常解析，这段时间内有一部分用户无法访问网站。如果设置时间太短，会导致用户每次访问网站都要重新解析一次域名。</p>
+</li>
+<li><p>如果浏览器缓存中没有数据，本地电脑会<strong>查找操作系统缓存中是否有这个域名对应的DNS解析结果</strong>。</p>
+<p>其实操作系统也有一个域名解析的过程，在Linux中可以通过<code>/etc/hosts</code>文件来设置，而在windows中可以通过配置<code>C:\Windows\System32\drivers\etc\hosts</code>文件来设置，用户可以将任何域名解析到任何能够访问的IP地址。例如，我们在测试时可以将一个域名解析到一台测试服务器上，这样不用修改任何代码就能测试到单独服务器上的代码的业务逻辑是否正确。正是因为有这种本地DNS解析的规程，所以有黑客就可能通过修改用户的域名来把特定的域名解析到他指定的IP地址上，导致这些域名被劫持。</p>
+</li>
+<li><p>前两个过程无法解析时，就要用到我们**网络配置中的”DNS服务器地址”**了。操作系统会把这个域名发送给这个本地DNS服务器。每个完整的内网通常都会配置本地DNS服务器，例如用户是在学校或工作单位接入互联网，那么用户的本地DNS服务器肯定在学校或工作单位里面。它们一般都会缓存域名解析结果，当然缓存时间是受到域名的失效时间控制的。大约80%的域名解析到这里就结束了，后续的DNS迭代和递归也是由本地DNS服务器负责。    </p>
+</li>
+<li><p>如果本地DNS服务器仍然没有命中，就直接到<strong>根DNS服务器</strong>请求解析。根域名服务器是最高层次的域名服务器，所有的根域名服务器都知道所有的顶级域名服务器的IP地址。不管是哪个本地域名服务器，只要自己无法解析，就首先要求助于根域名服务器。</p>
+<p>因特网上有13个根域名服务器，这13台根域名服务器中名字分别为“A”至“M”，其中10台设置在美国，另外各有一台设置于英国、瑞典和日本。所有根服务器均由美国政府授权的互联网域名与号码分配机构ICANN统一管理。由于根服务器中有经美国政府批准的260个左右的互联网后缀（如．com、．net等）和一些国家的指定符（如法国的．fr、挪威的．no等），自成立以来，美国政府每年花费近50多亿美元用于根服务器的维护和运行。</p>
+<p>尽管我们将这 13个根域名服务器中的每个都视为单个服务器，但每个“服务器”实际上是冗余服务器的集群，以提供安全性和可靠性。</p>
+</li>
+<li><p>根DNS服务器返回给本地DNS域名服务器一个对应的顶级DNS服务器地址。顶级域名服务器管理在该顶级域名服务器注册的所有二级域名，比如com域名服务器管理着a.com、b.com等，还有org域名服务器等。</p>
+</li>
+<li><p>本地DNS服务器再向获得的顶级DNS服务器发送解析请求。</p>
+</li>
+<li><p>接受请求的顶级DNS服务器查找并返回此域名对应的授权域名服务器的地址，这个授权域名服务器一般你的域名是在哪个域名提供商那里注册的就是那家的域名服务器。比如我要访问a.com，而这个域名是从A公司注册获得的，那么A公司上的服务器就会有a.com的相关信息。</p>
+</li>
+<li><p>本地DNS服务器再请求授权域名服务器，然后授权域名服务器会查询存储的域名和IP的映射关系表，再把查询出来的域名和IP地址等等信息，连同一个TTL值返回给本地DNS服务器。</p>
+</li>
+<li><p>本地DNS服务器会缓存这个域名和IP的对应关系，缓存时间由TTL值控制。</p>
+</li>
+<li><p>本地DNS服务器把解析的结果返回给本地电脑，本地电脑根据TTL值缓存在本地系统缓存中，域名解析过程结束。</p>
+<p>在实际的DNS解析过程中，可能还不止这10步，如域名服务器可能有很多级，或者有一个GTM来负载均衡控制，这都有可能会影响域名解析过程。</p>
+</li>
+</ol>
+<p>DNS高速缓存：为了提高DNS的查询效率，并减少因特网上的DNS查询报文数量，在域名服务器中广泛地使用了高速缓存。当一个DNS服务器接收到DNS查询结果时，它能将该DNS信息缓存在高速缓存中。这样，当另一个相同的域名查询到达该DNS服务器时，该服务器就能够直接提供所要求的IP地址，而不需要再去向其他DNS服务器询问。由于主机名和IP地址之间的映射不是永久的，所以DNS服务器将在一段时间后丢弃高速缓存中的信息。</p>
+<p>另外上述过程表明本地主机向本地DNS服务器发出的查询请求是递归查询（即本地DNS服务器如果无法解析就由自己继续向根域名服务器请求解析而不是让本地主机自己发解析请求），而本地DNS服务器向根域名服务器发出的查询请求是迭代查询（根域名服务器把接下来要请求的域名服务器给本地DNS服务器，让它自己去查，而不是根域名服务器替它查）。</p>
+<p><strong>DNS劫持和DNS污染的区别</strong></p>
+<p>DNS劫持是指劫持了DNS服务器之后修改了服务器中某个域名的解析结果，导致对该域名的访问由原IP转到了被修改后的IP，使得该域名无法访问或者访问的是假网址。<strong>DNS劫持最直接的手段是通过入侵 DNS 服务器，获取攻击目标域名的解析记录控制权，之后修改攻击目标域名的解析结果，等到 TTL 时间生效之后，所有对该域名的访问由原 IP 地址指向修改后的恶意 IP</strong>。DNS劫持会造成用户无法正常使用服务，甚至造成弹广告、挂马、搜集账号密码、 DDoS 等更加严重的危害。</p>
+<p>DNS污染又称域名服务缓存投毒。在正常的DNS解析过程中，下一级域名服务器会将从上游域名服务器获得的解析记录保存一段时间，当在TTL值失效之前，有相同域名的解析请求时，就会直接将解析记录告知客户端，这样既加快了查询时间，同时也降低了服务器工作压力。但在这个过程中，如果局域域名服务器的缓存受到污染，就会告知客户端错误的解析记录，从而将用户指向错误的网站。这种攻击方式，被称为DNS污染。比如如今的GFW禁止国内用户访问国外网站的封锁方式之一就是DNS污染。你访问google.com 因为人家服务器在国外，DNS过去解析肯定要走国际带宽的出口，然后就被GFW逮住了。因为DNS 走的是UDP协议，且UDP又没有校验机制，只管发送，不管验证是不是真的DNS服务器在回应你。所以这时候，GFW就假装成DNS服务器回应你了，而此时真正的请求可能正在被真正的DNS服务器处理，假的已经返回给你了，浏览器就选择了最快返回的那个地址去解析了。当然是一个不可用的地址啦。因为DNS 走的UDP协议，并且是53端口，所以这有多好发现也就不言而喻了。如果你强行让DNS走TCP协议，GFW 有办法让你连接重置，虽然污染不了你的DNS，但是你还是无法获得ip。这也就是为什么有一种FQ方式就叫修改hosts文件，修改后，域名不需要去DNS服务器请求了，直接在你的操作系统里就已经解析出了ip 地址。但是，GFW还是会定期封杀这些网站的ip地址，你的hosts就没用了。</p>
+<p>对于DNS劫持，可以简单的通过更换没有被劫持的DNS服务器进行应对，比如公共DNS；对于DNS污染，就不是那么容易可以解决的了。</p>
+<p><strong>关于修改hosts文件来访问一些本来不能访问的网站如github等的原理</strong></p>
+<p>上述已经说明了，其实就是在本地把域名和IP的映射关系配置好，让主机直接在本地完成DNS解析，就不需要去请求DNS服务器来解析了。开发中对于一些经常访问的测试服务器等等也可以修改hosts文件来加快访问速度。</p>
+<p>hosts文件的格式（Windows下）：IP地址+空格+对应域名。</p>
+<p>如果采用这个方法的话需要定期更新hosts文件，因为系统会刷新文件里的内容。</p>
+<p>攻击：使用修改过的镜像或者流氓PE安装系统的话就可能会被恶意修改hosts文件，将一些常用网站的 IP 换到自己的网站，以赚取浏览，甚至将用户导向一些还原度非常高的山寨网站上，骗取账户密码甚至财产。所以大家尽量使用官方镜像和安装工具装系统就好了。</p>
+<h3 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h3><p>所谓“防火墙”是指一种将内部网和公众访问网（如Internet）分开的方法，它实际上是一种建立在现代通信网络技术和信息安全技术基础上的应用性安全技术。在逻辑上，防火墙是一个分离器，一个限制器，也是一个分析器，有效地监控了内部网和Internet之间的任何活动，保证了内部网络的安全。</p>
+<p>防火墙对流经它的网络通信进行扫描，这样能够过滤掉一些攻击，以免其在目标计算机上被执行。防火墙还可以关闭不使用的端口。而且它还能禁止特定端口的流出通信，封锁特洛伊木马。最后，它可以禁止来自特殊站点的访问，从而阻断来自不明入侵者的所有通信。<br>进出网络的数据都必须经过防火墙，防火墙通过日志对其进行记录，能提供网络使用的详细统计信息。当发生可疑事件时，防火墙更能根据机制进行报警和通知，提供网络是否受到威胁的信息。</p>
+<p>防火墙有硬件和软件两种存在方式，一般电脑上的防火墙都是防火墙软件。防火墙会一定程度地控制主机的各个端口，比如监控通过端口的数据，封闭某个端口禁止使用，想使用这个端口需要去防火墙配置中开放端口。</p>
+<h3 id="DHCP服务器"><a href="#DHCP服务器" class="headerlink" title="DHCP服务器"></a><strong>DHCP服务器</strong></h3><blockquote>
+<p>DHCP指的是由服务器控制一段IP地址范围，客户机登录服务器时就可以自动获得服务器分配的IP地址和子网掩码。提升地址的使用率。</p>
+</blockquote>
+<p><strong>了解DHCP或动态主机配置协议</strong></p>
+<p>DHCP（Dynamic Host Configuration Protocol，动态主机配置协议）是一种存在于应用层的网络管理协议。在DHCP的帮助下，可以动态地给网络上的任何设备或节点分配一个互联网协议IP地址。网络管理员的任务是将大量的IP地址手动分配给网络中的所有设备。然而，在DHCP中，这个任务是自动化的。无论是小型本地网络还是大型企业网络都实现了DHCP。</p>
+<p>根据DHCP协议提供分配ip服务的设备可称为DHCP服务器；享受DHCP服务的设备可称为DHCP客户端。</p>
+<p><strong>DHCP是如何工作的</strong></p>
+<p>当DHCP作为服务器运行时时，DHCP服务器可以自动分配唯一的IP地址。在小型企业或家庭中，DHCP服务器一般就是路由器。在大型网络中，DHCP服务器可以是一台计算机。</p>
+<p>在这个过程中发生了什么，简单的总结如下：</p>
+<p>1.网络中的终端设备向DHCP服务器（如路由器）发送一个IP地址请求。</p>
+<p>2.DHCP服务器将寻找一个可用的IP地址并分配给终端设备。</p>
+<p>3.使用这个IP地址，终端设备就可以在网络上进行通信。</p>
+<p>以下是DHCP的详细工作原理：</p>
+<ol>
+<li><strong>发现阶段（Discover）</strong>：当设备（例如计算机、智能手机或平板电脑）连接到网络时，它们会首先发送一个DHCP发现请求。这个请求是一个广播消息，它通知网络上的DHCP服务器该设备需要一个IP地址以及其他网络配置信息。</li>
+<li><strong>提供阶段（Offer）</strong>：在收到发现请求后，DHCP服务器将向设备发送一个DHCP提供消息，其中包含了一个可用的IP地址以及其他配置选项（如子网掩码、网关和DNS服务器）。通常，DHCP服务器可以为每个设备提供一个IP地址，但它还可以提供一个租约时间，设备在租约到期后需要续租。</li>
+<li><strong>请求阶段（Request）</strong>：设备收到一个或多个DHCP提供消息后，会选择其中一个提供消息，并向DHCP服务器发送一个DHCP请求消息，确认选择的IP地址。</li>
+<li><strong>确认阶段（Acknowledge）</strong>：一旦DHCP服务器收到设备的请求消息，它将响应一个DHCP确认消息，该消息确认了IP地址分配，并提供了其他网络配置信息。</li>
+<li><strong>租约续租（Lease Renewal）</strong>：在分配的IP地址租约即将到期之前，设备通常会发送一个DHCP请求来请求续租。DHCP服务器可以选择是否续租IP地址，通常是允许的，以确保设备保持连接。</li>
+<li><strong>释放（Release）</strong>：设备可以选择在不再需要IP地址时向DHCP服务器发送一个释放消息，以释放分配的IP地址。</li>
+</ol>
+<p>DHCP分配地址有三种方式，分别是自动分配、动态分配和手动分配：<br>1.自动分配方式：DHCP服务器可以为主机分配一个永久性的IP地址。当DHCP客户端第一次从DHCP服务端租用到一个IP地址时，就可以永久性的使用该IP地址。<br>2.动态分配方式：DHCP服务器为主机分配一个具有时间限制的IP地址，当时间达到限制或者主机主动放弃该地址时，该地址才能被其他主机使用。<br>3.手动分配方式：客户端的IP地址由网络管理员指定，DHCP服务器只是将一个指定的IP地址告诉主机。<br>主要工作原理：DHCP采用UDP发送所有的数据包，主机发送请求到DHCP服务器的68号端口，DHCP服务器再把消息返回给主机的67号端口。</p>
+<p><strong>DHCP的优点</strong></p>
+<ul>
+<li>可以很容易地在网络中添加新的客户端。</li>
+<li>IP地址是由DHCP集中管理的。</li>
+<li>IP地址可以重复使用，从而减少了对IP地址总数的要求。</li>
+<li>DHCP服务器上的IP地址空间可以很容易地进行重新配置，而不需要单独重新配置客户端。</li>
+<li>网络管理员可以利用DHCP协议提供的方法，从集中区域配置网络。</li>
+</ul>
+<blockquote>
+<p>在一般的家庭网络中，运营商将公网ip分配在光猫上，而局域网内部的内网ip则由路由器根据dhcp分配。</p>
+</blockquote>
+<h3 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a><strong>MAC地址</strong></h3><blockquote>
+<p>MAC地址就如同我们身份证上的身份证号码，具有全球唯一性。(知道这个就行了，不用往下看了)<br>MAC（Media Access Control，介质访问控制）地址</p>
+</blockquote>
+<ul>
+<li>前24位叫做组织唯一标志符（Organizationally Unique Identifier，即OUI），是由IEEE的注册管理机构给不同厂家分配的代码，区分了不同的厂家。</li>
+<li>后24位是由厂家自己分配的，称为扩展标识符。同一个厂家生产的网卡中MAC地址后24位是不同的。<br>网卡的物理地址通常是由网卡生产厂家烧入网卡的EPROM（一种闪存芯片，通常可以通过程序擦写），它存储的是传输数据时真正赖以标识发出数据的电脑和接收数据的主机的地址。</li>
+</ul>
+<p>MAC地址的长度为48位(6个字节)，通常表示为12个16进制数，如：00-16-EA-AE-3C-40就是一个MAC地址，其中前3个字节，16进制数00-16-EA代表网络硬件制造商的编号，它由IEEE(电气与电子工程师协会)分配，而后3个字节，16进制数AE-3C-40代表该制造商所制造的某个网络产品(如网卡)的系列号。只要不更改自己的MAC地址，MAC地址在世界是唯一的。形象地说，MAC地址就如同身份证上的身份证号码，具有唯一性。</p>
+<p>在一个稳定的网络中，IP地址和MAC地址是成对出现的。如果一台计算机要和网络中另一外计算机通信，那么要配置这两台计算机的IP地址，MAC地址是网卡出厂时设定的，这样配置的IP地址就和MAC地址形成了一种对应关系。在数据通信时，IP地址负责表示计算机的网络层地址，网络层设备（如路由器）根据IP地址来进行操作；MAC地址负责表示计算机的数据链路层地址，数据链路层设备（如交换机）根据MAC地址来进行操作。IP和MAC地址这种映射关系由ARP（Address Resolution Protocol，地址解析协议）协议完成。</p>
+<h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h3><p>一、什么是ARP<br>ARP是地址解析协议（Address Resolution Protocol）的英文缩写，它是一个数据链路层协议。我们知道二层的以太网交换设备并不能识别32位的IP地址，它们是以MAC地址传输以太网数据包的。也就是说IP数据包在局域网内部传输时并不是靠IP地址而是靠MAC地址来识别目标的，因此IP地址与MAC地址之间就必须存在一种对应关系，而ARP协议就是用来确定这种对应关系的协议。<br>二、工作原理<br>工作原理是通过广播发送ARP查询请求目的IP的MAC地址，与发送方处于同一广播域的主机收到该请求后，如果确认查询的IP是本机，则单播回应本机的MAC地址；如果发现查询的IP不是本机，则不回应；发送方接收到ARP回应后，把该IP和MAC地址写入本机ARP缓存表，下次再与该IP进行二层通讯，则直接使用表中的记录来进行转发。<br>三、ARP的使用场景<br>1、如果目的IP和本机IP属于同一网段，则ARP请求查询的就是目的IP的MAC地址<br>2、如果目的IP和本机IP不属于同一网段，当本机存在到达目的IP的路由时，则ARP请求查询的就是该路由下一跳的MAC地址；如果没有明细路由，就请求查询缺省路由下一跳（也就是网关）的MAC地址。</p>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a><strong>服务器</strong></h3><ol>
+<li>服务器的分类<br>按照软件开发阶段来分，服务器可以大致分为2种<br>（1）远程服务器<br>别名：外网服务器、正式服务器<br>使用阶段：应用上线后使用的服务器<br>使用人群：供全体用户使用<br>速度：服务器的性能、用户的网速<br>（2）本地服务器<br>别名：内网服务器、测试服务器<br>使用阶段：应用处于开发、测试阶段使用的服务器<br>使用人群：仅供公司内部的开发人员、测试人员使用<br>速度：由于是局域网，所以速度飞快，有助于提高开发测试效率</li>
+<li>本地服务器的选择<br>远程服务器就是本地内网服务器开放外网访问而已<br>如果处于学习、开发阶段，自己搭建一个本地服务器即可</li>
+</ol>
+<h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a><strong>端口号</strong></h3><blockquote>
+<p>端口包括物理端口和逻辑端口。物理端口是用于连接物理设备之间的接口，逻辑端口是逻辑上用于区分服务的端口。TCP&#x2F;IP协议中的端口就是逻辑端口，通过不同的逻辑端口来区分不同的服务。<br>端口有什么用呢？我们知道，一台拥有IP地址的主机可以提供许多服务，比如Web服务、FTP服务、SMTP服务等，这些服务完全可以通过1个IP地址来实现。那么，主机是怎样区分不同的网络服务呢？显然不能只靠IP地址，因为IP 地址与网络服务的关系是一对多的关系。实际上是通过“IP地址+端口号”来区分不同的服务的。</p>
+</blockquote>
+<ul>
+<li>公认端口（Well-Known Ports）<br>这类端口也常称之为”常用端口”。这类端口的端口号从0到1023，它们紧密绑定于一些特定的服务。通常这些端口的通信明确表明了某种服务的协议，这种端口是不可再重新定义它的作用对象。80端口实际上总是HTTP通信所使用的，而23号端口则是Telnet服务专用的。</li>
+<li>注册端口（Registered Ports）<br>端口号从1025到49151。分配给用户进程或应用程序。这些进程主要是用户选择安装的一些应用程序，而不是分配好的公认端口的常用程序。</li>
+<li>动态和&#x2F;或私有端口（Dynamic and&#x2F;or Private Ports）<br>之所以称为动态端口，因为它一般不固定分配某种服务，而是动态分配。</li>
+</ul>
+<p>路由器上的WAN口是用来连接外网（公网），或者说是连接宽带运营商的设备的，路由器如果有公网ip的话就在这个wan口上，或者是通往上一级网络的私网ip。例如电话线上网时WAN口用来连接Moden（猫）；光纤上网时，WAN口用来连接光猫；网线入户上网时，WAN口用来连接入户网线。</p>
+<p>而路由器上的LAN口（1、2、3、4），是用来连接内网（局域网）中的设备的，主要是用来连接电脑、交换机、打印机等设备的，路由器的lan口有一个相应的内网ip。</p>
+<p>可以进行简单的总结：</p>
+<p>（1）路由器的WAN口只能够用来连接猫、光猫、入户网线，或者上级网络，不能够用来连接电脑。</p>
+<p>（2）路由器的LAN（1、2、3、4）口，只能够用来连接电脑，不能连接猫、光猫、入户网线，否则会造成路由器无法上网。</p>
+<p>拨号就是<strong>利用电话线连接网络的方式和过程</strong>。 拨号为使用拨号方式进行连接上网，需要具备的硬件设备是调制解调器，用于将计算机的数字信号与电话线的模拟信号进行相互转换。 用户使用调制解调器将自己的计算机与电话线相连后，向远程主机拨打一个电话号码即可建立起与主机的连接。</p>
+<p>传统的电话线拨号上网可以简单理解成把网络信号通过调制解调器（MODEM，调制解调器，俗称“猫”，调制指数字信号转模拟信号，解调指模拟信号转数字信号；猫的一头连接着ISP提供的网络，另一头连接用户家里的路由器或者电脑等）“翻译”成某种声音，像打电话一样的传出去，这样的接入方式很慢，一般也就56kbps，而且上网和通话不能同时进行，上网时接电话网会断掉。</p>
+<p>按照OECD（ 经济合作与发展组织 ）2006年报告所规定的，<strong>任何传输速率在256Kbps（32KB&#x2F;s）以上的互联网连接</strong>，可称为宽带。相对的，将网络接入速度为56Kbps(最大下载速度为8KB&#x2F;S)及其以下的网络接入方式称为“窄带”，如拨号上网，ISDN拨号上网等，相对于宽带而言窄带的缺点是接入速度慢。不过根据FCC（美国联邦通信委员会）的解释，从2010年世界电信日(5.17)开始，不到4M一概称为窄带，只有4M或以上才能被称为宽带。宽带的具体定义是一个随着时代不断动态发展的概念。</p>
+<p>宽带上网的接入方式有很多，光纤上网也算是一种，在光纤入户普及之前，全国使用较多的介入方式应该是ADSL宽带了，这种接入方式其实还是电话线拨号上网，也需要猫，不过和传统的拨号上网区别在于，ADSL不再占用电话线通话的那个通道，而是在电话线里另外“开辟”了多条道路，部分负责上行，部分负责下行，这样就完美解决了通话上网不能同时进行的问题，另外，由于道路多了，上网的速率同时也变快了。但是ADSL的弊端也非常明显，对线路质量依赖较高，虽然理论速率能达到8mbps，但是一般运营商最高只开到4m，有些老小区因为线路问题能上到2m就很不错了。</p>
+<p>ADSL (Asymmetric Digital Subscribe Line)，非对称数字用户线，由于提供的上行&#x2F;下行带宽不—样，下行带宽要大于上行带宽，所以称之为非对称。ADSL到用户家中具体接入方法是，从宽带运营商接过一根电话线，到室内的调制解调器上，可以接电话线，也可以接网线，网线可以接到路由器，再分配到各个网络设备上。</p>
+<p>动态IP(DHCP)、静态IP、宽带拨号三种上网设置区别</p>
+<p>一、动态IP(DHCP)</p>
+<p>　  动态IP上网，又叫做DHCP上网、自动获取IP上网。动态IP这种上网方式，在未使用路由器的情况下，只需要把这根宽带网线连接到电脑上，电脑上的IP地址设置为自动获得，使用路由器就把网线插在路由器的wan口并在路由器管理页面设置dhcp然后电脑连接路由器即可，电脑就可以实现上网了。</p>
+<p>二、静态IP</p>
+<p>　  静态IP上网，又叫做固定IP地址上网。这种上网方式，宽带运营商会提供一个IP地址、子网掩码、网关和DNS服务器地址给用户。在未使用路由器的情况下，只需要把这根入户网线连接到电脑上，并且手动设置电脑上的IP地址，这样电脑才能上网。有路由器也是在路由器上设置固定ip，网线插路由器wan口上。</p>
+<p>三、宽带拨号（PPPOE拨号）</p>
+<p>　  PPPOE拨号上网，又叫做ADSL拨号上网、宽带拨号上网，ADSL是一种传输模式，PPPoE是一种协议，ADSL宽带利用PPPoE协议来拨号上网。这种上网方式，宽带运营商会分配一个宽带账号、宽带密码给用户；在未使用路由器的情况下，电脑上需要使用“宽带连接”拨号来实现上网，目前国内绝大多数用户办理的宽带，都属于pppoe拨号这种类型。有路由器也是在路由器上设置pppoe拨号，网线一头插路由器wan口上，另一头插在猫上或者入户网线插口上。</p>
+<p>PPPoE（英语：Point-to-Point Protocol Over Ethernet，以太网上的点对点协议），是将点对点协议 （PPP）封装在以太网 （Ethernet）框架中的一种网络隧道协议 。</p>
+<p>总结：</p>
+<p>　  1、如果你在开通宽带以后有宽带帐号、宽带密码；就选择拨号(PPPOE)；</p>
+<p>　  2、如果宽带运营商给你提供了IP地址、子网掩码、网关和DNS服务器地址；那么就应该选择静态IP</p>
+<p>　  3、如果宽带运营商只提供了一根网线到用户家里，没有宽带帐号、密码;也没有IP地址、子网掩码、网关和DNS。这种情况下就应该选择动态IP(DHCP)</p>
+<p>光纤（Fiber）宽带就是把要传送的数据转换为光信号进行通讯。在光纤的两端分别都装有“光猫(光调制解调器，将数字信号转换为光信号)”进行信号转换。 光纤是宽带网络中多种传输媒介中最理想的一种，它的特点是传输容量大，传输质量好，损耗小，中继距离长等。光纤传输使用的是波分复用，即把小区里的多个用户的数据分别调制成不同波长的光信号在一根光纤里传输。</p>
+<p>光猫的连接：在光猫的背面光纤口有一根细扁的黑线是入户光纤，一般都是绕几圈固定好的，一般不易移动。从光猫的lan1口（记住网线是lan1）接上网线，连接到路由器的wan口，然后就可以从路由器的多个lan口引出网线连接到电脑上了。</p>
+<p>光猫的拨号模式：直连模式（桥接模式）是利用光猫桥接光信号，再另外用一个路由器来PPPOE拨号。拨号模式，是直接利用光猫内部的路由器程序进行拨号 。一般都是桥接模式，由路由器拨号。</p>
+<p>光纤拨号和电话线拨号上网的区别就是，电话线拨号是一人享用一根电话线上网，在这根电话线里还有你的电话机使用的语音信号。而光纤宽带则是通到小区，然后分别通过超五类网线（其实就是现在那种普通的8线芯的网线，不是说超过五种类型的网线的意思）通到各用户，这样上网是上网，打电话是打电话。小区里的用户共享一根光纤足够了。</p>
+<p>光纤到户：FFTH；光纤到楼：FFTB</p>
+<blockquote>
+<p>传输介质：电话线、网线、光纤</p>
+<p>传输模式：电话线拨号、ADSL</p>
+<p>协议：PPPoE</p>
+<p>PPPoE拨号上网可以用光纤为传输介质。光纤宽带目前也是拨号上网方式比较多，但不都是拨号，比如企业光纤专线不用拨号。</p>
+</blockquote>
+<p>OSI七层模型只有最下三层有实体设备，上四层都是软件层面的表示了。</p>
+<p>第一层：物理层，代表设备：网卡，网线，光纤，atm线缆等。</p>
+<p>第二层：数据链路层，代表设备：二层交换机（交换机，识别数据包中的MAC地址并据此转发数据包），hub。</p>
+<p>第三层：网络层，代表设备：路由器，三层交换机（具有路由功能的交换机，同时具有MAC地址表和IP路由表），防火墙。</p>
+<p>之后的层就是各种协议的表示了。这个主要是开发人员用的多一些，如tcp，ip，http，smtp，ftp等等。</p>
+<h3 id="WiFi"><a href="#WiFi" class="headerlink" title="WiFi"></a>WiFi</h3><p>WiFi是<strong>一系列无线网络协议</strong>的名称，它允许智能手机、笔记本电脑和各种物联网小工具等现代电子设备无线连接到支持WiFi的路由器以访问互联网。</p>
+<blockquote>
+<p>关于无线路由器，其实是WiFi技术出现后路由器增添了对WiFi协议的支持，启用了无线接入功能，可以将宽带上网借由网线&#x2F;光纤传输的有线网络信号转换为无线WiFi信号发射出去，使得手机、智能家具等电子设备不用连接网线就可以连接上网络。对于电脑，当然是不借助无线上网手段的话就得连网线上网了，不想连网线那就得连无线网。</p>
+</blockquote>
+<p>WiFi协议基于互联网的IEEE 802.11系列标准用于局域网设计，由电气和电子工程师协会 (IEEE) LAN&#x2F;MAN 标准委员会 (IEEE 802) 创建和维护。第一个WiFi协议于 1997 年发布，它提供了高达2 Mbit&#x2F;s的连接速度。从那时起发布了多代 WiFi，每一代都提供比前一代更快的速度。例如，最新一代WiFi 6，提供高达 9608 Mbit&#x2F;s的连接速度，使其比第一代快近5000倍。</p>
+<p>WiFi这个单词没有代表意义，没有全写，也不是什么“无线保真”的缩写。实际上，WiFi根本不代表任何东西，因为它是由品牌咨询公司Interbrand创建的商业品牌名称，Interbrand是一家世界领先的品牌咨询公司，拥有超过 45 年的经验。Interbrand受雇于非营利性Wi-Fi联盟，该组织负责对设备的WiFi交互操作性进行认证，以提出比IEEE 802.11b Direct Sequence更好的名称。很多人认为WiFi指的是无线保真的主要原因是由于“无线保真标准”的广告标语，这则标语在WiFi频带出现后使用过很短一段时间。还有一个事实在于Wi-Fi联盟在某些行业公共平台被称为“无线保真联盟公司”。最后，IEEE还进一步推波助澜地在其网站将WiFi称为是无线保真的简称。</p>
+<p><strong>WiFi的工作原理是怎样的？</strong><br>与传统的晶体管收音机类似，WiFi网络使用无线电波在空中传输信息，无线电波是一种电磁辐射，其在电磁波谱中的波长比红外光长。WiFi无线电波通常具有2.4千兆赫兹（GHz）或5.8千兆赫兹的频率。这两个WiFi频带之后被细分为多个信道，而每个信道可能同时会被很多不同的网络所共享。当您通过WiFi网络下载文件时，一个被称为无线路由器的设备首先通过您的宽带互联网连接从互联网接收数据，然后将其转换成无线电波。接下来，无线路由器会向周围区域发射无线电波，并由已发起下载请求的无线设备捕获它们并对其进行解码。</p>
+<p>由于WiFi依赖于无线电波，因此WiFi网络可能会受到其他WiFi网络或各种电子设备（包括微波炉，无线电话，冰箱，电视，晶体管收音机或蓝牙设备）的干扰而中断。<br><strong>Wi-Fi无线电频谱</strong><br>正如我们已经提到的，WiFi以2.4 GHz和5 GHz频率传输。</p>
+<p>Wi-Fi主要工作在2.4GHz和5GHz这两个频段上。这两个频段属于ISM（Industrial Scientific Medical 工业，科学，医学）频段，只要发射功率满足国家标准要求，就可以不用授权直接使用。不同国家的ISM频段有所不同。</p>
+<p>2.4GHz作为全球最早启用的ISM频段，频谱范围是2.40GHz～2.4835GHz，共83.5MHz带宽。</p>
+<p>我们常用的蓝牙，无线USB等也工作在2.4GHz频段。此外，微波炉和无绳电话使用的频段也是2.4GHz。甚至，有线USB接口的内部芯片在工作时，也会发射2.4GHz的无用信号，造成干扰。由此可见，2.4GHz上同时工作的设备众多，频段拥挤不堪，干扰严重。当万家灯火，你和楼上楼下的邻居在用Wi-Fi愉快上网的时候，路由器却在背后默默地挑选信道，协调干扰。</p>
+<blockquote>
+<p>关于信道：信道有多种定义，WiFi中提到的信道可以理解为频段。2.4GHz频段带宽共83.5MHz被分为14个信道，中国使用的是1-13信道，14信道不允许使用，每个信道的中心频率相差5MHz，由中心向两边各自拓宽11MHz，单个信道带宽为22MHz，所以信道之间是会产生重叠干扰的（图中标红的1、6、11信道之间无干扰，家里有多个路由器的话可尝试分别设置这几个信道避免互相干扰）：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="C:/Users/DELL/Desktop/%E8%AE%A1%E7%BD%91%E7%AC%94%E8%AE%B0.assets/v2-77cc5d9ab8de575e954a2f54d42889fc_720w.png" alt="img"></p>
+</blockquote>
+<p>到了802.11n，用户可以使用40M的信道，但2.4GHz频段依然只有83.5M的总带宽，就只能容纳两个信道了。因此只有在夜深人静网络空闲的时候，单个用户才有可能使用40M信道，加之来自邻居家的干扰，802.11n的高速率很大程度上难以达到。</p>
+<p>如果说2.4GHz频段是羊肠小道的话，5GHz频段无疑就是康庄大道了。5GHz频段的可用范围是4.910GHz～5.875GHz，有900多M的带宽，是2.4G的10倍还多！这段频谱过于宽了，不同国家根据自身情况，定义了Wi-Fi可以使用的范围。比如，在中国，5GHz频谱共有13个20M信道可用作Wi-Fi，连续的20M信道还可以组成40M，80M，甚至160M信道。</p>
+<p>5GHz的带宽大，上面跑的的设备少，用起来自然速度快，干扰小。因此，如果想要家庭网络达到良好的速率体验，可用考虑用5GHz来进行全屋覆盖。然而，5GHz虽然带宽大干扰小，但是信号传播衰减快，还很容易被阻挡，穿墙能力很弱。因此，跟2.4GHz相比，5GHz信号通常要弱得多。</p>
+<p>如果仅考虑到家里的各种智能家居的联网，2.4GHz的覆盖和容量通常就够用了。但如果需要高速上网，最大化发挥家庭宽带的价值，就必须依靠5GHz才能实现。</p>
+<p><strong>802.11网络标准</strong><br>大多数现代WiFi路由器支持802.11ac网络标准，该标准的多站吞吐量至少为每秒1千兆位，单链路吞吐量为至少为每秒500兆比特（500 Mbit&#x2F;s）。</p>
+<p>许多老式WiFi路由器仅支持802.11n网络标准，其最大净数据速率为600 Mbit &#x2F; s，有些甚至仅支持802.11g网络标准，其最大净数据速率仅为54 Mbit &#x2F; s。</p>
+<p>由于802.11网络标准是向后兼容的，因此没有理由不购买支持最新802.11网络标准的路由器，也即802.11ac。</p>
+<blockquote>
+<p>关于其他的802.11网络标准：802.11b&#x2F;a&#x2F;g分别对应WiFi1&#x2F;WiFi2&#x2F;WiFi3，已经不再使用了；802.11n被追称为WiFi4，802.11ac被追称为WiFi5，现在最新的是802.11ax，也就是WiFi6。</p>
+</blockquote>
+<p><strong>WiFi安全协议</strong><br>WiFi安全协议可防止未经授权的访问或通过无线网络损坏计算机。最基本的无线安全协议是有线等效加密（WEP）。它于1997年批准使用，由于本身存在一系列安全限制导致2004年被宣布弃用。<br>WEP后被Wi-Fi保护接入（WPA）和Wi-Fi保护接入II（WPA2）所取代，而后者分别于2003年和2004年得到广泛应用。很快，WPA2将会被WPA3所取代，WPA3使用的是更为强大的加密算法，同时解决了由弱密码所引起的一系列安全问题。</p>
+<h3 id="手机移动数据上网原理"><a href="#手机移动数据上网原理" class="headerlink" title="手机移动数据上网原理"></a>手机移动数据上网原理</h3><p>手机里有两种网卡，一是WiFi用的以太网卡，另一种是移动数据用的无线modem型网卡。</p>
+<p>手机移动数据上网时首先发射无线信号连接到最近基站，基站与互联网之间又通过一系列复杂的设备相连，最终使手机得以接入互联网。</p>
+<p>移动网络又称蜂窝网络，蜂窝网络的基础组成部分是通信基站，基站的信号覆盖范围是六边形的（因为正六边形具有最佳的覆盖效果和频谱利用率），整个网络如同蜂窝一般，故得名蜂窝网络。手机上网用的就是蜂窝网络数据。</p>
+<p>基站在户外可见，比如有时候看到的一座大铁塔（把天线放在塔顶举高高）还有旁边的一座小房子（机房）。基站的机房有时候会出现在楼顶。</p>
+<p><strong>4G和5G</strong></p>
+<p>1G：这是指第一代无线电话技术，即移动通信。它使用模拟信号，速度高达2.4kbps。那时的大哥大没有屏幕只能打电话。</p>
+<p>2G：这是指第二代移动技术。使用数字电信标准。数据速率介于 56－114kbps。2G 实现了语音通信数字化，功能机有了小屏幕可以发短信了。</p>
+<p>3G： 指第三代移动电话技术。它提供 384kbps 的数据速率，因此可以轻松浏览网站和流式传输音乐。</p>
+<p>4G：第四代移动技术，被称为 LTE（长期演进）。比起1G-3G，它是这几种中最好的，与家中或办公室的 Wi-Fi 一样，稳定快速。</p>
+<p>5G ：第五代移动通信技术。相比4G，5G 网络主要有三大特点：极高的速率 (eMBB)、极大的容量(mMTC)、极低的延时(URLLC)。5G的理论网速峰值（10Gbps）是4G网速（100Mbps）的100倍。</p>
+<p>这些术语中的G是generation（代）的缩写，即第一代、第二代…的意思。</p>
+<p>另：4G+是新一代的4G网，可以说是plus版的4G网，网速峰值提高了很多，4G+的峰值为300Mbps。</p>
+<p><strong>个人热点</strong></p>
+<p>手机开启个人热点使其他设备能够连接这个热点，实际上是将手机接收到的网络信号转换为WiFi信号发射出去被其他设备接收。具有无线AP（接入点）功能的手机才能这么做。可以认为开了热点的手机变成了一个路由器。连接热点的设备和开了热点的手机如果去查公网ip的话是一样的，都是手机的公网IP。</p>
+<p>没有安装SIM卡的手机也可以连接热点上网。</p>
+<p>安卓大部分版本的热点网段都是192.168.43.0&#x2F;24，为了和其他常见网段冲突。</p>
+<p>手机也是具有DHCP服务器功能的，其本身可以作为DHCP服务器给连接了它的热点的设备分配IP。电脑连接手机热点后查看到DHCP服务器、DNS服务器、网关IP都是192.168.43.1也说明了这一点。</p>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top">Elzzach</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.elzzach.top/article/edaee689414d.html">https://blog.elzzach.top/article/edaee689414d.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.elzzach.top" target="_blank">暮紫天地</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/avatar.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Elzzach</div><div class="author-info__description">一个爱好视觉效果的(想花里胡哨却花不起来的)入门小前端</div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/legend-cpu" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:el-zzach@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到暮紫天地！🎉<br/>博主去知识的海洋里遨游了，更新随缘哦~<br/><strong>主站点</strong>：<a href="https://blog.elzzach.top/" target="_blank">blog.elzzach.top</a><br/><strong>镜像站</strong>：<a href="https://legend-cpu.github.io/" target="_blank">Github镜像站</a><br/>作者才疏学浅，读者若发现文章有错误之处，请不吝指出！<br/><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://blog.elzzach.top/global-img/202202241714592.gif" alt="可爱"/></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9B%A0%E7%89%B9%E7%BD%91%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E8%80%85ISP%EF%BC%88Internet-Service-Provider%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">因特网服务提供者ISP（Internet Service Provider）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EISP%E7%9A%84%E4%B8%89%E5%B1%82%E7%BB%93%E6%9E%84%E7%9A%84%E5%9B%A0%E7%89%B9%E7%BD%91"><span class="toc-number">2.</span> <span class="toc-text">基于ISP的三层结构的因特网</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E5%9B%BD%E4%BA%92%E8%81%94%E7%BD%91%E9%AA%A8%E5%B9%B2%E7%BD%91"><span class="toc-number"></span> <span class="toc-text">中国互联网骨干网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%B9%9D%E5%A4%A7%E9%AA%A8%E5%B9%B2%E7%BD%91"><span class="toc-number"></span> <span class="toc-text">4.1 九大骨干网</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-CHINANET%E5%85%AB%E5%A4%A7%E8%8A%82%E7%82%B9"><span class="toc-number"></span> <span class="toc-text">4.2 CHINANET八大节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E4%B8%AD%E5%9B%BD%E9%AA%A8%E5%B9%B2%E7%BD%91%E8%BF%90%E8%90%A5%E5%95%86"><span class="toc-number"></span> <span class="toc-text">5 中国骨干网运营商</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number"></span> <span class="toc-text">子网掩码的分类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81CIDR%E4%B8%8EVLSM"><span class="toc-number"></span> <span class="toc-text">二、CIDR与VLSM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%9C%89%E7%B1%BB%E5%92%8C%E6%97%A0%E7%B1%BB%E7%BD%91%E7%BB%9C%EF%BC%8C%E8%B6%85%E7%BD%91%E5%92%8C%E5%AD%90%E7%BD%91"><span class="toc-number"></span> <span class="toc-text">1、有类和无类网络，超网和子网</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81CIDR%E6%97%A0%E7%B1%BB%E5%88%AB%E5%9F%9F%E9%97%B4%E8%B7%AF%E7%94%B1"><span class="toc-number"></span> <span class="toc-text">2、CIDR无类别域间路由</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81VLSM%E5%8F%AF%E5%8F%98%E9%95%BF%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81"><span class="toc-number"></span> <span class="toc-text">3、VLSM可变长子网掩码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81CIDR%E4%B8%8EVLSM%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number"></span> <span class="toc-text">4、CIDR与VLSM的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number"></span> <span class="toc-text">DNS服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number"></span> <span class="toc-text">防火墙</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DHCP%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number"></span> <span class="toc-text">DHCP服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MAC%E5%9C%B0%E5%9D%80"><span class="toc-number"></span> <span class="toc-text">MAC地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARP%E5%8D%8F%E8%AE%AE"><span class="toc-number"></span> <span class="toc-text">ARP协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number"></span> <span class="toc-text">服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="toc-number"></span> <span class="toc-text">端口号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WiFi"><span class="toc-number"></span> <span class="toc-text">WiFi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E7%A7%BB%E5%8A%A8%E6%95%B0%E6%8D%AE%E4%B8%8A%E7%BD%91%E5%8E%9F%E7%90%86"><span class="toc-number"></span> <span class="toc-text">手机移动数据上网原理</span></a></div></div></div></div></main><footer id="footer" style="background: rgba(255, 255, 255, 0.8)"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Elzzach</div><div class="footer_custom_text"><div class="footer_custom_text"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a><span class="footer-separator">|</span><span>备案 </span><a href="https://beian.miit.gov.cn" target="_blank">皖ICP备2022000051号</a></div></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/medium-zoom@latest/dist/medium-zoom.min.js"></script><script src="https://npm.elemecdn.com/vanilla-lazyload@latest/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar@latest/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu@latest/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script src="https://npm.elemecdn.com/ezsttcfs@latest/live2d-widget/autoload.js"></script><script src="/ext/ez.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/fireworks.min.js"></script><script src="https://npm.elemecdn.com/butterfly-extsrc@latest/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script></div></body></html>
